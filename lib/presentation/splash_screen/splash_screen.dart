@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:jeyem_express_cargo/presentation/login_screeen/view/login_screen.dart';
 import 'package:jeyem_express_cargo/presentation/selection_screen/view/selection_screen.dart';
-
 import '../../core/constants/colors.dart';
 
 class SplashScreen extends StatefulWidget {

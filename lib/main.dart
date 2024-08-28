@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jeyem_express_cargo/presentation/login_screeen/controller/login_controller.dart';
 import 'package:jeyem_express_cargo/presentation/login_screeen/view/login_screen.dart';
 import 'package:jeyem_express_cargo/presentation/lr_search_screen/view/lr_search_screeen.dart';
 import 'package:jeyem_express_cargo/presentation/lr_search_screen/view/lr_details_screen.dart';
@@ -6,9 +7,14 @@ import 'package:jeyem_express_cargo/presentation/order_tracking_screen/view/orde
 import 'package:jeyem_express_cargo/presentation/order_tracking_screen/view/track_order_screen.dart';
 import 'package:jeyem_express_cargo/presentation/selection_screen/view/selection_screen.dart';
 import 'package:jeyem_express_cargo/presentation/splash_screen/splash_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      MultiProvider(providers: [
+        ChangeNotifierProvider(create: (context) => LoginController(),)
+      ],
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,9 +25,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:  SplashScreen(),
+      // home:  SplashScreen(),
       // home: TrackOrderScreen(),
-      // home:  LoginScreen(),
+      home:  LrSearchScreen(),
       // home:  LrSearchScreen(),
       // home:  LrSearchScreen(),
     );

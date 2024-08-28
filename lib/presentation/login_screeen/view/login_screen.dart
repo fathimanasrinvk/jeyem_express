@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:jeyem_express_cargo/core/constants/colors.dart';
 import 'package:jeyem_express_cargo/core/constants/text_styles.dart';
 import 'package:jeyem_express_cargo/presentation/lr_search_screen/view/lr_search_screeen.dart';
+import 'package:provider/provider.dart';
 import '../../selection_screen/view/selection_screen.dart';
+import '../controller/login_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -10,7 +12,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _isPasswordVisible = false;
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderRadius: BorderRadius.circular(7),
                   ),
                   child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: size.width * .08),
+                    padding: EdgeInsets.symmetric(horizontal: size.width * .08),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -77,6 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: GLTextStyles.poppins2()),
                         SizedBox(height: size.height * .05),
                         TextFormField(
+                          controller: emailController,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.text,
                           style: TextStyle(color: ColorTheme.secondarycolor),
@@ -100,51 +103,51 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(height: size.height * .035),
-                        TextFormField(
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.text,
-                          obscureText: !_isPasswordVisible,
-                          style: TextStyle(color: ColorTheme.secondarycolor),
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: ColorTheme.white,
-                            hintText: 'Enter Password',
-                            hintStyle: TextStyle(color: ColorTheme.black),
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: size.width * .05),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(7),
-                              borderSide: BorderSide(
-                                  color: ColorTheme.white,
-                                  width: size.width * .004),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(7),
-                              borderSide: BorderSide(
-                                  color: ColorTheme.secondarycolor, width: 2),
-                            ),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _isPasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: Colors.grey,
+                        SizedBox(height: size.height * .02),
+                        Consumer<LoginController>(
+                            builder: (context, controller, _) {
+                          return TextFormField(
+                            controller: passwordController,
+                            textInputAction: TextInputAction.next,
+                            keyboardType: TextInputType.text,
+                            obscureText: controller.visibility,
+                            obscuringCharacter: '*',
+                            style: TextStyle(color: ColorTheme.secondarycolor),
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: ColorTheme.white,
+                              hintText: 'Enter Password',
+                              hintStyle: TextStyle(color: ColorTheme.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: size.width * .05),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(7),
+                                borderSide: BorderSide(
+                                    color: ColorTheme.white,
+                                    width: size.width * .004),
                               ),
-                              onPressed: () {
-                                setState(() {
-                                  _isPasswordVisible = !_isPasswordVisible;
-                                });
-                              },
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(7),
+                                borderSide: BorderSide(
+                                    color: ColorTheme.secondarycolor, width: 2),
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  controller.onPressed();
+                                },
+                                icon: Icon(controller.visibility == true
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
+                              ),
                             ),
-                          ),
-                        ),
+                          );
+                        }),
                         SizedBox(height: size.height * .035),
                         GestureDetector(
                           onTap: () {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (context) => LrSearchScreen()));
+                            Provider.of<LoginController>(context, listen: false)
+                                .onLogin(emailController.text.trim(),
+                                    passwordController.text.trim(), context);
                           },
                           child: Container(
                             decoration: BoxDecoration(

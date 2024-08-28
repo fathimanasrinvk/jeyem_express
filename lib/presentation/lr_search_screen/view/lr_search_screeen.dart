@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jeyem_express_cargo/core/constants/text_styles.dart';
-
 import '../../../core/constants/colors.dart';
 import 'lr_details_screen.dart';
 
@@ -33,6 +32,7 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
               child: CircleAvatar(
                 backgroundImage: NetworkImage(
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcdsC6_g4tHOfg6UsEMCzvW4cqwK6nXUCljg&s'),
+
               ),
             )
           ],
