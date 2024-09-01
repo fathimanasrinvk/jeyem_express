@@ -17,6 +17,19 @@ class GLTextStyles {
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.white,
     );
+  }  static mainColorTitle({double? size, FontWeight? weight, Color? color}) {
+    return GoogleFonts.poppins(
+      fontSize: size ?? 26,
+      fontWeight: weight ?? FontWeight.bold,
+      color: color ?? ColorTheme.maincolor,
+    );
+  }
+  static cabinStyle({double? size, FontWeight? weight, Color? color}) {
+    return GoogleFonts.cabin(
+      fontSize: size ?? 22,
+      fontWeight: weight ?? FontWeight.bold,
+      color: color ?? ColorTheme.black,
+    );
   }
 
   static SubTitle({double? size, FontWeight? weight, Color? color}) {
@@ -29,7 +42,7 @@ class GLTextStyles {
 
   static poppins({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.poppins(
-      fontSize: size ?? 17,
+      fontSize: size ?? 15,
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.black,
     );

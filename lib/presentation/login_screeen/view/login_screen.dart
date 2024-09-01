@@ -24,18 +24,19 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0XFF00DDA8),
-              Color(0xFF9C69E3),
-              Color(0xFF9C69E3),
-              Color(0xFF9C69E3)
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+        color: ColorTheme.maincolor,
+        // decoration: BoxDecoration(
+        //   gradient: LinearGradient(
+        //     colors: [
+        //       Color(0XFF00DDA8),
+        //       Color(0xFF9C69E3),
+        //       Color(0xFF9C69E3),
+        //       Color(0xFF9C69E3)
+        //     ],
+        //     begin: Alignment.topLeft,
+        //     end: Alignment.bottomRight,
+        //   ),
+        // ),
         child: Stack(
           children: [
             Padding(
@@ -49,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             Positioned(
-                top: 35,
+                top: 60,
                 left: 40,
                 right: 40,
                 child: Image.asset(
@@ -73,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         SizedBox(height: size.height * .04),
                         Icon(Icons.local_shipping,
-                            size: 64, color: Colors.yellow),
+                            size: 64, color: ColorTheme.maincolor),
                         SizedBox(height: size.height * .02),
                         Text('Sign in to continue to Jeyem',
                             style: GLTextStyles.poppins2()),
@@ -151,7 +152,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: ColorTheme.secondarycolor,
+                              color: ColorTheme.maincolor,
+                              // color: ColorTheme.secondarycolor,
                               borderRadius: BorderRadius.circular(7),
                             ),
                             width: double.infinity,

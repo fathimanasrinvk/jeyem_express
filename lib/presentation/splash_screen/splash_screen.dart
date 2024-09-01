@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
-      backgroundColor: ColorTheme.black.withOpacity(0.8),
+      backgroundColor: ColorTheme.maincolor.withOpacity(0.8),
       body: Center(
         child: Image.asset(
           "assets/logo/jeyem_logo-removebg-preview.png",

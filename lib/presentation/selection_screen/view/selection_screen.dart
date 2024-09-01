@@ -8,25 +8,27 @@ class SelectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
+      backgroundColor: ColorTheme.white,
 
       // backgroundColor: ColorTheme.secondarycolor.withOpacity(0.8),
       // backgroundColor: ColorTheme.black.withOpacity(0.8),
-      body:Container(
-    height: double.infinity,
-    width: double.infinity,
-    decoration: BoxDecoration(
-    gradient: LinearGradient(
-    colors: [
-    Color(0XFF00DDA8),
-    Color(0xFF9C69E3),
-    Color(0xFF9C69E3),
-    Color(0xFF9C69E3)
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    ),
-    ),
-      child:
+    //   body:Container(
+    // height: double.infinity,
+    // width: double.infinity,
+    // decoration: BoxDecoration(
+    // gradient: LinearGradient(
+    // colors: [
+    // Color(0XFF00DDA8),
+    // Color(0xFF9C69E3),
+    // Color(0xFF9C69E3),
+    // Color(0xFF9C69E3)
+    // ],
+    // begin: Alignment.topLeft,
+    // end: Alignment.bottomRight,
+    // ),
+    // ),
+    //   child:
+      body:
       Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -42,7 +44,7 @@ class SelectionScreen extends StatelessWidget {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: ColorTheme.black,
+                    color: ColorTheme.maincolor,
                     borderRadius: BorderRadius.circular(7),
                   ),
                   width: double.infinity,
@@ -66,7 +68,7 @@ class SelectionScreen extends StatelessWidget {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: ColorTheme.black,
+                    color: ColorTheme.maincolor,
                     borderRadius: BorderRadius.circular(7),
                   ),
                   width: double.infinity,
@@ -81,6 +83,6 @@ class SelectionScreen extends StatelessWidget {
           ],
         ),
       ),
-      ));
+      );
   }
 }
