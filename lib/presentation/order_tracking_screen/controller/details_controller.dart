@@ -23,6 +23,13 @@ class DetailsController extends ChangeNotifier {
             context: context, bgColor: ColorTheme.red);
       }
       notifyListeners();
-    });
+    }
+
+    );
+  }
+  void clearDetails() {
+    detailsModel = DetailsModel();
+    isLoading = false;
+    notifyListeners();
   }
 }

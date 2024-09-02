@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:jeyem_express_cargo/presentation/login_screeen/view/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jeyem_express_cargo/presentation/selection_screen/view/selection_screen.dart';
+import 'package:jeyem_express_cargo/presentation/lr_search_screen/view/lr_search_screeen.dart';
+import '../../app_config/app_config.dart';
 import '../../core/constants/colors.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,12 +14,26 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  @override
   void initState() {
-    Timer(Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => SelectionScreen()));
-    });
     super.initState();
+    checkLoginStatus();
+  }
+
+  Future<void> checkLoginStatus() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    final bool isLoggedIn = sharedPreferences.getBool(AppConfig.loggedIn) ?? false;
+
+    Timer(Duration(seconds: 3), () {
+      if (isLoggedIn) {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => LrSearchScreen()));
+      } else {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => SelectionScreen()));
+      }
+    });
   }
 
   @override
@@ -28,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Image.asset(
           "assets/logo/jeyem_logo-removebg-preview.png",
-          height: size.height *.35,
+          height: size.height * .35,
           width: size.width * .6,
         ),
       ),
