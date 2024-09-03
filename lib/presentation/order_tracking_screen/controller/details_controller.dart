@@ -5,7 +5,6 @@ import '../../../core/utils/app_utils.dart';
 import '../../../repository/api/common/model/details_model.dart';
 import '../../../repository/api/common/service/serviceeee.dart';
 
-
 class DetailsController extends ChangeNotifier {
   bool isLoading = false;
   DetailsModel detailsModel = DetailsModel();
@@ -15,7 +14,7 @@ class DetailsController extends ChangeNotifier {
     notifyListeners();
     log("DetailsController -> fetchDetailData()");
     TrackDetailsService.fetchDetailData(trackNumber).then((value) {
-      if ( value["status"] == "200") {
+      if (value["status"] == "200") {
         detailsModel = DetailsModel.fromJson(value);
         isLoading = false;
       } else {
@@ -23,10 +22,9 @@ class DetailsController extends ChangeNotifier {
             context: context, bgColor: ColorTheme.red);
       }
       notifyListeners();
-    }
-
-    );
+    });
   }
+
   void clearDetails() {
     detailsModel = DetailsModel();
     isLoading = false;

@@ -12,24 +12,23 @@ class SelectionScreen extends StatelessWidget {
 
       // backgroundColor: ColorTheme.secondarycolor.withOpacity(0.8),
       // backgroundColor: ColorTheme.black.withOpacity(0.8),
-    //   body:Container(
-    // height: double.infinity,
-    // width: double.infinity,
-    // decoration: BoxDecoration(
-    // gradient: LinearGradient(
-    // colors: [
-    // Color(0XFF00DDA8),
-    // Color(0xFF9C69E3),
-    // Color(0xFF9C69E3),
-    // Color(0xFF9C69E3)
-    // ],
-    // begin: Alignment.topLeft,
-    // end: Alignment.bottomRight,
-    // ),
-    // ),
-    //   child:
-      body:
-      Center(
+      //   body:Container(
+      // height: double.infinity,
+      // width: double.infinity,
+      // decoration: BoxDecoration(
+      // gradient: LinearGradient(
+      // colors: [
+      // Color(0XFF00DDA8),
+      // Color(0xFF9C69E3),
+      // Color(0xFF9C69E3),
+      // Color(0xFF9C69E3)
+      // ],
+      // begin: Alignment.topLeft,
+      // end: Alignment.bottomRight,
+      // ),
+      // ),
+      //   child:
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -83,6 +82,6 @@ class SelectionScreen extends StatelessWidget {
           ],
         ),
       ),
-      );
+    );
   }
 }

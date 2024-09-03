@@ -14,7 +14,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -23,7 +22,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> checkLoginStatus() async {
     final sharedPreferences = await SharedPreferences.getInstance();
-    final bool isLoggedIn = sharedPreferences.getBool(AppConfig.loggedIn) ?? false;
+    final bool isLoggedIn =
+        sharedPreferences.getBool(AppConfig.loggedIn) ?? false;
 
     Timer(Duration(seconds: 3), () {
       if (isLoggedIn) {

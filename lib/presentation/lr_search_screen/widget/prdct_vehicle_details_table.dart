@@ -31,10 +31,26 @@ class ProductAndVehicleDetails extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: DataTable(
             columns: [
-              DataColumn(label: Text('ITEM',style: GLTextStyles.poppins(),)),
-              DataColumn(label: Text('SIZE',style: GLTextStyles.poppins(),)),
-              DataColumn(label: Text('QUANTITY',style: GLTextStyles.poppins(),)),
-              DataColumn(label: Text('FREIGHT',style: GLTextStyles.poppins(),)),
+              DataColumn(
+                  label: Text(
+                'ITEM',
+                style: GLTextStyles.poppins(),
+              )),
+              DataColumn(
+                  label: Text(
+                'SIZE',
+                style: GLTextStyles.poppins(),
+              )),
+              DataColumn(
+                  label: Text(
+                'QUANTITY',
+                style: GLTextStyles.poppins(),
+              )),
+              DataColumn(
+                  label: Text(
+                'FREIGHT',
+                style: GLTextStyles.poppins(),
+              )),
             ],
             rows: productDetails.map((product) {
               return DataRow(cells: [
@@ -45,8 +61,10 @@ class ProductAndVehicleDetails extends StatelessWidget {
               ]);
             }).toList(),
             border: TableBorder(
-              horizontalInside: BorderSide(color: ColorTheme.secondarycolor, width: 0.5),
-              verticalInside: BorderSide(color: ColorTheme.secondarycolor, width: 0.5),
+              horizontalInside:
+                  BorderSide(color: ColorTheme.secondarycolor, width: 0.5),
+              verticalInside:
+                  BorderSide(color: ColorTheme.secondarycolor, width: 0.5),
               bottom: BorderSide(color: ColorTheme.secondarycolor, width: 1.0),
               top: BorderSide(color: ColorTheme.secondarycolor, width: 1.0),
               left: BorderSide(color: ColorTheme.secondarycolor, width: 1.0),
@@ -64,11 +82,31 @@ class ProductAndVehicleDetails extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: DataTable(
             columns: [
-              DataColumn(label: Text('VEHICLE',style: GLTextStyles.poppins(),)),
-              DataColumn(label: Text('FROM',style: GLTextStyles.poppins(),)),
-              DataColumn(label: Text('DESTINATION',style: GLTextStyles.poppins(),)),
-              DataColumn(label: Text('DATE',style: GLTextStyles.poppins(),)),
-              DataColumn(label: Text('DISP',style: GLTextStyles.poppins(),)),
+              DataColumn(
+                  label: Text(
+                'VEHICLE',
+                style: GLTextStyles.poppins(),
+              )),
+              DataColumn(
+                  label: Text(
+                'FROM',
+                style: GLTextStyles.poppins(),
+              )),
+              DataColumn(
+                  label: Text(
+                'DESTINATION',
+                style: GLTextStyles.poppins(),
+              )),
+              DataColumn(
+                  label: Text(
+                'DATE',
+                style: GLTextStyles.poppins(),
+              )),
+              DataColumn(
+                  label: Text(
+                'DISP',
+                style: GLTextStyles.poppins(),
+              )),
             ],
             rows: vehicleDetails.map((vehicle) {
               return DataRow(cells: [
@@ -80,8 +118,10 @@ class ProductAndVehicleDetails extends StatelessWidget {
               ]);
             }).toList(),
             border: TableBorder(
-              horizontalInside: BorderSide(color: ColorTheme.maincolor, width: 0.5),
-              verticalInside: BorderSide(color: ColorTheme.maincolor, width: 0.5),
+              horizontalInside:
+                  BorderSide(color: ColorTheme.maincolor, width: 0.5),
+              verticalInside:
+                  BorderSide(color: ColorTheme.maincolor, width: 0.5),
               bottom: BorderSide(color: ColorTheme.maincolor, width: 1.0),
               top: BorderSide(color: ColorTheme.maincolor, width: 1.0),
               left: BorderSide(color: ColorTheme.maincolor, width: 1.0),

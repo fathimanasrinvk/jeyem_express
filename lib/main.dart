@@ -5,12 +5,12 @@ import 'package:jeyem_express_cargo/presentation/splash_screen/splash_screen.dar
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-      MultiProvider(providers: [
-        ChangeNotifierProvider(create: (context) => LoginController(),),
-        ChangeNotifierProvider(create: (_) => DetailsController()),
-      ],
-      child: MyApp()));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => LoginController(),
+    ),
+    ChangeNotifierProvider(create: (_) => DetailsController()),
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:  SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }

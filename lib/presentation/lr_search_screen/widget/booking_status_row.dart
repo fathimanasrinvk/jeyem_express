@@ -16,7 +16,6 @@ class BookingStatusRow extends StatelessWidget {
           child: Text(
             'Booking Status :',
             style: GLTextStyles.poppins(),
-            // overflow: TextOverflow.ellipsis,
           ),
         ),
         SizedBox(width: size.width * 0.03),

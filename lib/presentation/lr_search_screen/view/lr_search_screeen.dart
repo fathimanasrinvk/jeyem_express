@@ -50,23 +50,20 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(size.width * 0.05),
-              child: Lottie.asset("assets/animation/wired-lineal-497-truck-delivery.json",width: size.width*0.15,height: size.height*0.062
-              )
-            ),
-            Expanded(
-                child: Center(
-                    child: Text(
-              'LR SEARCH',
-              style: TextStyle(color: ColorTheme.black),
-            ))),
-          ],
+        leading: Padding(
+          padding: EdgeInsets.only(left: size.width * 0.03),
+          child: Lottie.asset(
+            "assets/animation/wired-lineal-497-truck-delivery.json",
+            width: size.width * 0.15,
+            height: size.height * 0.062,
+          ),
         ),
+        automaticallyImplyLeading: false,
+        title: Text(
+          'LR SEARCH',
+          style: TextStyle(color: ColorTheme.black),
+        ),
+        centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -76,7 +73,6 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
             UserAccountsDrawerHeader(
               accountName: Text('User Name'),
               accountEmail: Text('user@example.com'),
-
               currentAccountPicture: CircleAvatar(
                 backgroundImage: NetworkImage(
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcdsC6_g4tHOfg6UsEMCzvW4cqwK6nXUCljg&s'),
@@ -135,8 +131,9 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(7),
-                  borderSide:
-                      BorderSide(color: ColorTheme.secondarycolor, width: size.width * .004),
+                  borderSide: BorderSide(
+                      color: ColorTheme.secondarycolor,
+                      width: size.width * .004),
                 ),
               ),
             ),
@@ -189,12 +186,18 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('LR CHARGE :',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text(
                                         '${controller.detailsModel.booking?.lrCharge}/-',
                                         style: TextStyle(fontSize: 16)),
@@ -204,12 +207,18 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('FREIGHT :',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text(
                                         '${controller.detailsModel.booking?.freight}/-',
                                         style: TextStyle(fontSize: 16)),
@@ -219,12 +228,18 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('EXTRA FREIGHT :',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text(
                                         '${controller.detailsModel.booking?.extraCharge}/-',
                                         style: TextStyle(fontSize: 16)),
@@ -234,12 +249,18 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('TOTAL :',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text(
                                         '${controller.detailsModel.booking?.total}/-',
                                         style: TextStyle(fontSize: 16)),
@@ -249,12 +270,18 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('GST Amount :',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text(
                                         '${controller.detailsModel.booking?.gstAmount}/-',
                                         style: TextStyle(fontSize: 16)),
@@ -264,12 +291,18 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('BILL DISCOUNT :',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text(
                                         '${controller.detailsModel.booking?.billDiscount}/-',
                                         style: TextStyle(fontSize: 16)),
@@ -279,12 +312,18 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('NET TOTAL :',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text(
                                         '${controller.detailsModel.booking?.netTotal}/-',
                                         style: TextStyle(fontSize: 16)),
@@ -294,12 +333,18 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('BALANCE :',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text(
                                         '${controller.detailsModel.booking?.netTotal}/-',
                                         style: TextStyle(fontSize: 16)),
@@ -324,12 +369,18 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('Booked On :',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text(
                                         '${controller.detailsModel.booking?.bookedOn}',
                                         style: TextStyle(fontSize: 16)),
@@ -339,12 +390,18 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('Booked At:',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text(
                                         '${controller.detailsModel.booking?.bookedAt}',
                                         style: TextStyle(fontSize: 16)),
@@ -354,12 +411,19 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('Payment Mode:',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ,right: size.width*0.02),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01,
+                                        right: size.width * 0.02),
                                     child: Container(
                                         decoration: BoxDecoration(
                                           borderRadius:
@@ -377,12 +441,18 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('Invoice No:',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text(
                                         '${controller.detailsModel.booking?.invoiceNo}',
                                         style: TextStyle(fontSize: 16)),
@@ -392,12 +462,18 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('Gst Invoice No:',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text(
                                         '${controller.detailsModel.booking?.gstInvoice}',
                                         style: TextStyle(fontSize: 16)),
@@ -407,12 +483,18 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               TableRow(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text('Booked By:',
                                         style: TextStyle(fontSize: 16)),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: size.width*0.02,top:size.height*0.01 ,bottom:size.height*0.01 ),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.02,
+                                        top: size.height * 0.01,
+                                        bottom: size.height * 0.01),
                                     child: Text(
                                         '${controller.detailsModel.booking?.bookedBy}',
                                         style: TextStyle(fontSize: 16)),
@@ -432,7 +514,8 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               'Station:${controller.detailsModel.consignorParty?.station}',
                               'GST: ${controller.detailsModel.consignorParty?.gst}',
                               'AADR: ${controller.detailsModel.consignorParty?.address}',
-                              'PH: ${controller.detailsModel.consignorParty?.phone}',
+                              // 'PH: ${controller.detailsModel.consignorParty?.phone}',
+                              'PH: ${controller.detailsModel.consignorParty!.phone}',
                               'Email :${controller.detailsModel.consignorParty?.email}',
                             ],
                           ),

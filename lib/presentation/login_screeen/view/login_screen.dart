@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jeyem_express_cargo/core/constants/colors.dart';
 import 'package:jeyem_express_cargo/core/constants/text_styles.dart';
-import 'package:jeyem_express_cargo/presentation/lr_search_screen/view/lr_search_screeen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../../selection_screen/view/selection_screen.dart';
@@ -22,8 +21,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return WillPopScope(
       onWillPop: () async {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
-            SelectionScreen()));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => SelectionScreen()));
         return false;
       },
       child: Scaffold(
@@ -31,19 +30,19 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Container(
           height: double.infinity,
           width: double.infinity,
-          // color: ColorTheme.maincolor,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color(0XFF00DDA8),
-                Color(0xFF9C69E3),
-                Color(0xFF9C69E3),
-                Color(0xFF9C69E3)
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
+          color: ColorTheme.maincolor,
+          // decoration: BoxDecoration(
+          //   gradient: LinearGradient(
+          //     colors: [
+          //       Color(0XFF00DDA8),
+          //       Color(0xFF9C69E3),
+          //       Color(0xFF9C69E3),
+          //       Color(0xFF9C69E3)
+          //     ],
+          //     begin: Alignment.topLeft,
+          //     end: Alignment.bottomRight,
+          //   ),
+          // ),
           child: Stack(
             children: [
               // Padding(
@@ -57,9 +56,9 @@ class _LoginScreenState extends State<LoginScreen> {
               //   ),
               // ),
               Positioned(
-                  top: size.height*0.07,
-                  left: size.width*0.07,
-                  right: size.width*0.07,
+                  top: size.height * 0.07,
+                  left: size.width * 0.07,
+                  right: size.width * 0.07,
                   child: Image.asset(
                     'assets/logo/jeyem_logo-removebg-preview.png',
                     height: 55,
@@ -75,12 +74,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(7),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: size.width * .08),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * .08),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           SizedBox(height: size.height * .04),
-                          Lottie.asset("assets/animation/truck_delivery.json",height: size.width*0.25),
+                          Lottie.asset("assets/animation/b.json",
+                              height: size.width * 0.25),
                           SizedBox(height: size.height * .02),
                           Text('Sign in to continue to Jeyem',
                               style: GLTextStyles.poppins2()),
@@ -106,7 +107,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(7),
                                 borderSide: BorderSide(
-                                    color: ColorTheme.secondarycolor, width: size.width * .004),
+                                    color: ColorTheme.secondarycolor,
+                                    width: size.width * .004),
                               ),
                             ),
                           ),
@@ -119,7 +121,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               keyboardType: TextInputType.text,
                               obscureText: controller.visibility,
                               obscuringCharacter: '*',
-                              style: TextStyle(color: ColorTheme.secondarycolor),
+                              style:
+                                  TextStyle(color: ColorTheme.secondarycolor),
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: ColorTheme.white,
@@ -136,7 +139,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(7),
                                   borderSide: BorderSide(
-                                      color: ColorTheme.secondarycolor, width: size.width * .004),
+                                      color: ColorTheme.secondarycolor,
+                                      width: size.width * .004),
                                 ),
                                 suffixIcon: IconButton(
                                   onPressed: () {
@@ -152,14 +156,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(height: size.height * .035),
                           GestureDetector(
                             onTap: () {
-                              Provider.of<LoginController>(context, listen: false)
+                              Provider.of<LoginController>(context,
+                                      listen: false)
                                   .onLogin(emailController.text.trim(),
                                       passwordController.text.trim(), context);
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                // color: ColorTheme.maincolor,
-                                color: ColorTheme.secondarycolor,
+                                color: ColorTheme.maincolor,
+                                // color: ColorTheme.secondarycolor,
                                 borderRadius: BorderRadius.circular(7),
                               ),
                               width: double.infinity,

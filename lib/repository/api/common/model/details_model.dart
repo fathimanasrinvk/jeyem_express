@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-DetailsModel detailsModelFromJson(String str) => DetailsModel.fromJson(json.decode(str));
+DetailsModel detailsModelFromJson(String str) =>
+    DetailsModel.fromJson(json.decode(str));
 
 String detailsModelToJson(DetailsModel data) => json.encode(data.toJson());
 
@@ -26,22 +27,34 @@ class DetailsModel {
   });
 
   factory DetailsModel.fromJson(Map<String, dynamic> json) => DetailsModel(
-    status: json["status"],
-    booking: json["booking"] == null ? null : Booking.fromJson(json["booking"]),
-    consignorParty: json["consignor_party"] == null ? null : ConsignParty.fromJson(json["consignor_party"]),
-    consigneeParty: json["consignee_party"] == null ? null : ConsignParty.fromJson(json["consignee_party"]),
-    itemDetails: json["item_details"] == null ? null : ItemDetails.fromJson(json["item_details"]),
-    dispatchDetails: json["dispatch_details"] == null ? [] : List<DispatchDetail>.from(json["dispatch_details"]!.map((x) => DispatchDetail.fromJson(x))),
-  );
+        status: json["status"],
+        booking:
+            json["booking"] == null ? null : Booking.fromJson(json["booking"]),
+        consignorParty: json["consignor_party"] == null
+            ? null
+            : ConsignParty.fromJson(json["consignor_party"]),
+        consigneeParty: json["consignee_party"] == null
+            ? null
+            : ConsignParty.fromJson(json["consignee_party"]),
+        itemDetails: json["item_details"] == null
+            ? null
+            : ItemDetails.fromJson(json["item_details"]),
+        dispatchDetails: json["dispatch_details"] == null
+            ? []
+            : List<DispatchDetail>.from(json["dispatch_details"]!
+                .map((x) => DispatchDetail.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "booking": booking?.toJson(),
-    "consignor_party": consignorParty?.toJson(),
-    "consignee_party": consigneeParty?.toJson(),
-    "item_details": itemDetails?.toJson(),
-    "dispatch_details": dispatchDetails == null ? [] : List<dynamic>.from(dispatchDetails!.map((x) => x.toJson())),
-  };
+        "status": status,
+        "booking": booking?.toJson(),
+        "consignor_party": consignorParty?.toJson(),
+        "consignee_party": consigneeParty?.toJson(),
+        "item_details": itemDetails?.toJson(),
+        "dispatch_details": dispatchDetails == null
+            ? []
+            : List<dynamic>.from(dispatchDetails!.map((x) => x.toJson())),
+      };
 }
 
 class Booking {
@@ -86,46 +99,48 @@ class Booking {
   });
 
   factory Booking.fromJson(Map<String, dynamic> json) => Booking(
-    bookingId: json["booking_id"],
-    lrNumber: json["lr_number"],
-    dsrDelivery: json["dsr_delivery"],
-    lrCharge: json["lr_charge"],
-    freight: json["freight"],
-    extraCharge: json["extra_charge"],
-    total: json["total"],
-    gstAmount: json["gst_amount"],
-    billDiscount: json["bill_discount"],
-    netTotal: json["net_total"],
-    deliveryRemarks: json["delivery_remarks"],
-    bookedOn: json["booked_on"],
-    bookedAt: json["booked_at"],
-    paymentMode: json["payment_mode"],
-    invoiceNo: json["invoice_no"],
-    gstInvoice: json["gst_invoice"],
-    bookedBy: json["booked_by"],
-    deliveryDate: json["delivery_date"] == null ? null : DateTime.parse(json["delivery_date"]),
-  );
+        bookingId: json["booking_id"],
+        lrNumber: json["lr_number"],
+        dsrDelivery: json["dsr_delivery"],
+        lrCharge: json["lr_charge"],
+        freight: json["freight"],
+        extraCharge: json["extra_charge"],
+        total: json["total"],
+        gstAmount: json["gst_amount"],
+        billDiscount: json["bill_discount"],
+        netTotal: json["net_total"],
+        deliveryRemarks: json["delivery_remarks"],
+        bookedOn: json["booked_on"],
+        bookedAt: json["booked_at"],
+        paymentMode: json["payment_mode"],
+        invoiceNo: json["invoice_no"],
+        gstInvoice: json["gst_invoice"],
+        bookedBy: json["booked_by"],
+        deliveryDate: json["delivery_date"] == null
+            ? null
+            : DateTime.parse(json["delivery_date"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "booking_id": bookingId,
-    "lr_number": lrNumber,
-    "dsr_delivery": dsrDelivery,
-    "lr_charge": lrCharge,
-    "freight": freight,
-    "extra_charge": extraCharge,
-    "total": total,
-    "gst_amount": gstAmount,
-    "bill_discount": billDiscount,
-    "net_total": netTotal,
-    "delivery_remarks": deliveryRemarks,
-    "booked_on": bookedOn,
-    "booked_at": bookedAt,
-    "payment_mode": paymentMode,
-    "invoice_no": invoiceNo,
-    "gst_invoice": gstInvoice,
-    "booked_by": bookedBy,
-    "delivery_date": deliveryDate?.toIso8601String(),
-  };
+        "booking_id": bookingId,
+        "lr_number": lrNumber,
+        "dsr_delivery": dsrDelivery,
+        "lr_charge": lrCharge,
+        "freight": freight,
+        "extra_charge": extraCharge,
+        "total": total,
+        "gst_amount": gstAmount,
+        "bill_discount": billDiscount,
+        "net_total": netTotal,
+        "delivery_remarks": deliveryRemarks,
+        "booked_on": bookedOn,
+        "booked_at": bookedAt,
+        "payment_mode": paymentMode,
+        "invoice_no": invoiceNo,
+        "gst_invoice": gstInvoice,
+        "booked_by": bookedBy,
+        "delivery_date": deliveryDate?.toIso8601String(),
+      };
 }
 
 class ConsignParty {
@@ -146,22 +161,22 @@ class ConsignParty {
   });
 
   factory ConsignParty.fromJson(Map<String, dynamic> json) => ConsignParty(
-    partyName: json["party_name"],
-    station: json["station"],
-    address: json["address"],
-    gst: json["gst"],
-    phone: json["phone"],
-    email: json["email"],
-  );
+        partyName: json["party_name"],
+        station: json["station"],
+        address: json["address"],
+        gst: json["gst"],
+        phone: json["phone"],
+        email: json["email"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "party_name": partyName,
-    "station": station,
-    "address": address,
-    "gst": gst,
-    "phone": phone,
-    "email": email,
-  };
+        "party_name": partyName,
+        "station": station,
+        "address": address,
+        "gst": gst,
+        "phone": phone,
+        "email": email,
+      };
 }
 
 class DispatchDetail {
@@ -180,20 +195,20 @@ class DispatchDetail {
   });
 
   factory DispatchDetail.fromJson(Map<String, dynamic> json) => DispatchDetail(
-    vehicleNumber: json["vehicle_number"],
-    from: json["from"],
-    destination: json["destination"],
-    date: json["date"],
-    disp: json["disp"],
-  );
+        vehicleNumber: json["vehicle_number"],
+        from: json["from"],
+        destination: json["destination"],
+        date: json["date"],
+        disp: json["disp"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "vehicle_number": vehicleNumber,
-    "from": from,
-    "destination": destination,
-    "date": date,
-    "disp": disp,
-  };
+        "vehicle_number": vehicleNumber,
+        "from": from,
+        "destination": destination,
+        "date": date,
+        "disp": disp,
+      };
 }
 
 class ItemDetails {
@@ -210,16 +225,16 @@ class ItemDetails {
   });
 
   factory ItemDetails.fromJson(Map<String, dynamic> json) => ItemDetails(
-    item: json["item"],
-    size: json["size"],
-    quantity: json["quantity"],
-    freight: json["freight"],
-  );
+        item: json["item"],
+        size: json["size"],
+        quantity: json["quantity"],
+        freight: json["freight"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "item": item,
-    "size": size,
-    "quantity": quantity,
-    "freight": freight,
-  };
+        "item": item,
+        "size": size,
+        "quantity": quantity,
+        "freight": freight,
+      };
 }

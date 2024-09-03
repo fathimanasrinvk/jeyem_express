@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class PartyDetailsCard extends StatelessWidget {
   const PartyDetailsCard(
       {required this.size, required this.title, required this.details});
@@ -17,7 +16,7 @@ class PartyDetailsCard extends StatelessWidget {
       ),
       width: size.width * 0.9,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding:  EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

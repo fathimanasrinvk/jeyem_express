@@ -14,6 +14,7 @@ class TrackOrderDetailsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.sizeOf(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,13 +23,13 @@ class TrackOrderDetailsCard extends StatelessWidget {
           style: GLTextStyles.poppins2(),
           textAlign: TextAlign.left,
         ),
-        SizedBox(height: 8.0),
+        SizedBox(height: size.height * 0.015),
         Text(
           value,
           style: GLTextStyles.poppins2(),
           textAlign: TextAlign.left,
         ),
-        SizedBox(height: 8.0),
+        SizedBox(height: size.height * 0.015),
         Divider(
           color: ColorTheme.white,
           thickness: 1.0,

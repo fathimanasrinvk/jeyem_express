@@ -7,7 +7,7 @@ import '../controller/details_controller.dart';
 import '../widget/track_order_details_card.dart';
 
 class TrackOrderScreen extends StatefulWidget {
-  final  trackNumber;
+  final trackNumber;
 
   const TrackOrderScreen({super.key, this.trackNumber});
 
@@ -45,8 +45,8 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
     return WillPopScope(
       onWillPop: () async {
         Provider.of<DetailsController>(context, listen: false).clearDetails();
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
-            SelectionScreen()));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => SelectionScreen()));
         return false;
       },
       child: Scaffold(
@@ -99,7 +99,8 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                   hintStyle: TextStyle(
                     color: ColorTheme.black,
                   ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: size.width * .05),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: size.width * .05),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7),
                     borderSide: BorderSide(
@@ -149,18 +150,20 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(height: size.height * .035),
-                RichText(
-                text: TextSpan(
-                children: [
-                TextSpan(
-                text: '${controller.detailsModel.booking?.lrNumber}  :   ',
-                style: GLTextStyles.poppins1(),
-                ), TextSpan(
-                text: '${controller.detailsModel.booking?.dsrDelivery} ',
-                style:GLTextStyles.poppins3(),
-                ),
-                  ]
-                ),),
+                          RichText(
+                            text: TextSpan(children: [
+                              TextSpan(
+                                text:
+                                    '${controller.detailsModel.booking?.lrNumber}  :   ',
+                                style: GLTextStyles.poppins1(),
+                              ),
+                              TextSpan(
+                                text:
+                                    '${controller.detailsModel.booking?.dsrDelivery} ',
+                                style: GLTextStyles.poppins3(),
+                              ),
+                            ]),
+                          ),
                           SizedBox(height: size.height * .01),
                           Padding(
                             padding: EdgeInsets.all(size.width * .05),
@@ -182,41 +185,53 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                                 children: [
                                   TrackOrderDetailsCard(
                                     label: 'Booking Date',
-                                    value: "${controller.detailsModel.booking?.bookedOn}",
+                                    value:
+                                        "${controller.detailsModel.booking?.bookedOn}",
                                   ),
-                                  if (controller.detailsModel.booking?.dsrDelivery?.toLowerCase() == 'delivered')
+                                  if (controller
+                                          .detailsModel.booking?.dsrDelivery
+                                          ?.toLowerCase() ==
+                                      'delivered')
                                     TrackOrderDetailsCard(
                                       label: 'Delivery Date',
-                                      value: "${controller.detailsModel.booking?.deliveryDate}", // Ensure the delivery date is available in your model
+                                      value:
+                                          "${controller.detailsModel.booking?.deliveryDate}", // Ensure the delivery date is available in your model
                                     ),
 
                                   TrackOrderDetailsCard(
                                     label: 'LR No',
-                                    value: "${controller.detailsModel.booking?.lrNumber}",
+                                    value:
+                                        "${controller.detailsModel.booking?.lrNumber}",
                                   ),
                                   TrackOrderDetailsCard(
                                     label: 'Invoice No',
-                                    value: "${controller.detailsModel.booking?.invoiceNo}",
+                                    value:
+                                        "${controller.detailsModel.booking?.invoiceNo}",
                                   ),
                                   TrackOrderDetailsCard(
                                     label: 'Consignor',
-                                    value: "${controller.detailsModel.consignorParty?.partyName}",
+                                    value:
+                                        "${controller.detailsModel.consignorParty?.partyName}",
                                   ),
                                   TrackOrderDetailsCard(
                                     label: 'Consignee',
-                                    value: "${controller.detailsModel.consigneeParty?.partyName}",
+                                    value:
+                                        "${controller.detailsModel.consigneeParty?.partyName}",
                                   ),
                                   TrackOrderDetailsCard(
                                     label: 'From',
-                                    value: "${controller.detailsModel.consignorParty?.station}",
+                                    value:
+                                        "${controller.detailsModel.consignorParty?.station}",
                                   ),
                                   TrackOrderDetailsCard(
                                     label: 'Destination',
-                                    value: "${controller.detailsModel.consigneeParty?.station}",
+                                    value:
+                                        "${controller.detailsModel.consigneeParty?.station}",
                                   ),
                                   TrackOrderDetailsCard(
                                     label: 'No of items',
-                                    value: "${controller.detailsModel.itemDetails?.quantity}",
+                                    value:
+                                        "${controller.detailsModel.itemDetails?.quantity}",
                                   ),
                                   // TrackOrderDetailsCard(
                                   //   label: 'Acknowledgement',

@@ -17,13 +17,16 @@ class GLTextStyles {
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.white,
     );
-  }  static mainColorTitle({double? size, FontWeight? weight, Color? color}) {
+  }
+
+  static mainColorTitle({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.poppins(
       fontSize: size ?? 26,
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.maincolor,
     );
   }
+
   static cabinStyle({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.cabin(
       fontSize: size ?? 22,
@@ -55,6 +58,7 @@ class GLTextStyles {
       color: color ?? ColorTheme.maincolor,
     );
   }
+
   static poppins3({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.poppins(
       fontSize: size ?? 18,

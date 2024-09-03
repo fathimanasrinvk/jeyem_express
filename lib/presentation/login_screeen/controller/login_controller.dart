@@ -14,7 +14,7 @@ class LoginController extends ChangeNotifier {
 
   Future onLogin(String email, String password, BuildContext context) async {
     log("loginController -> onLogin() started");
-    LoginService.postLoginData(email,password).then((value) {
+    LoginService.postLoginData(email, password).then((value) {
       log("postLoginData() -> ${value["status"]}");
       if (value["status"] == 200) {
         log("token -> ${value["token"]} ");
@@ -22,13 +22,14 @@ class LoginController extends ChangeNotifier {
         storeUserToken(value["token"]);
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) =>LrSearchScreen()),
-                (route) => false);
+            MaterialPageRoute(builder: (context) => LrSearchScreen()),
+            (route) => false);
       } else {
         log("Else Condition >> Api failed");
       }
     });
   }
+
   void onPressed() {
     visibility = !visibility;
     notifyListeners();
