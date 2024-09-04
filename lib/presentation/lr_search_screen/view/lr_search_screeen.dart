@@ -71,8 +71,8 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text('User Name'),
-              accountEmail: Text('user@example.com'),
+              accountName: Text(''),
+              accountEmail: Text(''),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: NetworkImage(
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcdsC6_g4tHOfg6UsEMCzvW4cqwK6nXUCljg&s'),
@@ -514,9 +514,8 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               'Station:${controller.detailsModel.consignorParty?.station}',
                               'GST: ${controller.detailsModel.consignorParty?.gst}',
                               'AADR: ${controller.detailsModel.consignorParty?.address}',
-                              // 'PH: ${controller.detailsModel.consignorParty?.phone}',
-                              'PH: ${controller.detailsModel.consignorParty!.phone}',
-                              'Email :${controller.detailsModel.consignorParty?.email}',
+                              'PH: ${controller.detailsModel.consignorParty?.phone??''}',
+                              'Email :${controller.detailsModel.consignorParty?.email??''}',
                             ],
                           ),
 
@@ -530,8 +529,8 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                               'Station:${controller.detailsModel.consigneeParty?.station}',
                               'GST: ${controller.detailsModel.consigneeParty?.gst}',
                               'AADR: ${controller.detailsModel.consigneeParty?.address}',
-                              'PH:${controller.detailsModel.consigneeParty?.phone}',
-                              'Email :${controller.detailsModel.consigneeParty?.email}',
+                              'PH: ${controller.detailsModel.consigneeParty?.phone ?? ''}',
+                              'Email :${controller.detailsModel.consigneeParty?.email?? ''}',
                             ],
                           ),
                           SizedBox(height: size.height * 0.03),

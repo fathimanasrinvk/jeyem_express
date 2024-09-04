@@ -78,26 +78,20 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                 controller: trackNumberController,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
-                  suffixIcon: Container(
-                    decoration: BoxDecoration(
-                      color: ColorTheme.maincolor,
-                      border: Border.all(color: ColorTheme.black),
-                    ),
-                    child: IconButton(
-                      icon: Icon(Icons.search),
-                      color: ColorTheme.black,
-                      onPressed: () {
-                        final trackNumber = trackNumberController.text;
-                        if (trackNumber.isNotEmpty) {
-                          fetchData();
-                        }
-                      },
-                    ),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.search),
+                    color: ColorTheme.maincolor,
+                    onPressed: () {
+                      final trackNumber = trackNumberController.text;
+                      if (trackNumber.isNotEmpty) {
+                        fetchData();
+                      }
+                    },
                   ),
                   filled: false,
                   hintText: 'Track Your Order',
                   hintStyle: TextStyle(
-                    color: ColorTheme.black,
+                    color: ColorTheme.maincolor,
                   ),
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: size.width * .05),
@@ -105,20 +99,20 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                     borderRadius: BorderRadius.circular(7),
                     borderSide: BorderSide(
                       width: size.width * .02,
-                      color: ColorTheme.black,
+                      color: ColorTheme.maincolor,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7),
                     borderSide: BorderSide(
-                      color: ColorTheme.black,
+                      color: ColorTheme.maincolor,
                       width: size.width * .004,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7),
                     borderSide: BorderSide(
-                      color: ColorTheme.maincolor,
+                      color: ColorTheme.black,
                       width: 2,
                     ),
                   ),

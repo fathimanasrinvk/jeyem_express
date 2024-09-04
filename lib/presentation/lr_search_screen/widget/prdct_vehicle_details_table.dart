@@ -24,7 +24,7 @@ class ProductAndVehicleDetails extends StatelessWidget {
         SizedBox(height: size.height * 0.01),
         Text(
           'Product Details:',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        style: GLTextStyles.poppins()
         ),
         SizedBox(height: size.height * 0.021),
         SingleChildScrollView(
@@ -75,7 +75,7 @@ class ProductAndVehicleDetails extends StatelessWidget {
         SizedBox(height: size.height * 0.03),
         Text(
           'Vehicle Details:',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+    style: GLTextStyles.poppins()
         ),
         SizedBox(height: size.height * 0.021),
         SingleChildScrollView(

@@ -15,7 +15,7 @@ class DetailsModel {
   ConsignParty? consignorParty;
   ConsignParty? consigneeParty;
   ItemDetails? itemDetails;
-  List<DispatchDetail>? dispatchDetails;
+  List<DispatchDetail>?   dispatchDetails;
 
   DetailsModel({
     this.status,

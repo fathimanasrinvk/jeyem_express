@@ -79,9 +79,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(height: size.height * .04),
+                          SizedBox(height: size.height * .035),
                           Lottie.asset("assets/animation/b.json",
-                              height: size.width * 0.25),
+                              height: size.height * 0.09),
                           SizedBox(height: size.height * .02),
                           Text('Sign in to continue to Jeyem',
                               style: GLTextStyles.poppins2()),
