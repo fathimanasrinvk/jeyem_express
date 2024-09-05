@@ -62,13 +62,13 @@ class ProductAndVehicleDetails extends StatelessWidget {
             }).toList(),
             border: TableBorder(
               horizontalInside:
-                  BorderSide(color: ColorTheme.secondarycolor, width: 0.5),
+                  BorderSide(color: ColorTheme.maincolor, width: 0.5),
               verticalInside:
-                  BorderSide(color: ColorTheme.secondarycolor, width: 0.5),
-              bottom: BorderSide(color: ColorTheme.secondarycolor, width: 1.0),
-              top: BorderSide(color: ColorTheme.secondarycolor, width: 1.0),
-              left: BorderSide(color: ColorTheme.secondarycolor, width: 1.0),
-              right: BorderSide(color: ColorTheme.secondarycolor, width: 1.0),
+                  BorderSide(color: ColorTheme.maincolor, width: 0.5),
+              bottom: BorderSide(color: ColorTheme.maincolor, width: 1.0),
+              top: BorderSide(color: ColorTheme.maincolor, width: 1.0),
+              left: BorderSide(color: ColorTheme.maincolor, width: 1.0),
+              right: BorderSide(color: ColorTheme.maincolor, width: 1.0),
             ),
           ),
         ),

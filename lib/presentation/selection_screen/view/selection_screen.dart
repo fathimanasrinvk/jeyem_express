@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jeyem_express_cargo/presentation/login_screeen/view/login_screen.dart';
+import 'package:jeyem_express_cargo/presentation/party_login_screen/view/party_login_screen.dart';
 import '../../../core/constants/colors.dart';
+import '../../employee_login_screeen/view/emp_login_screen.dart';
 import '../../order_tracking_screen/view/track_order_screen.dart';
 
 class SelectionScreen extends StatelessWidget {
@@ -63,7 +64,7 @@ class SelectionScreen extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => LoginScreen()));
+                      MaterialPageRoute(builder: (context) => EmpLoginScreen()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -74,6 +75,29 @@ class SelectionScreen extends StatelessWidget {
                   height: size.height * 0.052,
                   child: Center(
                     child: Text('LOGIN',
+                        style: TextStyle(color: ColorTheme.white)),
+                  ),
+                ),
+              ),
+            ), Padding(
+              padding: EdgeInsets.only(
+                  top: size.height * 0.024,
+                  left: size.width * 0.17,
+                  right: size.width * 0.17),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => PartyLoginScreen()));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: ColorTheme.maincolor,
+                    borderRadius: BorderRadius.circular(7),
+                  ),
+                  width: double.infinity,
+                  height: size.height * 0.052,
+                  child: Center(
+                    child: Text('PARTY LOGIN',
                         style: TextStyle(color: ColorTheme.white)),
                   ),
                 ),

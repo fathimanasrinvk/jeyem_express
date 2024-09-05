@@ -50,6 +50,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
         return false;
       },
       child: Scaffold(
+        backgroundColor: ColorTheme.white,
         appBar: AppBar(
           // leading: IconButton(
           //   icon: Icon(Icons.arrow_back, color: ColorTheme.black),
@@ -132,7 +133,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                   return Expanded(
                     child: Center(
                       child: Text(
-                        'No details available',
+                        '',
                         style: GLTextStyles.mainTittle(),
                       ),
                     ),

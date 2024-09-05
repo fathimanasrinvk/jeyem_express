@@ -4,14 +4,14 @@ import 'package:jeyem_express_cargo/core/constants/text_styles.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../../selection_screen/view/selection_screen.dart';
-import '../controller/login_controller.dart';
+import '../controller/party_login_controller.dart';
 
-class LoginScreen extends StatefulWidget {
+class PartyLoginScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _PartyLoginScreenState createState() => _PartyLoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _PartyLoginScreenState extends State<PartyLoginScreen> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
 
@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: Padding(
                       padding:
-                          EdgeInsets.symmetric(horizontal: size.width * .08),
+                      EdgeInsets.symmetric(horizontal: size.width * .08),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -113,53 +113,53 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           SizedBox(height: size.height * .02),
-                          Consumer<LoginController>(
+                          Consumer<PartyLoginController>(
                               builder: (context, controller, _) {
-                            return TextFormField(
-                              controller: passwordController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.text,
-                              obscureText: controller.visibility,
-                              obscuringCharacter: '*',
-                              style:
+                                return TextFormField(
+                                  controller: passwordController,
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.text,
+                                  obscureText: controller.visibility,
+                                  obscuringCharacter: '*',
+                                  style:
                                   TextStyle(color: ColorTheme.secondarycolor),
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: ColorTheme.white,
-                                hintText: 'Enter Password',
-                                hintStyle: TextStyle(color: ColorTheme.black),
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: size.width * .05),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(7),
-                                  borderSide: BorderSide(
-                                      color: ColorTheme.white,
-                                      width: size.width * .004),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(7),
-                                  borderSide: BorderSide(
-                                      color: ColorTheme.secondarycolor,
-                                      width: size.width * .004),
-                                ),
-                                suffixIcon: IconButton(
-                                  onPressed: () {
-                                    controller.onPressed();
-                                  },
-                                  icon: Icon(controller.visibility == true
-                                      ? Icons.visibility_off
-                                      : Icons.visibility),
-                                ),
-                              ),
-                            );
-                          }),
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: ColorTheme.white,
+                                    hintText: 'Enter Password',
+                                    hintStyle: TextStyle(color: ColorTheme.black),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        horizontal: size.width * .05),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(7),
+                                      borderSide: BorderSide(
+                                          color: ColorTheme.white,
+                                          width: size.width * .004),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(7),
+                                      borderSide: BorderSide(
+                                          color: ColorTheme.secondarycolor,
+                                          width: size.width * .004),
+                                    ),
+                                    suffixIcon: IconButton(
+                                      onPressed: () {
+                                        controller.onPressed();
+                                      },
+                                      icon: Icon(controller.visibility == true
+                                          ? Icons.visibility_off
+                                          : Icons.visibility),
+                                    ),
+                                  ),
+                                );
+                              }),
                           SizedBox(height: size.height * .035),
                           GestureDetector(
                             onTap: () {
-                              Provider.of<LoginController>(context,
-                                      listen: false)
+                              Provider.of<PartyLoginController>(context,
+                                  listen: false)
                                   .onLogin(emailController.text.trim(),
-                                      passwordController.text.trim(), context);
+                                  passwordController.text.trim(), context);
                             },
                             child: Container(
                               decoration: BoxDecoration(

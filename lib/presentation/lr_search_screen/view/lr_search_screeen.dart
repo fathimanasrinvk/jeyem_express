@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../app_config/app_config.dart';
 import '../../../core/constants/colors.dart';
-import '../../login_screeen/view/login_screen.dart';
+import '../../employee_login_screeen/view/emp_login_screen.dart';
 import '../../order_tracking_screen/controller/details_controller.dart';
 import '../widget/booking_status_row.dart';
 import '../widget/custom_table.dart';
@@ -53,8 +53,8 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
         leading: Padding(
           padding: EdgeInsets.only(left: size.width * 0.03),
           child: Lottie.asset(
-            "assets/animation/wired-lineal-497-truck-delivery.json",
-            width: size.width * 0.15,
+            "assets/animation/lr_lottie.json",
+            width: size.width * 0.17,
             height: size.height * 0.062,
           ),
         ),
@@ -71,6 +71,9 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                color: ColorTheme.lightcolor
+              ),
               accountName: Text(''),
               accountEmail: Text(''),
               currentAccountPicture: CircleAvatar(
@@ -78,16 +81,32 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcdsC6_g4tHOfg6UsEMCzvW4cqwK6nXUCljg&s'),
               ),
             ),
-            ListTile(
-              leading: IconButton(
-                icon: Icon(
-                  Icons.logout_outlined,
-                  size: size.height * 0.04,
-                  color: ColorTheme.maincolor,
-                ),
-                onPressed: showLogoutConfirmation,
-              ),
-            ),
+               Padding(
+                 padding:  EdgeInsets.only(left: size.width*0.03,right: size.width*0.03,top: size.height*0.02),
+                 child: Container(
+                   decoration: BoxDecoration(
+                       color: ColorTheme.lightcolor,
+
+                       borderRadius: BorderRadius.circular(7)
+                   ),
+                  child: Row(
+                    children: [
+                      SizedBox(width: size.width*0.05,),
+                      Text('Logout',style: TextStyle(fontSize: 18),),
+                      SizedBox(width:size.width*0.34,),
+                      IconButton(
+                        icon: Icon(
+                          Icons.logout_outlined,
+                          size: size.height * 0.03,
+                          color: ColorTheme.maincolor,
+                        ),
+                        onPressed: showLogoutConfirmation,
+                      ),
+                    ],
+                  ),
+                               ),
+               ),
+
           ],
         ),
       ),
@@ -111,12 +130,12 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                   },
                   icon: Icon(
                     Icons.search,
-                    color: ColorTheme.secondarycolor,
+                    color: ColorTheme.maincolor,
                   ),
                 ),
                 filled: false,
                 hintText: 'LR Search',
-                hintStyle: TextStyle(color: ColorTheme.secondarycolor),
+                hintStyle: TextStyle(color: ColorTheme.maincolor),
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: size.width * .05),
                 border: OutlineInputBorder(
@@ -132,7 +151,7 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(7),
                   borderSide: BorderSide(
-                      color: ColorTheme.secondarycolor,
+                      color: ColorTheme.maincolor,
                       width: size.width * .004),
                 ),
               ),
@@ -168,10 +187,21 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                           SizedBox(height: size.height * .03),
 
                           Center(
-                            child: Text(
-                              'LR NUMBER  : ${controller.detailsModel.booking?.lrNumber}',
-                              style: GLTextStyles.poppins(),
-                            ),
+                            child:RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'LR NUMBER  :  ',
+                                    style:GLTextStyles.poppins()
+                                  ),
+                                  TextSpan(
+                                    text: controller.detailsModel.booking?.lrNumber ?? 'N/A',
+                                      style:GLTextStyles.poppins4()
+                                  ),
+                                ],
+                              ),
+                            )
+
                           ),
                           SizedBox(height: size.height * .02),
                           BookingStatusRow(
@@ -420,15 +450,15 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
+                                        left: size.width * 0.06,
                                         top: size.height * 0.01,
                                         bottom: size.height * 0.01,
-                                        right: size.width * 0.02),
+                                        right: size.width * 0.06),
                                     child: Container(
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(7),
-                                          color: ColorTheme.maincolor,
+                                          color: ColorTheme.lightcolor,
                                         ),
                                         child: Center(
                                             child: Text(
@@ -571,7 +601,7 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
     await sharedPreferences.setBool(AppConfig.loggedIn, false);
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
+      MaterialPageRoute(builder: (context) => EmpLoginScreen()),
       (route) => false,
     );
   }
@@ -582,6 +612,7 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
+
           title: Text(
             'Confirm Logout',
             style: GLTextStyles.cabinStyle(size: 18),
@@ -590,14 +621,14 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
+              child:  Text('Cancel',style: TextStyle(color: ColorTheme.maincolor),),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 logout(context);
               },
-              child: const Text('Logout'),
+              child:  Text('Logout',style: TextStyle(color: ColorTheme.maincolor)),
             ),
           ],
         );
