@@ -52,18 +52,19 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
       child: Scaffold(
         backgroundColor: ColorTheme.white,
         appBar: AppBar(
-          // leading: IconButton(
-          //   icon: Icon(Icons.arrow_back, color: ColorTheme.black),
-          //   onPressed: () {
-          //     Provider.of<DetailsController>(context, listen: false).clearDetails();
-          //     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>SelectionScreen()));
-          //   },
-          // ),
-          backgroundColor: ColorTheme.maincolor,
-          title: Text(
-            "TRACK YOUR ORDER",
-            style: GLTextStyles.mainTittle(),
+          // title: Image.asset('assets/logo/JEYEM LOGO (2).png',height: size.height*0.05,),
+          actions: [
+            Flexible(child: Image.asset('assets/logo/JEYEM LOGO (2).png',height: size.height*0.07,)),
+          ],
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color: ColorTheme.lightcolor),
+            onPressed: () {
+              Provider.of<DetailsController>(context, listen: false).clearDetails();
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>SelectionScreen()));
+            },
           ),
+          backgroundColor: ColorTheme.maincolor,
+
           centerTitle: true,
         ),
         body: Column(
@@ -71,12 +72,13 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
           children: [
             Padding(
               padding: EdgeInsets.only(
-                top: size.height * .04,
+                top: size.height * .03,
                 left: size.width * .1,
                 right: size.width * .1,
               ),
               child: TextFormField(
                 controller: trackNumberController,
+                textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
@@ -113,7 +115,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7),
                     borderSide: BorderSide(
-                      color: ColorTheme.black,
+                      color: ColorTheme.maincolor,
                       width: 2,
                     ),
                   ),

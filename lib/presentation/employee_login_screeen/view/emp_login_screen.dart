@@ -56,12 +56,12 @@ class _EmpLoginScreenState extends State<EmpLoginScreen> {
               //   ),
               // ),
               Positioned(
-                  top: size.height * 0.07,
+                  top: size.height * 0.09,
                   left: size.width * 0.07,
                   right: size.width * 0.07,
                   child: Image.asset(
-                    'assets/logo/jeyem_logo-removebg-preview.png',
-                    height: 55,
+                    'assets/logo/JEYEM LOGO (2).png',
+                    height: size.height*0.09,
                   )),
               Positioned(
                 top: size.height * 0.25,
@@ -83,7 +83,7 @@ class _EmpLoginScreenState extends State<EmpLoginScreen> {
                           Lottie.asset("assets/animation/b.json",
                               height: size.height * 0.09),
                           SizedBox(height: size.height * .02),
-                          Text('Sign in to continue to Jeyem',
+                          Text('Employee Login',
                               style: GLTextStyles.poppins2()),
                           SizedBox(height: size.height * .05),
                           TextFormField(

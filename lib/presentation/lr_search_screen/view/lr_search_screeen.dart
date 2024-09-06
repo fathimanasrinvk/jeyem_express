@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jeyem_express_cargo/core/constants/text_styles.dart';
+import 'package:jeyem_express_cargo/presentation/selection_screen/view/selection_screen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -50,6 +51,7 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+
         leading: Padding(
           padding: EdgeInsets.only(left: size.width * 0.03),
           child: Lottie.asset(
@@ -64,10 +66,11 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
           style: TextStyle(color: ColorTheme.black),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: ColorTheme.white,
         elevation: 0,
       ),
       endDrawer: Drawer(
+        backgroundColor: ColorTheme.white,
         child: Column(
           children: [
             UserAccountsDrawerHeader(
@@ -81,31 +84,35 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcdsC6_g4tHOfg6UsEMCzvW4cqwK6nXUCljg&s'),
               ),
             ),
-               Padding(
-                 padding:  EdgeInsets.only(left: size.width*0.03,right: size.width*0.03,top: size.height*0.02),
-                 child: Container(
-                   decoration: BoxDecoration(
-                       color: ColorTheme.lightcolor,
-
-                       borderRadius: BorderRadius.circular(7)
-                   ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: size.width*0.05,),
-                      Text('Logout',style: TextStyle(fontSize: 18),),
-                      SizedBox(width:size.width*0.34,),
-                      IconButton(
-                        icon: Icon(
-                          Icons.logout_outlined,
-                          size: size.height * 0.03,
-                          color: ColorTheme.maincolor,
-                        ),
-                        onPressed: showLogoutConfirmation,
+            Padding(
+              padding: EdgeInsets.only(left: size.width * 0.03, right: size.width * 0.03, top: size.height * 0.02),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: ColorTheme.lightcolor,
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(width: size.width * 0.05),
+                    Expanded( // This will allow the text to use the remaining space
+                      child: Text(
+                        'Logout',
+                        style: TextStyle(fontSize: 18),
+                        overflow: TextOverflow.ellipsis, // Optional: This will prevent text from overflowing
                       ),
-                    ],
-                  ),
-                               ),
-               ),
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.logout_outlined,
+                        size: size.height * 0.03,
+                        color: ColorTheme.maincolor,
+                      ),
+                      onPressed: showLogoutConfirmation,
+                    ),
+                  ],
+                ),
+              ),
+            ),
 
           ],
         ),
@@ -141,17 +148,17 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(7),
                   borderSide: BorderSide(
-                      width: size.width * .02, color: ColorTheme.black),
+                      width: size.width * .02, color: ColorTheme.maincolor),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(7),
                   borderSide: BorderSide(
-                      color: ColorTheme.black, width: size.width * .004),
+                      color: ColorTheme.maincolor, width: size.width * .004),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(7),
                   borderSide: BorderSide(
-                      color: ColorTheme.maincolor,
+                      color: ColorTheme.black,
                       width: size.width * .004),
                 ),
               ),
@@ -601,7 +608,7 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
     await sharedPreferences.setBool(AppConfig.loggedIn, false);
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => EmpLoginScreen()),
+      MaterialPageRoute(builder: (context) => SelectionScreen()),
       (route) => false,
     );
   }

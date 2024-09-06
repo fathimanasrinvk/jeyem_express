@@ -69,7 +69,7 @@ class GLTextStyles {
 
   static poppins3({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.poppins(
-      fontSize: size ?? 18,
+      fontSize: size ?? 24,
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.green,
     );

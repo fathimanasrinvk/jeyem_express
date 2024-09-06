@@ -10,4 +10,7 @@ class AppConfig {
   static const String loggedIn = 'loggedIn';
 
   static const String ptyloggedIn = 'ptyloggedIn';
+  // to store the digits
+  static const String partyDigits = 'partyDigits';
+
 }

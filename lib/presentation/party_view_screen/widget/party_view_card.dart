@@ -31,15 +31,16 @@ class BookingDetails extends StatelessWidget {
                     style: GLTextStyles.poppins(),
                   ),
                 ),
+
                 DataColumn(
                   label: Text(
-                    'Booking Date',
+                    'LR No',
                     style: GLTextStyles.poppins(),
                   ),
                 ),
                 DataColumn(
                   label: Text(
-                    'LR No',
+                    'Status',
                     style: GLTextStyles.poppins(),
                   ),
                 ),
@@ -73,34 +74,28 @@ class BookingDetails extends StatelessWidget {
                     style: GLTextStyles.poppins(),
                   ),
                 ),
-                DataColumn(
-                  label: Text(
-                    'Status',
-                    style: GLTextStyles.poppins(),
-                  ),
-                ),
+
               ],
               rows: bookingDetails.asMap().entries.map((entry) {
                 int index = entry.key; // Row index
                 Datum booking = entry.value; // Booking details
                 return DataRow(cells: [
                   DataCell(Text((index + 1).toString())), // SI number column
-                  DataCell(Text(booking.bookingDate??'')),
                   DataCell(Text(booking.lrNumber ?? '')),
+                  DataCell(Text(booking.bookingStatus??'')),
                   DataCell(Text(booking.invoiceNo ?? '')),
                   DataCell(Text(booking.consigneeName ?? '')),
                   DataCell(Text(booking.endStationName ?? '')),
                   DataCell(Text(booking.noBoxes?.toString() ?? '')),
                   DataCell(Text(booking.paymentType??''),),
-                  DataCell(Text(booking.bookingStatus??'')),
                   // DataCell(Text(  booking.bookingStatus?.toString() ?? 'N/A'),)
                 ]);
               }).toList(),
               border: TableBorder(
                 horizontalInside:
-                BorderSide(color: ColorTheme.maincolor, width: 0.5),
+                BorderSide(color: ColorTheme.maincolor, width: 1.0),
                 verticalInside:
-                BorderSide(color: ColorTheme.maincolor, width: 0.5),
+                BorderSide(color: ColorTheme.maincolor, width: 1.0),
                 bottom: BorderSide(color: ColorTheme.maincolor, width: 1.0),
                 top: BorderSide(color: ColorTheme.maincolor, width: 1.0),
                 left: BorderSide(color: ColorTheme.maincolor, width: 1.0),
