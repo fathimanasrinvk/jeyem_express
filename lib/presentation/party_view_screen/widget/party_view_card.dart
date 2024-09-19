@@ -87,7 +87,9 @@ class BookingDetails extends StatelessWidget {
                   DataCell(Text(booking.consigneeName ?? '')),
                   DataCell(Text(booking.endStationName ?? '')),
                   DataCell(Text(booking.noBoxes?.toString() ?? '')),
-                  DataCell(Text(booking.paymentType??''),),
+                  DataCell(Container(
+                    color:ColorTheme.lightcolor,
+                      child: Text(booking.paymentType??'')),),
                   // DataCell(Text(  booking.bookingStatus?.toString() ?? 'N/A'),)
                 ]);
               }).toList(),

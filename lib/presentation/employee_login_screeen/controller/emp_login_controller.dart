@@ -18,10 +18,11 @@ class LoginController extends ChangeNotifier {
         log("token -> ${value["token"]} ");
         storeLoginData(value);
         storeUserToken(value["token"]);
+        storeUsername(value["user"]); // Store the username
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => LrSearchScreen()),
-            (route) => false);
+                (route) => false);
       } else {
         log("Else Condition >> Api failed");
       }
@@ -33,7 +34,7 @@ class LoginController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void storeLoginData(loginReceivedData) async {
+  void storeLoginData(Map<String, dynamic> loginReceivedData) async {
     log("storeLoginData()");
     sharedPreferences = await SharedPreferences.getInstance();
     String storeData = jsonEncode(loginReceivedData);
@@ -41,10 +42,15 @@ class LoginController extends ChangeNotifier {
     sharedPreferences.setBool(AppConfig.loggedIn, true);
   }
 
-  void storeUserToken(resData) async {
+  void storeUserToken(String token) async {
     log("storeUserToken");
     sharedPreferences = await SharedPreferences.getInstance();
-    String dataUser = json.encode(resData);
-    sharedPreferences.setString(AppConfig.token, dataUser);
+    sharedPreferences.setString(AppConfig.token, token);
+  }
+
+  void storeUsername(String username) async {
+    log("storeUsername");
+    sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString(AppConfig.username, username); // Store username
   }
 }

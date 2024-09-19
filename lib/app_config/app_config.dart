@@ -13,4 +13,7 @@ class AppConfig {
   // to store the digits
   static const String partyDigits = 'partyDigits';
 
+  static const String username = 'username';
+  static const String prtyusername = 'prtyusername';
+
 }

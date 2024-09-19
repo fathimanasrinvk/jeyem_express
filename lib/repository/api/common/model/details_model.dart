@@ -75,7 +75,7 @@ class Booking {
   String? invoiceNo;
   String? gstInvoice;
   String? bookedBy;
-  DateTime? deliveryDate;
+  String? deliveryDate;
 
   Booking({
     this.bookingId,
@@ -116,9 +116,7 @@ class Booking {
         invoiceNo: json["invoice_no"],
         gstInvoice: json["gst_invoice"],
         bookedBy: json["booked_by"],
-        deliveryDate: json["delivery_date"] == null
-            ? null
-            : DateTime.parse(json["delivery_date"]),
+        deliveryDate: json["delivery_date"]
       );
 
   Map<String, dynamic> toJson() => {
@@ -139,7 +137,7 @@ class Booking {
         "invoice_no": invoiceNo,
         "gst_invoice": gstInvoice,
         "booked_by": bookedBy,
-        "delivery_date": deliveryDate?.toIso8601String(),
+        "delivery_date": deliveryDate,
       };
 }
 

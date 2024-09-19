@@ -21,11 +21,15 @@ class PartyViewScreen extends StatefulWidget {
 }
 
 class _PartyViewScreenState extends State<PartyViewScreen> {
+  String ptyUsername = ''; // Add a variable to store the username
+
   DateTime? fromDate;
 
   @override
   void initState() {
     super.initState();
+    fetchPartyusername();
+
   }
 
   Future<void> fetchDetailData() async {
@@ -39,6 +43,7 @@ class _PartyViewScreenState extends State<PartyViewScreen> {
   }
 
   Future<void> _selectDate(BuildContext context) async {
+
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: fromDate ?? DateTime.now(),
@@ -66,6 +71,14 @@ class _PartyViewScreenState extends State<PartyViewScreen> {
     }
   }
 
+
+  Future<void> fetchPartyusername() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      ptyUsername = prefs.getString(AppConfig.prtyusername) ?? ''; // Retrieve the username
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
@@ -83,7 +96,7 @@ class _PartyViewScreenState extends State<PartyViewScreen> {
               decoration: BoxDecoration(
                   color: ColorTheme.lightcolor
               ),
-              accountName: Text(''),
+              accountName: Text(ptyUsername,style: GLTextStyles.poppins1()),
               accountEmail: Text(''),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: NetworkImage(
@@ -165,13 +178,11 @@ class _PartyViewScreenState extends State<PartyViewScreen> {
                 ),
               ],
             ),
-
-
-
             Consumer<PartyViewController>(
               builder: (context, controller, _) {
                 if (controller.isLoading) {
-                  return const Center(
+                  return  Padding(
+                    padding:  EdgeInsets.only(top: size.height*0.35),
                     child: CircularProgressIndicator(
                       backgroundColor: Colors.white,
                       color: Colors.grey,
@@ -214,6 +225,8 @@ class _PartyViewScreenState extends State<PartyViewScreen> {
   }
 
   Future<void> logout(BuildContext context) async {
+    final partyviewController = Provider.of<PartyViewController>(context, listen: false);
+    partyviewController.clearDetails(); // Clear the data before logging out
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.remove(AppConfig.token);
     await sharedPreferences.setBool(AppConfig.ptyloggedIn, false);
@@ -230,7 +243,6 @@ class _PartyViewScreenState extends State<PartyViewScreen> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-
           title: Text(
             'Confirm Logout',
             style: GLTextStyles.cabinStyle(size: 18),

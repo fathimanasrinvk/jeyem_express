@@ -24,6 +24,8 @@ class LrSearchScreen extends StatefulWidget {
 
 class _LrSearchScreenState extends State<LrSearchScreen> {
   final TextEditingController trackNumberController = TextEditingController();
+  String username = ''; // Add a variable to store the username
+
 
   @override
   void initState() {
@@ -32,17 +34,26 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
       trackNumberController.text = widget.trackNumber.toString();
       fetchData();
     }
+    fetchUsername();
   }
 
   @override
   void dispose() {
     trackNumberController.dispose();
+    Provider.of<DetailsController>(context, listen: false).clearDetails();
     super.dispose();
   }
 
   Future<void> fetchData() async {
     await Provider.of<DetailsController>(context, listen: false)
         .fetchDetailData(trackNumberController.text, context);
+  }
+
+  Future<void> fetchUsername() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      username = prefs.getString(AppConfig.username) ?? ''; // Retrieve the username
+    });
   }
 
   @override
@@ -61,10 +72,10 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
           ),
         ),
         automaticallyImplyLeading: false,
-        title: Text(
-          'LR SEARCH',
-          style: TextStyle(color: ColorTheme.black),
-        ),
+        // title: Text(
+        //   'LR SEARCH',
+        //   style: TextStyle(color: ColorTheme.black),
+        // ),
         centerTitle: true,
         backgroundColor: ColorTheme.white,
         elevation: 0,
@@ -77,7 +88,7 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
               decoration: BoxDecoration(
                 color: ColorTheme.lightcolor
               ),
-              accountName: Text(''),
+              accountName: Text(username,style: GLTextStyles.poppins1(),),
               accountEmail: Text(''),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: NetworkImage(
@@ -118,484 +129,515 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
         ),
       ),
       body: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: size.height * .03),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width * .08),
-            child: TextFormField(
-              controller: trackNumberController,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      final trackNumber = trackNumberController.text;
-                      if (trackNumber.isNotEmpty) {
-                        fetchData();
-                      }
-                    });
-                  },
-                  icon: Icon(
-                    Icons.search,
-                    color: ColorTheme.maincolor,
+      Padding(
+      padding: EdgeInsets.only(
+      top: size.height * .03,
+        left: size.width * .06,
+        right: size.width * .06,
+      ),
+          child:
+          Container(
+            height: size.height*0.25,
+            decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage('assets/images/gradient.jpg'),fit: BoxFit.fill),
+                borderRadius: BorderRadius.circular(15)),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Padding(
+                      padding:EdgeInsets.only(top: size.height*0.05,left: size.width*0.04,right: size.width*0.04),
+                      child: Text('LR SEARCH',style: GLTextStyles.mainColorTitle(),)
+                    // style: TextStyle(color: ColorTheme.red,fontSize: 28,fontWeight: FontWeight.bold),),
                   ),
                 ),
-                filled: false,
-                hintText: 'LR Search',
-                hintStyle: TextStyle(color: ColorTheme.maincolor),
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: size.width * .05),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(7),
-                  borderSide: BorderSide(
-                      width: size.width * .02, color: ColorTheme.maincolor),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(7),
-                  borderSide: BorderSide(
-                      color: ColorTheme.maincolor, width: size.width * .004),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(7),
-                  borderSide: BorderSide(
-                      color: ColorTheme.black,
-                      width: size.width * .004),
-                ),
-              ),
-            ),
-          ),
-          Consumer<DetailsController>(
-            builder: (context, controller, _) {
-              if (controller.isLoading) {
-                return const Center(
-                  child: CircularProgressIndicator(
-                    backgroundColor: Colors.white,
-                    color: Colors.grey,
-                  ),
-                );
-              } else if (controller.detailsModel.booking == null) {
-                return Expanded(
-                  child: Center(
-                    child: Text(
-                      'No details available',
-                      style: GLTextStyles.mainTittle(),
+                Padding(
+                  padding:EdgeInsets.only(
+                      top: size.height*0.02,left: size.width*0.04,right: size.width*0.04,bottom: size.height*0.06),
+                  child: TextFormField(
+                    controller: trackNumberController,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            final trackNumber = trackNumberController.text;
+                            if (trackNumber.isNotEmpty) {
+                              fetchData();
+                            }
+                          });
+                        },
+                        icon: Icon(
+                          Icons.search,
+                          color: ColorTheme.maincolor,
+                        ),
+                      ),
+                      filled: true,
+                      fillColor: ColorTheme.white,
+                      hintText: 'LR Search',
+                      hintStyle: TextStyle(color: ColorTheme.maincolor),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: size.width * .05),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(
+                            width: size.width * .02, color: ColorTheme.maincolor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(
+                            color: ColorTheme.maincolor, width: size.width * .004),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide(
+                            color: ColorTheme.black,
+                            width: size.width * .004),
+                      ),
                     ),
                   ),
-                );
-              } else {
-                return Expanded(
-                    child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width * .1),
-                  child: ListView(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: size.height * .03),
-
-                          Center(
-                            child:RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: 'LR NUMBER  :  ',
-                                    style:GLTextStyles.poppins()
-                                  ),
-                                  TextSpan(
-                                    text: controller.detailsModel.booking?.lrNumber ?? 'N/A',
-                                      style:GLTextStyles.poppins4()
-                                  ),
-                                ],
-                              ),
-                            )
-
-                          ),
-                          SizedBox(height: size.height * .02),
-                          BookingStatusRow(
-                              size: size,
-                              status:
-                                  "${controller.detailsModel.booking?.dsrDelivery}"),
-                          SizedBox(height: size.height * .03),
-
-                          // Custom Table with LR Details
-                          CustomTable(
-                            rows: [
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('LR CHARGE :',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text(
-                                        '${controller.detailsModel.booking?.lrCharge}/-',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('FREIGHT :',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text(
-                                        '${controller.detailsModel.booking?.freight}/-',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('EXTRA FREIGHT :',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text(
-                                        '${controller.detailsModel.booking?.extraCharge}/-',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('TOTAL :',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text(
-                                        '${controller.detailsModel.booking?.total}/-',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('GST Amount :',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text(
-                                        '${controller.detailsModel.booking?.gstAmount}/-',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('BILL DISCOUNT :',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text(
-                                        '${controller.detailsModel.booking?.billDiscount}/-',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('NET TOTAL :',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text(
-                                        '${controller.detailsModel.booking?.netTotal}/-',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('BALANCE :',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text(
-                                        '${controller.detailsModel.booking?.netTotal}/-',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-
-                          SizedBox(height: size.height * 0.012),
-                          CustomButton(
-                              size: size, label: 'POD', onPressed: () {}),
-                          SizedBox(height: size.height * .02),
-
-                          Text('Booking Details :',
-                              style: GLTextStyles.poppins()),
-                          SizedBox(height: size.height * .02),
-
-                          // Custom Table with Booking Details
-                          CustomTable(
-                            rows: [
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('Booked On :',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text(
-                                        '${controller.detailsModel.booking?.bookedOn}',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('Booked At:',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text(
-                                        '${controller.detailsModel.booking?.bookedAt}',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('Payment Mode:',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.06,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01,
-                                        right: size.width * 0.06),
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                          color: ColorTheme.lightcolor,
-                                        ),
-                                        child: Center(
-                                            child: Text(
-                                                '${controller.detailsModel.booking?.paymentMode}',
-                                                style:
-                                                    TextStyle(fontSize: 16)))),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('Invoice No:',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text(
-                                        '${controller.detailsModel.booking?.invoiceNo}',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('Gst Invoice No:',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text(
-                                        '${controller.detailsModel.booking?.gstInvoice}',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text('Booked By:',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        top: size.height * 0.01,
-                                        bottom: size.height * 0.01),
-                                    child: Text(
-                                        '${controller.detailsModel.booking?.bookedBy}',
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-
-                          SizedBox(height: size.height * 0.03),
-
-                          PartyDetailsCard(
-                            size: size,
-                            title: 'Consignor Party',
-                            details: [
-                              '${controller.detailsModel.consignorParty?.partyName}',
-                              'Station:${controller.detailsModel.consignorParty?.station}',
-                              'GST: ${controller.detailsModel.consignorParty?.gst}',
-                              'AADR: ${controller.detailsModel.consignorParty?.address}',
-                              'PH: ${controller.detailsModel.consignorParty?.phone??''}',
-                              'Email :${controller.detailsModel.consignorParty?.email??''}',
-                            ],
-                          ),
-
-                          SizedBox(height: size.height * 0.03),
-
-                          PartyDetailsCard(
-                            size: size,
-                            title: 'Consignee Party',
-                            details: [
-                              '${controller.detailsModel.consigneeParty?.partyName}',
-                              'Station:${controller.detailsModel.consigneeParty?.station}',
-                              'GST: ${controller.detailsModel.consigneeParty?.gst}',
-                              'AADR: ${controller.detailsModel.consigneeParty?.address}',
-                              'PH: ${controller.detailsModel.consigneeParty?.phone ?? ''}',
-                              'Email :${controller.detailsModel.consigneeParty?.email?? ''}',
-                            ],
-                          ),
-                          SizedBox(height: size.height * 0.03),
-                          ProductAndVehicleDetails(
-                            size: size,
-                            productDetails: [
-                              {
-                                'item':
-                                    '${controller.detailsModel.itemDetails?.item}',
-                                'size':
-                                    '${controller.detailsModel.itemDetails?.size}',
-                                'quantity':
-                                    '${controller.detailsModel.itemDetails?.quantity}',
-                                'freight':
-                                    '${controller.detailsModel.itemDetails?.freight}',
-                              }
-                            ],
-                            vehicleDetails:
-                                controller.detailsModel.dispatchDetails ?? [],
-                          ),
-                          Divider(height: size.height * 0.04),
-                        ],
+                ),
+              ],
+            ),
+          ),),
+          Expanded(
+            child: Consumer<DetailsController>(
+              builder: (context, controller, _) {
+                if (controller.isLoading) {
+                  return Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.white,
+                        color: Colors.grey,
                       ),
-                    ],
-                  ),
-                ));
-              }
-            },
+                    ),
+                  );
+                } else if (controller.detailsModel.booking == null) {
+                  return Expanded(
+                    child: Center(
+                      child: Text(
+                        'No details available',
+                        style: GLTextStyles.mainTittle(),
+                      ),
+                    ),
+                  );
+                } else {
+                  return Expanded(
+                      child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: size.width * .1),
+                    child: ListView(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: size.height * .03),
+
+                            Center(
+                              child:RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'LR NUMBER  :  ',
+                                      style:GLTextStyles.poppins()
+                                    ),
+                                    TextSpan(
+                                      text: controller.detailsModel.booking?.lrNumber ?? 'N/A',
+                                        style:GLTextStyles.poppins4()
+                                    ),
+                                  ],
+                                ),
+                              )
+
+                            ),
+                            SizedBox(height: size.height * .02),
+                            BookingStatusRow(
+                                size: size,
+                                status:
+                                    "${controller.detailsModel.booking?.dsrDelivery}"),
+                            SizedBox(height: size.height * .03),
+
+                            // Custom Table with LR Details
+                            CustomTable(
+                              rows: [
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('LR CHARGE :',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.lrCharge}/-',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('FREIGHT :',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.freight}/-',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('EXTRA FREIGHT :',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.extraCharge}/-',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('TOTAL :',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.total}/-',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('GST Amount :',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.gstAmount}/-',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('BILL DISCOUNT :',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.billDiscount}/-',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('NET TOTAL :',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.netTotal}/-',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('BALANCE :',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.netTotal}/-',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(height: size.height * 0.012),
+                            CustomButton(
+                                size: size, label: 'POD', onPressed: () {}),
+                            SizedBox(height: size.height * .02),
+
+                            Text('Booking Details :',
+                                style: GLTextStyles.poppins()),
+                            SizedBox(height: size.height * .02),
+
+                            // Custom Table with Booking Details
+                            CustomTable(
+                              rows: [
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('Booked On :',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.bookedOn}',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('Booked At:',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.bookedAt}',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('Payment Mode:',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.06,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01,
+                                          right: size.width * 0.06),
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(7),
+                                            color: ColorTheme.lightcolor,
+                                          ),
+                                          child: Center(
+                                              child: Text(
+                                                  '${controller.detailsModel.booking?.paymentMode}',
+                                                  style:
+                                                      TextStyle(fontSize: 16)))),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('Invoice No:',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.invoiceNo}',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('Gst Invoice No:',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.gstInvoice}',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('Booked By:',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.bookedBy}',
+                                          style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(height: size.height * 0.03),
+
+                            PartyDetailsCard(
+                              size: size,
+                              title: 'Consignor Party',
+                              details: [
+                                '${controller.detailsModel.consignorParty?.partyName}',
+                                'Station:${controller.detailsModel.consignorParty?.station}',
+                                'GST: ${controller.detailsModel.consignorParty?.gst}',
+                                'AADR: ${controller.detailsModel.consignorParty?.address}',
+                                'PH: ${controller.detailsModel.consignorParty?.phone??''}',
+                                'Email :${controller.detailsModel.consignorParty?.email??''}',
+                              ],
+                            ),
+
+                            SizedBox(height: size.height * 0.03),
+
+                            PartyDetailsCard(
+                              size: size,
+                              title: 'Consignee Party',
+                              details: [
+                                '${controller.detailsModel.consigneeParty?.partyName}',
+                                'Station:${controller.detailsModel.consigneeParty?.station}',
+                                'GST: ${controller.detailsModel.consigneeParty?.gst}',
+                                'AADR: ${controller.detailsModel.consigneeParty?.address}',
+                                'PH: ${controller.detailsModel.consigneeParty?.phone ?? ''}',
+                                'Email :${controller.detailsModel.consigneeParty?.email?? ''}',
+                              ],
+                            ),
+                            SizedBox(height: size.height * 0.03),
+                            ProductAndVehicleDetails(
+                              size: size,
+                              productDetails: [
+                                {
+                                  'item':
+                                      '${controller.detailsModel.itemDetails?.item}',
+                                  'size':
+                                      '${controller.detailsModel.itemDetails?.size}',
+                                  'quantity':
+                                      '${controller.detailsModel.itemDetails?.quantity}',
+                                  'freight':
+                                      '${controller.detailsModel.itemDetails?.freight}',
+                                }
+                              ],
+                              vehicleDetails:
+                                  controller.detailsModel.dispatchDetails ?? [],
+                            ),
+                            Divider(height: size.height * 0.04),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ));
+                }
+              },
+            ),
           ),
         ],
       ),
@@ -603,6 +645,8 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
   }
 
   Future<void> logout(BuildContext context) async {
+    final detailsController = Provider.of<DetailsController>(context, listen: false);
+    detailsController.clearDetails(); // Clear the data before logging out
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.remove(AppConfig.token);
     await sharedPreferences.setBool(AppConfig.loggedIn, false);
@@ -619,7 +663,6 @@ class _LrSearchScreenState extends State<LrSearchScreen> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-
           title: Text(
             'Confirm Logout',
             style: GLTextStyles.cabinStyle(size: 18),

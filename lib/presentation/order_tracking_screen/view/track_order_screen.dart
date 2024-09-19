@@ -73,62 +73,86 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
             Padding(
               padding: EdgeInsets.only(
                 top: size.height * .03,
-                left: size.width * .1,
-                right: size.width * .1,
+                left: size.width * .06,
+                right: size.width * .06,
               ),
-              child: TextFormField(
-                controller: trackNumberController,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.search),
-                    color: ColorTheme.maincolor,
-                    onPressed: () {
-                      final trackNumber = trackNumberController.text;
-                      if (trackNumber.isNotEmpty) {
-                        fetchData();
-                      }
-                    },
-                  ),
-                  filled: false,
-                  hintText: 'Track Your Order',
-                  hintStyle: TextStyle(
-                    color: ColorTheme.maincolor,
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: size.width * .05),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(7),
-                    borderSide: BorderSide(
-                      width: size.width * .02,
-                      color: ColorTheme.maincolor,
+              child: Container(
+                height: size.height*0.25,
+                decoration: BoxDecoration(
+                  image: DecorationImage(image: AssetImage('assets/images/gradient.jpg'),fit: BoxFit.fill),
+                    borderRadius: BorderRadius.circular(15)),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding:EdgeInsets.only(top: size.height*0.05,left: size.width*0.04,right: size.width*0.04),
+                        child: Text('TRACK YOUR ORDER',style: GLTextStyles.mainColorTitle(),)
+                          // style: TextStyle(color: ColorTheme.red,fontSize: 28,fontWeight: FontWeight.bold),),
+                      ),
                     ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(7),
-                    borderSide: BorderSide(
-                      color: ColorTheme.maincolor,
-                      width: size.width * .004,
+                    Padding(
+                      padding:EdgeInsets.only(
+                          top: size.height*0.02,left: size.width*0.04,right: size.width*0.04,bottom: size.height*0.06),
+                      child: TextFormField(
+                        controller: trackNumberController,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          fillColor: ColorTheme.white,
+                          suffixIcon: IconButton(
+                            icon: Icon(Icons.search),
+                            color: ColorTheme.maincolor,
+                            onPressed:() {
+                              final trackNumber = trackNumberController.text;
+                              if (trackNumber.isNotEmpty){
+                                fetchData();
+                              }
+                            },
+                          ),
+                          filled: true,
+                          hintText: 'Track Your Order',
+                          hintStyle: TextStyle(
+                            color: ColorTheme.maincolor,
+                          ),
+                          contentPadding:
+                              EdgeInsets.symmetric(horizontal: size.width * .05),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide(
+                              width: size.width * .02,
+                              color: ColorTheme.maincolor,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide(
+                              color: ColorTheme.white,
+                              width: size.width * .004,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide(
+                              color: ColorTheme.maincolor,
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(7),
-                    borderSide: BorderSide(
-                      color: ColorTheme.maincolor,
-                      width: 2,
-                    ),
-                  ),
+                  ],
                 ),
               ),
             ),
             Consumer<DetailsController>(
               builder: (context, controller, _) {
                 if (controller.isLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      backgroundColor: Colors.white,
-                      color: Colors.grey,
+                  return Expanded(
+                    child: const Center(
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.white,
+                        color: Colors.grey,
+                      ),
                     ),
                   );
                 } else if (controller.detailsModel.booking == null) {
@@ -194,7 +218,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                                       value:
                                           "${controller.detailsModel.booking?.deliveryDate}", // Ensure the delivery date is available in your model
                                     ),
-
+        
                                   TrackOrderDetailsCard(
                                     label: 'LR No',
                                     value:

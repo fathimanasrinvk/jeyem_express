@@ -19,6 +19,8 @@ class PartyLoginController extends ChangeNotifier {
         log("token -> ${value["token"]} ");
         await storeLoginData(value);
         await storeUserToken(value["token"]);
+        storePrtyusername(value["user"]); // Store the username
+
 
         // Extract digits from username
         String username = email; // Assuming email is the username
@@ -57,6 +59,12 @@ class PartyLoginController extends ChangeNotifier {
     sharedPreferences = await SharedPreferences.getInstance();
     String dataUser = json.encode(resData);
     await sharedPreferences.setString(AppConfig.token, dataUser);
+  }
+
+  void storePrtyusername(String prtyusername) async {
+    log("storePrtyusername");
+    sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString(AppConfig.prtyusername, prtyusername); // Store username
   }
 
   // New method to store extracted digits

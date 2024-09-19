@@ -119,8 +119,8 @@ class SelectionScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: size.height*0.04,),
-            Lottie.asset('assets/animation/truck_delivery.json',height: size.height*0.12 )
+            // SizedBox(height: size.height*0.04,),
+            // Lottie.asset('assets/animation/truck_delivery.json',height: size.height*0.12 )
           ],
         ),
       ),

@@ -1,4 +1,6 @@
 
+//
+//
 // To parse this JSON data, do
 //
 //     final partyViewModel = partyViewModelFromJson(jsonString);
@@ -11,26 +13,29 @@ String partyViewModelToJson(PartyViewModel data) => json.encode(data.toJson());
 
 class PartyViewModel {
   String? status;
+  String? partyName;
   List<Datum>? data;
 
   PartyViewModel({
     this.status,
+    this.partyName,
     this.data,
   });
 
   factory PartyViewModel.fromJson(Map<String, dynamic> json) => PartyViewModel(
     status: json["status"],
+    partyName: json["party_name"],
     data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "status": status,
+    "party_name": partyName,
     "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
   };
 }
 
 class Datum {
-  String? consignorName;
   String? consigneeName;
   String? lrNumber;
   String? bookingDate;
@@ -42,7 +47,6 @@ class Datum {
   String? deliveryDate;
 
   Datum({
-    this.consignorName,
     this.consigneeName,
     this.lrNumber,
     this.bookingDate,
@@ -55,20 +59,18 @@ class Datum {
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    consignorName: json["consignor_name"],
     consigneeName: json["consignee_name"],
     lrNumber: json["lr_number"],
-    bookingDate: json["booking_date"],
+    bookingDate:json["booking_date"],
     invoiceNo: json["invoice_no"],
     endStationName: json["end_station_name"],
     noBoxes: json["no_boxes"],
     paymentType: json["payment_type"],
-    bookingStatus: json["booking_status"],
-    deliveryDate: json["delivery_date"],
+    bookingStatus:json["booking_status"],
+    deliveryDate:json["delivery_date"],
   );
 
   Map<String, dynamic> toJson() => {
-    "consignor_name": consignorName,
     "consignee_name": consigneeName,
     "lr_number": lrNumber,
     "booking_date": bookingDate,
@@ -80,5 +82,3 @@ class Datum {
     "delivery_date": deliveryDate,
   };
 }
-
-
