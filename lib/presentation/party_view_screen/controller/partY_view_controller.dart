@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
@@ -10,7 +9,7 @@ class PartyViewController extends ChangeNotifier {
   bool isLoading = false;
   PartyViewModel partyViewModel = PartyViewModel();
 
-  Future<void> fetchDetailData(String digits, DateTime fromDate, BuildContext context) async {
+  Future<void> fetchDetailData(String digits, DateTime fromDate, BuildContext context)async{
     isLoading = true;
     notifyListeners();
     log("PartyViewController -> fetchDetailData()");
