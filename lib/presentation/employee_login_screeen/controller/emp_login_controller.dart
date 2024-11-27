@@ -22,7 +22,7 @@ class LoginController extends ChangeNotifier {
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => LrSearchScreen()),
-                (route) => false);
+            (route) => false);
       } else {
         log("Else Condition >> Api failed");
       }
