@@ -1,8 +1,7 @@
+import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:jeyem_express_cargo/core/constants/colors.dart';
 import 'package:provider/provider.dart';
-import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
-import '../../order_tracking_screen/view/track_order_screen.dart';
+import '../../../core/constants/colors.dart';
 import '../controller/bottom_nav_controller.dart';
 
 class BottomNavBarScreen extends StatelessWidget {
@@ -13,35 +12,57 @@ class BottomNavBarScreen extends StatelessWidget {
       child: Consumer<BottomNavBarController>(
         builder: (context, controller, _) {
           final List<Widget> bottomBarPages = [
-            Container(color: Colors.white), // Home Screen
-            TrackOrderScreen(), // Order Tracking Screen
-            Container(color: Colors.white), // Profile Screen
+            Container(color: Colors.white,),
+            Container(color: Colors.white,),
+            Container(color: Colors.white,),
           ];
 
           return Scaffold(
-            body: bottomBarPages[controller.selectedIndex],
-            bottomNavigationBar: FlashyTabBar(
-              animationCurve: Curves.linear,
-              selectedIndex: controller.selectedIndex,
-              iconSize: 30,
-              showElevation: true,
-              onItemSelected: (index) {
-                controller.updateSelectedIndex(index);
-              },
-              items: [
-                FlashyTabBarItem(
-                  icon: Icon(Icons.home_filled,color: ColorTheme.maincolor,),
-                  title: Text('Home',style: TextStyle(color: ColorTheme.maincolor),),
+            resizeToAvoidBottomInset: false,
+            body: PageView(
+              controller: controller.pageController,
+              physics: const NeverScrollableScrollPhysics(),
+              children: bottomBarPages,
+            ),
+            extendBody: true,
+            bottomNavigationBar: AnimatedNotchBottomBar(
+              notchBottomBarController: controller.notchController,
+              color: ColorTheme.maincolor,
+              showLabel: true,
+              textOverflow: TextOverflow.visible,
+              maxLine: 1,
+              shadowElevation: 5,
+              kBottomRadius: 28.0,
+              notchColor: ColorTheme.lightcolor,
+              removeMargins: false,
+              bottomBarWidth: 500,
+              showShadow: false,
+              durationInMilliSeconds: 300,
+              itemLabelStyle: const TextStyle(fontSize: 10,color: Colors.grey),
+              elevation: 1,
+              bottomBarItems: const [
+                BottomBarItem(
+                  inActiveItem: Icon(Icons.home_filled, color: Colors.blueGrey),
+                  activeItem: Icon(Icons.home_filled, color: Colors.blueAccent),
+                  itemLabel: 'Home',
                 ),
-                FlashyTabBarItem(
-                  icon: Icon(Icons.track_changes,color: ColorTheme.maincolor,),
-                  title: Text('Track Order',style: TextStyle(color: ColorTheme.maincolor)),
+
+                BottomBarItem(
+                  inActiveItem: Icon(Icons.settings, color: Colors.blueGrey),
+                  activeItem: Icon(Icons.settings, color: Colors.blueAccent),
+                  itemLabel: 'Page 3',
                 ),
-                FlashyTabBarItem(
-                  icon: Icon(Icons.person,color: ColorTheme.maincolor,),
-                  title: Text('Profile',style: TextStyle(color: ColorTheme.maincolor)),
+                BottomBarItem(
+                  inActiveItem: Icon(Icons.person, color: Colors.blueGrey),
+                  activeItem: Icon(Icons.person, color: Colors.yellow),
+                  itemLabel: 'Profile',
                 ),
               ],
+              onTap: (index) {
+                controller.updateSelectedIndex(index);
+                controller.pageController.jumpToPage(index);
+              },
+              kIconSize: 24.0,
             ),
           );
         },
