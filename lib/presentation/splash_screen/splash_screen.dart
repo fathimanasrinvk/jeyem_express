@@ -1,11 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:jeyem_express_cargo/presentation/party_view_screen/view/party_view_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:jeyem_express_cargo/presentation/selection_screen/view/selection_screen.dart';
-import 'package:jeyem_express_cargo/presentation/lr_search_screen/view/lr_search_screeen.dart';
-import '../../app_config/app_config.dart';
 import '../../core/constants/colors.dart';
+import '../bottom_navigation_screen/view/bottom_nav_screen.dart';
+import '../order_tracking_screen/view/track_order_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,30 +15,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    checkLoginStatus();
+    navigateToTrackOrder();
   }
 
-  Future<void> checkLoginStatus() async {
-    final sharedPreferences = await SharedPreferences.getInstance();
-    final bool isLoggedIn =
-        sharedPreferences.getBool(AppConfig.loggedIn) ?? false;
-    final bool isPartyLoggedIn =
-        sharedPreferences.getBool(AppConfig.ptyloggedIn) ?? false;
-    final String storedDigits = sharedPreferences.getString(AppConfig.partyDigits) ?? '';
-
-
-    Timer(Duration(seconds: 3), () {
-      if (isLoggedIn) {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => LrSearchScreen()));
-      } else if  (isPartyLoggedIn){
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => PartyViewScreen(digits:storedDigits)));
-      }
-      else {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => SelectionScreen()));
-      }
+  void navigateToTrackOrder() {
+    Timer(const Duration(seconds: 3), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => BottomNavBarScreen()),
+      );
     });
   }
 
