@@ -1,5 +1,6 @@
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:jeyem_express_cargo/presentation/order_tracking_screen/view/track_order_screen.dart';
 import 'package:provider/provider.dart';
 import '../../../core/constants/colors.dart';
 import '../controller/bottom_nav_controller.dart';
@@ -13,7 +14,7 @@ class BottomNavBarScreen extends StatelessWidget {
         builder: (context, controller, _) {
           final List<Widget> bottomBarPages = [
             Container(color: Colors.white,),
-            Container(color: Colors.white,),
+            TrackOrderScreen(),
             Container(color: Colors.white,),
           ];
 
