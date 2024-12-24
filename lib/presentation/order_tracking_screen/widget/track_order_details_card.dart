@@ -20,18 +20,18 @@ class TrackOrderDetailsCard extends StatelessWidget {
       children: [
         Text(
           label,
-          style: GLTextStyles.poppins2(),
+          style: GLTextStyles.poppins(size: 16),
           textAlign: TextAlign.left,
         ),
         SizedBox(height: size.height * 0.015),
         Text(
           value,
-          style: GLTextStyles.poppins2(),
+          style: GLTextStyles.poppins1(),
           textAlign: TextAlign.left,
         ),
         SizedBox(height: size.height * 0.015),
         Divider(
-          color: ColorTheme.white,
+          color: ColorTheme.maincolor,
           thickness: 1.0,
         ),
       ],

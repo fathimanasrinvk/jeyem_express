@@ -9,6 +9,19 @@ class GLTextStyles {
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.white,
     );
+  }static search({double? size, FontWeight? weight, Color? color}) {
+    return GoogleFonts.roboto(
+      fontSize: size ?? 30,
+      fontWeight: weight ?? FontWeight.bold,
+      color: color ?? ColorTheme.maincolor,
+    );
+  }
+  static date({double? size, FontWeight? weight, Color? color}) {
+    return GoogleFonts.roboto(
+      fontSize: size ?? 30,
+      fontWeight: weight ?? FontWeight.bold,
+      color: color ?? ColorTheme.black,
+    );
   }
 
   static mainTittle({double? size, FontWeight? weight, Color? color}) {
@@ -25,13 +38,38 @@ class GLTextStyles {
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.maincolor,
     );
+  } static mainColorTitle1({double? size, FontWeight? weight, Color? color}) {
+    return GoogleFonts.poppins(
+      fontSize: size ?? 24,
+      fontWeight: weight ?? FontWeight.bold,
+      color: color ?? ColorTheme.white,
+    );
   }
 
   static cabinStyle({double? size, FontWeight? weight, Color? color}) {
-    return GoogleFonts.cabin(
-      fontSize: size ?? 22,
+    return GoogleFonts.rakkas(
+      fontSize: size ?? 20,
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.black,
+    );
+  }  static snackbartxt({double? size, FontWeight? weight, Color? color}) {
+    return GoogleFonts.rakkas(
+      fontSize: size ?? 16,
+      fontWeight: weight ?? FontWeight.bold,
+      color: color ?? ColorTheme.black,
+    );
+  } static cancel({double? size, FontWeight? weight, Color? color}) {
+    return GoogleFonts.rakkas(
+      fontSize: size ?? 20,
+      fontWeight: weight ?? FontWeight.bold,
+      color: color ?? ColorTheme.maincolor,
+    );
+  }
+  static selectionbuttontext({double? size, FontWeight? weight, Color? color}) {
+    return GoogleFonts.rakkas(
+      fontSize: size ?? 20,
+      fontWeight: weight ?? FontWeight.bold,
+      color: color ?? ColorTheme.white,
     );
   }
 
@@ -40,6 +78,20 @@ class GLTextStyles {
       fontSize: size ?? 23,
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.white,
+    );
+  }
+  static textformfieldhint({double? size, FontWeight? weight, Color? color}) {
+    return GoogleFonts.roboto(
+      fontSize: size ?? 13,
+      fontWeight: weight ?? FontWeight.normal,
+      color: color ?? ColorTheme.black,
+    );
+  }
+  static textformfieldhint1({double? size, FontWeight? weight, Color? color}) {
+    return GoogleFonts.roboto(
+      fontSize: size ?? 13,
+      fontWeight: weight ?? FontWeight.normal,
+      color: color ?? ColorTheme.maincolor,
     );
   }
 
@@ -60,6 +112,20 @@ class GLTextStyles {
   }
 
   static poppins1({double? size, FontWeight? weight, Color? color}) {
+    return GoogleFonts.poppins(
+      fontSize: size ?? 18,
+      fontWeight: weight ?? FontWeight.bold,
+      color: color ?? ColorTheme.maincolor,
+    );
+  }
+  static logout({double? size, FontWeight? weight, Color? color}) {
+    return GoogleFonts.rakkas(
+      fontSize: size ?? 16,
+      fontWeight: weight ?? FontWeight.normal,
+      color: color ?? ColorTheme.maincolor,
+    );
+
+  } static username({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.poppins(
       fontSize: size ?? 18,
       fontWeight: weight ?? FontWeight.bold,
