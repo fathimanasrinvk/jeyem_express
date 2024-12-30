@@ -9,13 +9,16 @@ class GLTextStyles {
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.white,
     );
-  }static search({double? size, FontWeight? weight, Color? color}) {
+  }
+
+  static search({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.roboto(
       fontSize: size ?? 30,
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.maincolor,
     );
   }
+
   static date({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.roboto(
       fontSize: size ?? 30,
@@ -38,7 +41,9 @@ class GLTextStyles {
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.maincolor,
     );
-  } static mainColorTitle1({double? size, FontWeight? weight, Color? color}) {
+  }
+
+  static mainColorTitle1({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.poppins(
       fontSize: size ?? 24,
       fontWeight: weight ?? FontWeight.bold,
@@ -52,19 +57,24 @@ class GLTextStyles {
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.black,
     );
-  }  static snackbartxt({double? size, FontWeight? weight, Color? color}) {
+  }
+
+  static snackbartxt({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.rakkas(
       fontSize: size ?? 16,
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.black,
     );
-  } static cancel({double? size, FontWeight? weight, Color? color}) {
+  }
+
+  static cancel({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.rakkas(
       fontSize: size ?? 20,
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.maincolor,
     );
   }
+
   static selectionbuttontext({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.rakkas(
       fontSize: size ?? 20,
@@ -80,6 +90,7 @@ class GLTextStyles {
       color: color ?? ColorTheme.white,
     );
   }
+
   static textformfieldhint({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.roboto(
       fontSize: size ?? 13,
@@ -87,6 +98,7 @@ class GLTextStyles {
       color: color ?? ColorTheme.black,
     );
   }
+
   static textformfieldhint1({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.roboto(
       fontSize: size ?? 13,
@@ -118,14 +130,16 @@ class GLTextStyles {
       color: color ?? ColorTheme.maincolor,
     );
   }
+
   static logout({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.rakkas(
       fontSize: size ?? 16,
       fontWeight: weight ?? FontWeight.normal,
       color: color ?? ColorTheme.maincolor,
     );
+  }
 
-  } static username({double? size, FontWeight? weight, Color? color}) {
+  static username({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.poppins(
       fontSize: size ?? 18,
       fontWeight: weight ?? FontWeight.bold,

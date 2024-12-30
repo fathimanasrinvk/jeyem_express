@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/constants/colors.dart';
@@ -18,16 +19,24 @@ class PartyViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final partyViewController = Provider.of<PartyViewController>(context, listen: false);
+    final partyViewController =
+        Provider.of<PartyViewController>(context, listen: false);
     partyViewController.fetchPartyUsername();
     var size = MediaQuery.sizeOf(context);
 
     return Scaffold(
-
       backgroundColor: ColorTheme.maincolor,
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.white, // Change this to your desired color
+        ),
+        leading: Padding(
+          padding: EdgeInsets.only(left: size.width * 0.03),
+          child: Lottie.asset(
+            "assets/animation/lr_lottie.json",
+            width: size.width * 0.17,
+            height: size.height * 0.062,
+          ),
         ),
         scrolledUnderElevation: 0,
         elevation: 1,
@@ -35,26 +44,30 @@ class PartyViewScreen extends StatelessWidget {
         title: Text('BOOKING SEARCH', style: GLTextStyles.mainColorTitle1()),
         backgroundColor: ColorTheme.maincolor,
         shape: Border(
-          bottom: BorderSide(color: Colors.grey.shade300, width: 0.1), // Add a bottom border
+          bottom: BorderSide(
+              color: Colors.grey.shade300, width: 0.1), // Add a bottom border
         ),
-
       ),
       endDrawer: Drawer(
-
-
         backgroundColor: ColorTheme.maincolor,
         child: Column(
           children: [
             UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: ColorTheme.lightcolor),
-              accountName: Text(Provider.of<PartyViewController>(context).ptyUsername, style: GLTextStyles.username()),
+              accountName: Text(
+                  Provider.of<PartyViewController>(context).ptyUsername,
+                  style: GLTextStyles.username()),
               accountEmail: Text(''),
               currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcdsC6_g4tHOfg6UsEMCzvW4cqwK6nXUCljg&s'),
+                backgroundImage: NetworkImage(
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcdsC6_g4tHOfg6UsEMCzvW4cqwK6nXUCljg&s'),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: size.width * 0.03, right: size.width * 0.03, top: size.height * 0.02),
+              padding: EdgeInsets.only(
+                  left: size.width * 0.03,
+                  right: size.width * 0.03,
+                  top: size.height * 0.02),
               child: Container(
                 decoration: BoxDecoration(
                   color: ColorTheme.lightcolor,
@@ -84,10 +97,12 @@ class PartyViewScreen extends StatelessWidget {
             ),
           ],
         ),
-
       ),
       body: Padding(
-        padding: EdgeInsets.only(left: size.width * 0.07, right: size.width * 0.07, top: size.height * 0.04),
+        padding: EdgeInsets.only(
+            left: size.width * 0.07,
+            right: size.width * 0.07,
+            top: size.height * 0.04),
         child: Column(
           children: [
             Row(
@@ -96,7 +111,9 @@ class PartyViewScreen extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () => _selectDate(context),
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: size.height * 0.01, horizontal: size.width * 0.05),
+                      padding: EdgeInsets.symmetric(
+                          vertical: size.height * 0.01,
+                          horizontal: size.width * 0.05),
                       decoration: BoxDecoration(
                         color: ColorTheme.lightcolor,
                         border: Border.all(color: ColorTheme.maincolor),
@@ -104,27 +121,33 @@ class PartyViewScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          Provider.of<PartyViewController>(context).fromDate != null
-                              ? DateFormat.yMMMMd().format(Provider.of<PartyViewController>(context).fromDate!)
+                          Provider.of<PartyViewController>(context).fromDate !=
+                                  null
+                              ? DateFormat.yMMMMd().format(
+                                  Provider.of<PartyViewController>(context)
+                                      .fromDate!)
                               : 'Select Date',
-                          style: GLTextStyles.date(size: 13),
+                          style: GLTextStyles.date(size: 12),
                         ),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(width: size.width * 0.06),
+                SizedBox(width: size.width * 0.04),
                 Flexible(
                   child: GestureDetector(
                     onTap: () => fetchDetailData(context),
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: size.height * 0.01, horizontal: size.width * 0.03),
+                      padding: EdgeInsets.symmetric(
+                          vertical: size.height * 0.01,
+                          horizontal: size.width * 0.03),
                       decoration: BoxDecoration(
                         color: ColorTheme.white,
                         borderRadius: BorderRadius.circular(7),
                       ),
                       child: Center(
-                        child: Text('Search', style: GLTextStyles.search(size: 13)),
+                        child: Text('Search',
+                            style: GLTextStyles.search(size: 13)),
                       ),
                     ),
                   ),
@@ -132,8 +155,12 @@ class PartyViewScreen extends StatelessWidget {
               ],
             ),
             // Show radio buttons only if there are bookings
-            if (Provider.of<PartyViewController>(context).partyViewModel.data != null &&
-                Provider.of<PartyViewController>(context).partyViewModel.data!.isNotEmpty &&
+            if (Provider.of<PartyViewController>(context).partyViewModel.data !=
+                    null &&
+                Provider.of<PartyViewController>(context)
+                    .partyViewModel
+                    .data!
+                    .isNotEmpty &&
                 Provider.of<PartyViewController>(context).fromDate != null)
               Padding(
                 padding: EdgeInsets.only(top: size.height * 0.03),
@@ -142,19 +169,25 @@ class PartyViewScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildRadioButton(value: 'all',
+                      _buildRadioButton(
+                          value: 'all',
                           groupValue: partyViewController.selectedStatus,
-                          label: 'All', onChanged: (value) {
+                          label: 'All',
+                          onChanged: (value) {
                             partyViewController.setBookingStatus(value);
                           }),
-                      _buildRadioButton(value: 'delivered',
+                      _buildRadioButton(
+                          value: 'delivered',
                           groupValue: partyViewController.selectedStatus,
-                          label: 'Delivered', onChanged: (value) {
+                          label: 'Delivered',
+                          onChanged: (value) {
                             partyViewController.setBookingStatus(value);
                           }),
-                      _buildRadioButton(value: 'non-delivered',
+                      _buildRadioButton(
+                          value: 'non-delivered',
                           groupValue: partyViewController.selectedStatus,
-                          label: 'Non-Delivered', onChanged: (value) {
+                          label: 'Non-Delivered',
+                          onChanged: (value) {
                             partyViewController.setBookingStatus(value);
                           }),
                     ],
@@ -171,7 +204,8 @@ class PartyViewScreen extends StatelessWidget {
                       color: Colors.grey,
                     ),
                   );
-                } else if (controller.partyViewModel.data == null || controller.partyViewModel.data!.isEmpty) {
+                } else if (controller.partyViewModel.data == null ||
+                    controller.partyViewModel.data!.isEmpty) {
                   return Expanded(
                     child: Center(
                       child: Text(
@@ -189,7 +223,7 @@ class PartyViewScreen extends StatelessWidget {
                           controller.selectedStatus == 'delivered'
                               ? 'No delivered items'
                               : 'No non-delivered items',
-                          style: GLTextStyles.mainColorTitle1(),
+                          style: GLTextStyles.mainColorTitle1(size: 20),
                         ),
                       ),
                     );
@@ -224,7 +258,9 @@ class PartyViewScreen extends StatelessWidget {
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: Provider.of<PartyViewController>(context, listen: false).fromDate ?? DateTime.now(),
+      initialDate:
+          Provider.of<PartyViewController>(context, listen: false).fromDate ??
+              DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime(2101),
       builder: (BuildContext context, Widget? child) {
@@ -234,8 +270,8 @@ class PartyViewScreen extends StatelessWidget {
           builder: (context, constraints) {
             return ConstrainedBox(
               constraints: BoxConstraints(
-                maxWidth:  size.width * 0.4, // Adjust width to prevent overflow
-                maxHeight:  size.height * 0.4, // Adjust height if needed
+                maxWidth: size.width * 0.4, // Adjust width to prevent overflow
+                maxHeight: size.height * 0.4, // Adjust height if needed
               ),
               child: Theme(
                 data: Theme.of(context).copyWith(
@@ -244,9 +280,11 @@ class PartyViewScreen extends StatelessWidget {
                     onPrimary: ColorTheme.white, // Header text color
                     onSurface: ColorTheme.black, // Body text color
                   ),
-                  dialogBackgroundColor: ColorTheme.lightcolor, // Background color of the date picker
+                  dialogBackgroundColor: ColorTheme
+                      .lightcolor, // Background color of the date picker
                 ),
-                child: child!, // Return the original child wrapped inside the constraints
+                child:
+                    child!, // Return the original child wrapped inside the constraints
               ),
             );
           },
@@ -255,7 +293,8 @@ class PartyViewScreen extends StatelessWidget {
     );
     if (picked != null) {
       // Set the selected date
-      Provider.of<PartyViewController>(context, listen: false).setFromDate(picked);
+      Provider.of<PartyViewController>(context, listen: false)
+          .setFromDate(picked);
 
       // Call the fetch function immediately after setting the date
       await fetchDetailData(context);
@@ -263,11 +302,17 @@ class PartyViewScreen extends StatelessWidget {
   }
 
   Future<void> fetchDetailData(BuildContext context) async {
-    if (Provider.of<PartyViewController>(context, listen: false).fromDate != null) {
+    if (Provider.of<PartyViewController>(context, listen: false).fromDate !=
+        null) {
       await Provider.of<PartyViewController>(context, listen: false)
-          .fetchDetailData(digits, Provider.of<PartyViewController>(context, listen: false).fromDate!, context);
+          .fetchDetailData(
+              digits,
+              Provider.of<PartyViewController>(context, listen: false)
+                  .fromDate!,
+              context);
     } else {
-      AppUtils.oneTimeSnackBar("Please select the date", showOnTop: false, context: context, bgColor: ColorTheme.black);
+      AppUtils.oneTimeSnackBar("Please select the date",
+          showOnTop: false, context: context, bgColor: ColorTheme.black);
     }
   }
 
@@ -282,11 +327,12 @@ class PartyViewScreen extends StatelessWidget {
             'Confirm Logout',
             style: GLTextStyles.cancel(size: 18),
           ),
-          content:  Text('Are you sure you want to log out?',style: GLTextStyles.textformfieldhint1(size: 14)),
+          content: Text('Are you sure you want to log out?',
+              style: GLTextStyles.textformfieldhint1(size: 14)),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('Cancel',  style: GLTextStyles.cancel(size: 14)),
+              child: Text('Cancel', style: GLTextStyles.cancel(size: 14)),
             ),
             TextButton(
               onPressed: () async {
@@ -308,7 +354,8 @@ class PartyViewScreen extends StatelessWidget {
   }
 
   Future<void> logout(BuildContext context) async {
-    final partyviewController = Provider.of<PartyViewController>(context, listen: false);
+    final partyviewController =
+        Provider.of<PartyViewController>(context, listen: false);
     partyviewController.clearDetails(); // Clear the data before logging out
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.remove(AppConfig.token);
@@ -316,7 +363,7 @@ class PartyViewScreen extends StatelessWidget {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => SelectionScreen()),
-          (route) => false,
+      (route) => false,
     );
   }
 }
@@ -334,8 +381,6 @@ Widget _buildRadioButton({
         groupValue: groupValue,
         onChanged: onChanged,
         activeColor: ColorTheme.white,
-
-
       ),
       Text(label, style: GLTextStyles.poppins2()),
     ],

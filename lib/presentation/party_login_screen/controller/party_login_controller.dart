@@ -20,6 +20,7 @@ class PartyLoginController extends ChangeNotifier {
     if (email.isEmpty || password.isEmpty) {
       AppUtils.oneTimeSnackBar(
         "Username and Password are required",
+        textStyle: GLTextStyles.snackbartxt(color: ColorTheme.lightcolor),
         context: context,
         bgColor: ColorTheme.black,
       );
@@ -36,34 +37,32 @@ class PartyLoginController extends ChangeNotifier {
 
         // Extract digits from username
         String username = email; // Assuming email is the username
-        final digits = RegExp(r'\d+').allMatches(username).map((match) => match.group(0)).join();
+        final digits = RegExp(r'\d+')
+            .allMatches(username)
+            .map((match) => match.group(0))
+            .join();
 
         // Store digits in SharedPreferences
         await storeDigits(digits);
 
         // Navigate to PartyViewScreen with stored digits
-        AppUtils.oneTimeSnackBar(
-            "Logged In Successfully",
-            context: context,
-            bgColor: ColorTheme.lightcolor
-        );
+        AppUtils.oneTimeSnackBar("Logged In Successfully",
+            context: context, bgColor: ColorTheme.lightcolor);
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => PartyViewScreen(digits: digits)),
-                (route) => false);
+            MaterialPageRoute(
+                builder: (context) => PartyViewScreen(digits: digits)),
+            (route) => false);
       } else {
         AppUtils.showFlushbar(
-            context: context,
-            message:"Incorrect Password or Username",
+          context: context,
+          message: "Incorrect Password or Username",
           icon: Icons.cancel,
           iconColor: ColorTheme.red,
-
-
         );
       }
     });
   }
-
 
   void onPressed() {
     visibility = !visibility;
@@ -88,7 +87,8 @@ class PartyLoginController extends ChangeNotifier {
   void storePrtyusername(String prtyusername) async {
     log("storePrtyusername");
     sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setString(AppConfig.prtyusername, prtyusername); // Store username
+    sharedPreferences.setString(
+        AppConfig.prtyusername, prtyusername); // Store username
   }
 
   // New method to store extracted digits

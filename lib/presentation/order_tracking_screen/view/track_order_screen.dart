@@ -30,8 +30,8 @@ class TrackOrderScreen extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         Provider.of<DetailsController>(context, listen: false).clearDetails();
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => SelectionScreen()));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => SelectionScreen()));
         return false;
       },
       child: Scaffold(
@@ -39,15 +39,18 @@ class TrackOrderScreen extends StatelessWidget {
         backgroundColor: ColorTheme.maincolor,
         appBar: AppBar(
           scrolledUnderElevation: 0,
-
           actions: [
-            Flexible(child: Image.asset('assets/logo/JEYEM LOGO (2).png', height: size.height * 0.07)),
+            Flexible(
+                child: Image.asset('assets/logo/JEYEM LOGO (2).png',
+                    height: size.height * 0.07)),
           ],
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios, color: ColorTheme.lightcolor),
             onPressed: () {
-              Provider.of<DetailsController>(context, listen: false).clearDetails();
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SelectionScreen()));
+              Provider.of<DetailsController>(context, listen: false)
+                  .clearDetails();
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => SelectionScreen()));
             },
           ),
           backgroundColor: ColorTheme.maincolor,
@@ -61,103 +64,92 @@ class TrackOrderScreen extends StatelessWidget {
                 top: size.height * .03,
                 left: size.width * .06,
                 right: size.width * .06,
-
-
               ),
-              child: Container(
-                height: size.height * 0.16,
-                decoration: BoxDecoration(
-                  color: ColorTheme.blue,
-                    // image: DecorationImage(image: AssetImage('assets/images/gradient.jpg'), fit: BoxFit.fill),
-                    borderRadius: BorderRadius.circular(15)),
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        // top: size.height * 0.035,
-                        left: size.width * 0.04,
-                        right: size.width * 0.04,
-                        ),
-                    child: TextFormField(
-                      controller: trackNumberController,
-                      textInputAction: TextInputAction.done,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        fillColor: ColorTheme.white,
-                        suffixIcon: IconButton(
-                          icon: Icon(Icons.search),
-                          color: ColorTheme.maincolor,
-                          onPressed: () {
-                            final trackNumber = trackNumberController.text;
-                            FocusScope.of(context).unfocus(); // Hides the keyboard
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: size.height * 0.02,
+                    left: size.width * 0.04,
+                    right: size.width * 0.04,
+                  ),
+                  child: TextFormField(
+                    style: GLTextStyles.textformfieldhint1(),
+                    controller: trackNumberController,
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      fillColor: ColorTheme.white,
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.search),
+                        color: ColorTheme.maincolor,
+                        onPressed: () {
+                          final trackNumber = trackNumberController.text;
+                          FocusScope.of(context)
+                              .unfocus(); // Hides the keyboard
 
-                            if (trackNumber.isEmpty) {
-                              AppUtils.showFlushbar(
+                          if (trackNumber.isEmpty) {
+                            AppUtils.showFlushbar(
                                 context: context,
-                                message:"Track Number Is Required",
+                                message: "Track Number Is Required",
                                 messageColor: ColorTheme.red,
                                 backgroundColor: ColorTheme.lightcolor,
                                 icon: Icons.error,
                                 borderRadius: BorderRadius.circular(7),
-                                widthFactor: 0.52
+                                widthFactor: 0.52);
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //   SnackBar(
+                            //     content: Text("Tracking number is required"),
+                            //     backgroundColor: Colors.red,
+                            //   ),
+                            // );
+                          } else {
+                            fetchData(context, trackNumber);
+                          }
+                        },
+                      ),
 
-
-
-
-                              );
-                              // ScaffoldMessenger.of(context).showSnackBar(
-                              //   SnackBar(
-                              //     content: Text("Tracking number is required"),
-                              //     backgroundColor: Colors.red,
-                              //   ),
-                              // );
-                            } else {
-                              fetchData(context, trackNumber);
-                            }
-                          },
-                        ),
-
-                        // suffixIcon: IconButton(
-                        //   icon: Icon(Icons.search),
-                        //   color: ColorTheme.maincolor,
-                        //   onPressed: () {
-                        //     final trackNumber = trackNumberController.text;
-                        //     if (trackNumber.isNotEmpty) {
-                        //       fetchData(context, trackNumber);
-                        //     }
-                        //   },
-                        // ),
-                        filled: true,
-                        hintText: 'Track Your Order',
-                        hintStyle:GLTextStyles.textformfieldhint1(),
-                        contentPadding: EdgeInsets.symmetric(horizontal: size.width * .05),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide(
-                            width: size.width * .02,
-                            color: ColorTheme.maincolor,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide(
-                            color: ColorTheme.white,
-                            width: size.width * .004,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide(
-                            color: ColorTheme.maincolor,
-                            width: 2,
-                          ),
+                      // suffixIcon: IconButton(
+                      //   icon: Icon(Icons.search),
+                      //   color: ColorTheme.maincolor,
+                      //   onPressed: () {
+                      //     final trackNumber = trackNumberController.text;
+                      //     if (trackNumber.isNotEmpty) {
+                      //       fetchData(context, trackNumber);
+                      //     }
+                      //   },
+                      // ),
+                      filled: true,
+                      hintText: 'Track Your Order',
+                      hintStyle: GLTextStyles.textformfieldhint1(),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: size.width * .05),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          width: size.width * .02,
+                          color: ColorTheme.maincolor,
                         ),
                       ),
-                      onFieldSubmitted: (String value) {
-                        if (value.isNotEmpty) {
-                          fetchData(context, value);
-                        }
-                      },
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: ColorTheme.maincolor,
+                          width: size.width * .004,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: ColorTheme.maincolor,
+                          width: 2,
+                        ),
+                      ),
                     ),
+                    onFieldSubmitted: (String value) {
+                      if (value.isNotEmpty) {
+                        fetchData(context, value);
+                      }
+                    },
                   ),
                 ),
               ),
@@ -192,23 +184,31 @@ class TrackOrderScreen extends StatelessWidget {
                           RichText(
                             text: TextSpan(children: [
                               TextSpan(
-                                text: '${controller.detailsModel.booking?.lrNumber}  :   ',
+                                text:
+                                    '${controller.detailsModel.booking?.lrNumber}  :   ',
                                 style: GLTextStyles.poppins2(),
                               ),
                               TextSpan(
-                                text: '${controller.detailsModel.booking?.dsrDelivery} ',
-                                style: GLTextStyles.poppins3(size:20 ),
+                                text:
+                                    '${controller.detailsModel.booking?.dsrDelivery} ',
+                                style: GLTextStyles.poppins3(size: 20),
                               ),
                             ]),
                           ),
                           SizedBox(height: size.height * .008),
                           Padding(
-                            padding: EdgeInsets.only(left:size.width * .02,right:size.width * .02,top:size.height * .02,bottom:size.height * .02,),
+                            padding: EdgeInsets.only(
+                              left: size.width * .02,
+                              right: size.width * .02,
+                              top: size.height * .02,
+                              bottom: size.height * .02,
+                            ),
                             child: Container(
-                              height: size.height*0.56,width: size.width*0.86,
+                              height: size.height * 0.66,
+                              width: size.width * 0.86,
                               padding: EdgeInsets.all(size.width * 0.02),
                               decoration: BoxDecoration(
-                                color: ColorTheme.white,
+                                color: ColorTheme.lightcolor,
                                 borderRadius: BorderRadius.circular(8.0),
                                 boxShadow: [
                                   BoxShadow(
@@ -224,40 +224,52 @@ class TrackOrderScreen extends StatelessWidget {
                                   children: [
                                     TrackOrderDetailsCard(
                                       label: 'Booking Date'.toUpperCase(),
-                                      value: "${controller.detailsModel.booking?.bookedOn}",
+                                      value:
+                                          "${controller.detailsModel.booking?.bookedOn}",
                                     ),
-                                    if (controller.detailsModel.booking?.dsrDelivery?.toLowerCase() == 'delivered')
+                                    if (controller
+                                            .detailsModel.booking?.dsrDelivery
+                                            ?.toLowerCase() ==
+                                        'delivered')
                                       TrackOrderDetailsCard(
                                         label: 'Delivery Date'.toUpperCase(),
-                                        value: "${controller.detailsModel.booking?.deliveryDate}",
+                                        value:
+                                            "${controller.detailsModel.booking?.deliveryDate}",
                                       ),
                                     TrackOrderDetailsCard(
                                       label: 'LR No'.toUpperCase(),
-                                      value: "${controller.detailsModel.booking?.lrNumber}",
+                                      value:
+                                          "${controller.detailsModel.booking?.lrNumber}",
                                     ),
                                     TrackOrderDetailsCard(
                                       label: 'Invoice No'.toUpperCase(),
-                                      value: "${controller.detailsModel.booking?.invoiceNo}",
+                                      value:
+                                          "${controller.detailsModel.booking?.invoiceNo}",
                                     ),
                                     TrackOrderDetailsCard(
                                       label: 'Consignor'.toUpperCase(),
-                                      value: "${controller.detailsModel.consignorParty?.partyName}",
+                                      value:
+                                          "${controller.detailsModel.consignorParty?.partyName}",
                                     ),
                                     TrackOrderDetailsCard(
                                       label: 'Consignee'.toUpperCase(),
-                                      value: "${controller.detailsModel.consigneeParty?.partyName}",
+                                      value:
+                                          "${controller.detailsModel.consigneeParty?.partyName}",
                                     ),
                                     TrackOrderDetailsCard(
                                       label: 'From'.toUpperCase(),
-                                      value: "${controller.detailsModel.consignorParty?.station}",
+                                      value:
+                                          "${controller.detailsModel.consignorParty?.station}",
                                     ),
                                     TrackOrderDetailsCard(
                                       label: 'Destination'.toUpperCase(),
-                                      value: "${controller.detailsModel.consigneeParty?.station}",
+                                      value:
+                                          "${controller.detailsModel.consigneeParty?.station}",
                                     ),
                                     TrackOrderDetailsCard(
                                       label: 'No of items'.toUpperCase(),
-                                      value: "${controller.detailsModel.itemDetails?.quantity}",
+                                      value:
+                                          "${controller.detailsModel.itemDetails?.quantity}",
                                     ),
                                   ],
                                 ),

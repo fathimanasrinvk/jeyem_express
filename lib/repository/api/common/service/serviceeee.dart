@@ -8,7 +8,7 @@ class TrackDetailsService {
     log("TrackDetailsService -> fetchDetailData()");
     try {
       var decodedData = await ApiHelper.getData(
-        endPoint: "bookingget/$trackNumber",
+        endPoint: "bookinglrsearch/$trackNumber",
       );
       return decodedData;
     } catch (e) {

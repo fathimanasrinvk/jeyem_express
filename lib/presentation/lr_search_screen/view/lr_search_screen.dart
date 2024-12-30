@@ -27,7 +27,8 @@ class LrSearchScreen extends StatelessWidget {
 
     // Fetch the username when the screen is loaded
     Future.delayed(Duration.zero, () async {
-      await Provider.of<DetailsController>(context, listen: false).fetchUsername();
+      await Provider.of<DetailsController>(context, listen: false)
+          .fetchUsername();
     });
 
     return Scaffold(
@@ -35,7 +36,7 @@ class LrSearchScreen extends StatelessWidget {
       backgroundColor: ColorTheme.maincolor,
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.white, // Change this to your desired color
+          color: ColorTheme.white, // Change this to your desired color
         ),
         scrolledUnderElevation: 0,
         leading: Padding(
@@ -50,18 +51,18 @@ class LrSearchScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: ColorTheme.maincolor,
         elevation: 0,
-        title: Text('LR SEARCH', style: GLTextStyles.mainColorTitle1()),      ),
+        title: Text('LR SEARCH', style: GLTextStyles.mainColorTitle1()),
+      ),
       endDrawer: Drawer(
         backgroundColor: ColorTheme.maincolor,
         child: Consumer<DetailsController>(
           builder: (context, detailsController, _) {
-            final username = detailsController.username; // Now we can access username here
+            final username =
+                detailsController.username; // Now we can access username here
             return Column(
               children: [
                 UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(
-                      color: ColorTheme.lightcolor
-                  ),
+                  decoration: BoxDecoration(color: ColorTheme.lightcolor),
                   accountName: Text(username, style: GLTextStyles.username()),
                   accountEmail: Text(''),
                   currentAccountPicture: CircleAvatar(
@@ -70,7 +71,10 @@ class LrSearchScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: size.width * 0.03, right: size.width * 0.03, top: size.height * 0.02),
+                  padding: EdgeInsets.only(
+                      left: size.width * 0.03,
+                      right: size.width * 0.03,
+                      top: size.height * 0.02),
                   child: Container(
                     decoration: BoxDecoration(
                       color: ColorTheme.lightcolor,
@@ -82,7 +86,8 @@ class LrSearchScreen extends StatelessWidget {
                         Expanded(
                           child: Text(
                             'Logout',
-                            style: GLTextStyles.poppins(color: ColorTheme.maincolor),
+                            style: GLTextStyles.poppins(
+                                color: ColorTheme.maincolor),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
@@ -110,83 +115,76 @@ class LrSearchScreen extends StatelessWidget {
               top: size.height * .05,
               left: size.width * .06,
               right: size.width * .06,
-
             ),
-            child: Container(
-              height: size.height * 0.16,
-              decoration: BoxDecoration(
-                color: ColorTheme.blue,
-                  // image: DecorationImage(image: AssetImage('assets/images/gradient.jpg'), fit: BoxFit.fill),
-                  borderRadius: BorderRadius.circular(15)),
-              child: Center(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      // top: size.height * 0.02,
-                      left: size.width * 0.04,
-                      right: size.width * 0.04,
-                      // bottom: size.height * 0.06
-                  ),
-                  child: TextFormField(
-                    style: GLTextStyles.textformfieldhint1(),
-                    controller: trackNumberController,
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          FocusScope.of(context).unfocus(); // Hides the keyboard
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  // top: size.height * 0.02,
+                  left: size.width * 0.04,
+                  right: size.width * 0.04,
+                  // bottom: size.height * 0.06
+                ),
+                child: TextFormField(
+                  style: GLTextStyles.textformfieldhint1(),
+                  controller: trackNumberController,
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        FocusScope.of(context).unfocus(); // Hides the keyboard
 
-                          if (trackNumberController.text.isEmpty) {
-                            AppUtils.showFlushbar(
-                                context: context,
-                                message:"LR Number Is Required",
-                                messageColor: ColorTheme.red,
-                                backgroundColor: ColorTheme.lightcolor,
-                                icon: Icons.error,
-                                borderRadius: BorderRadius.circular(7),
-                          widthFactor: 0.52);
-
-                          }
-
-                          else{
-                            Provider.of<DetailsController>(context, listen: false)
-                                .fetchDetailData(trackNumberController.text, context);
-                          }
-                        },
-                        icon: Icon(
-                          Icons.search,
-                          color: ColorTheme.maincolor,
-                        ),
-                      ),
-                      filled: true,
-                      fillColor: ColorTheme.white,
-                      hintText: 'LR Search',
-                      hintStyle: GLTextStyles.textformfieldhint1(),
-                      contentPadding: EdgeInsets.symmetric(horizontal: size.width * .05),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(
-                            width: size.width * .02, color: ColorTheme.maincolor),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(
-                            color: ColorTheme.maincolor, width: size.width * .004),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide(
-                            color: ColorTheme.black,
-                            width: size.width * .004),
+                        if (trackNumberController.text.isEmpty) {
+                          AppUtils.showFlushbar(
+                              context: context,
+                              message: "LR Number Is Required",
+                              messageColor: ColorTheme.red,
+                              backgroundColor: ColorTheme.lightcolor,
+                              icon: Icons.error,
+                              borderRadius: BorderRadius.circular(7),
+                              widthFactor: 0.52);
+                        } else {
+                          Provider.of<DetailsController>(context, listen: false)
+                              .fetchDetailData(
+                                  trackNumberController.text, context);
+                        }
+                      },
+                      icon: Icon(
+                        Icons.search,
+                        color: ColorTheme.maincolor,
                       ),
                     ),
-                    onFieldSubmitted: (String value) {
-                      if (trackNumberController.text.isNotEmpty) {
-                        Provider.of<DetailsController>(context, listen: false)
-                            .fetchDetailData(trackNumberController.text, context);
-                      }
-                    },
+                    filled: true,
+                    fillColor: ColorTheme.white,
+                    hintText: 'LR Search',
+                    hintStyle: GLTextStyles.textformfieldhint1(),
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: size.width * .05),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(7),
+                      borderSide: BorderSide(
+                          width: size.width * .004,
+                          color: ColorTheme.maincolor),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(7),
+                      borderSide: BorderSide(
+                          color: ColorTheme.maincolor,
+                          width: size.width * .004),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(7),
+                      borderSide: BorderSide(
+                          color: ColorTheme.maincolor,
+                          width: size.width * .004),
+                    ),
                   ),
+                  onFieldSubmitted: (String value) {
+                    if (trackNumberController.text.isNotEmpty) {
+                      Provider.of<DetailsController>(context, listen: false)
+                          .fetchDetailData(trackNumberController.text, context);
+                    }
+                  },
                 ),
               ),
             ),
@@ -210,451 +208,529 @@ class LrSearchScreen extends StatelessWidget {
                   );
                 } else {
                   return Padding(
-                        padding: EdgeInsets.symmetric(horizontal: size.width * .1),
-                        child: ListView(
+                    padding: EdgeInsets.symmetric(horizontal: size.width * .1),
+                    child: ListView(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: size.height * .03),
+                            SizedBox(height: size.height * .03),
 
-                                Center(
-                                    child:RichText(
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                              text: 'LR NUMBER  :   ',
-                                              style:GLTextStyles.poppins(size: 16,color: ColorTheme.white)
-                                          ),
-                                          TextSpan(
-                                              text: controller.detailsModel.booking?.lrNumber ?? 'N/A',
-                                              style:GLTextStyles.poppins2(size: 18,color: ColorTheme.red)
-                                          ),
-                                        ],
-                                      ),
-                                    )
-
-                                ),
-                                SizedBox(height: size.height * .02),
-                                BookingStatusRow(
-                                    size: size,
-                                    status:
+                            Center(
+                                child: RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                      text: 'LR NUMBER  :   ',
+                                      style: GLTextStyles.poppins(
+                                          size: 16, color: ColorTheme.white)),
+                                  TextSpan(
+                                      text: controller
+                                              .detailsModel.booking?.lrNumber ??
+                                          'N/A',
+                                      style: GLTextStyles.poppins2(
+                                          size: 18, color: ColorTheme.red)),
+                                ],
+                              ),
+                            )),
+                            SizedBox(height: size.height * .02),
+                            BookingStatusRow(
+                                size: size,
+                                status:
                                     "${controller.detailsModel.booking?.dsrDelivery}"),
-                                SizedBox(height: size.height * .03),
+                            SizedBox(height: size.height * .03),
 
-                                // Custom Table with LR Details
-                                CustomTable(
-                                  rows: [
-                                    TableRow(
-                                      decoration: BoxDecoration(
-                                        color: ColorTheme.white, // Set background color to white
-                                      ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('LR CHARGE ',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text(
-                                              '${controller.detailsModel.booking?.lrCharge}/-',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                      ],
+                            // Custom Table with LR Details
+                            CustomTable(
+                              rows: [
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('LR CHARGE ',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
                                     ),
-                                    TableRow(
-                                      decoration: BoxDecoration(
-                                        color: ColorTheme.white, // Set background color to white
-                                      ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('FREIGHT ',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text(
-                                              '${controller.detailsModel.booking?.freight}/-',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      decoration: BoxDecoration(
-                                        color: ColorTheme.white, // Set background color to white
-                                      ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('EXTRA FREIGHT ',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text(
-                                              '${controller.detailsModel.booking?.extraCharge}/-',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      decoration: BoxDecoration(
-                                        color: ColorTheme.white, // Set background color to white
-                                      ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('TOTAL ',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text(
-                                              '${controller.detailsModel.booking?.total}/-',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      decoration: BoxDecoration(
-                                        color: ColorTheme.white, // Set background color to white
-                                      ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('GST Amount ',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text(
-                                              '${controller.detailsModel.booking?.gstAmount}/-',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      decoration: BoxDecoration(
-                                        color: ColorTheme.white, // Set background color to white
-                                      ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('BILL DISCOUNT ',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text(
-                                              '${controller.detailsModel.booking?.billDiscount}/-',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      decoration: BoxDecoration(
-                                        color: ColorTheme.white, // Set background color to white
-                                      ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('NET TOTAL ',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text(
-                                              '${controller.detailsModel.booking?.netTotal}/-',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      decoration: BoxDecoration(
-                                        color: ColorTheme.white, // Set background color to white
-                                      ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('BALANCE ',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text(
-                                              '${controller.detailsModel.booking?.netTotal}/-',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                      ],
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.lrCharge}/-',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
                                     ),
                                   ],
                                 ),
-
-                                SizedBox(height: size.height * 0.012),
-                                CustomButton(
-                                    size: size, label: 'POD', onPressed: () {}),
-                                SizedBox(height: size.height * .02),
-
-                                Text('Booking Details :',
-                                    style: GLTextStyles.poppins(color: ColorTheme.white)                                ),
-                                SizedBox(height: size.height * .02),
-
-                                // Custom Table with Booking Details
-                                CustomTable(
-                                  rows: [
-                                    TableRow(
-                                      decoration: BoxDecoration(
-                                        color: ColorTheme.white, // Set background color to white
-                                      ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('Booked On ',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text(
-                                              '${controller.detailsModel.booking?.bookedOn}',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                      ],
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('FREIGHT ',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
                                     ),
-                                    TableRow(   decoration: BoxDecoration(
-                                      color: ColorTheme.white, // Set background color to white
-                                    ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('Booked At',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text(
-                                              '${controller.detailsModel.booking?.bookedAt}',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(   decoration: BoxDecoration(
-                                      color: ColorTheme.white, // Set background color to white
-                                    ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('Payment Mode',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.06,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01,
-                                              right: size.width * 0.06),
-                                          child: Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(7),
-                                                color: ColorTheme.lightcolor,
-                                              ),
-                                              child: Center(
-                                                  child: Text(
-                                                      '${controller.detailsModel.booking?.paymentMode}',
-                                                      style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)))),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(   decoration: BoxDecoration(
-                                      color: ColorTheme.white, // Set background color to white
-                                    ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('Invoice No',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text(
-                                              '${controller.detailsModel.booking?.invoiceNo}',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(   decoration: BoxDecoration(
-                                      color: ColorTheme.white, // Set background color to white
-                                    ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('Gst Invoice No',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text(
-                                              '${controller.detailsModel.booking?.gstInvoice}',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(   decoration: BoxDecoration(
-                                      color: ColorTheme.white, // Set background color to white
-                                    ),
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text('Booked By',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.02,
-                                              top: size.height * 0.01,
-                                              bottom: size.height * 0.01),
-                                          child: Text(
-                                              '${controller.detailsModel.booking?.bookedBy}',
-                                              style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
-                                        ),
-                                      ],
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.freight}/-',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
                                     ),
                                   ],
                                 ),
-
-                                SizedBox(height: size.height * 0.03),
-
-                                PartyDetailsCard(
-                                  size: size,
-                                  title: 'Consignor Party',
-                                  details: [
-                                    '${controller.detailsModel.consignorParty?.partyName}',
-                                    'Station:${controller.detailsModel.consignorParty?.station}',
-                                    'GST: ${controller.detailsModel.consignorParty?.gst}',
-                                    'AADR: ${controller.detailsModel.consignorParty?.address}',
-                                    'PH: ${controller.detailsModel.consignorParty?.phone??''}',
-                                    'Email :${controller.detailsModel.consignorParty?.email??''}',
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('EXTRA FREIGHT ',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.extraCharge}/-',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
                                   ],
                                 ),
-
-                                SizedBox(height: size.height * 0.03),
-
-                                PartyDetailsCard(
-                                  size: size,
-                                  title: 'Consignee Party',
-                                  details: [
-                                    '${controller.detailsModel.consigneeParty?.partyName}',
-                                    'Station:${controller.detailsModel.consigneeParty?.station}',
-                                    'GST: ${controller.detailsModel.consigneeParty?.gst}',
-                                    'AADR: ${controller.detailsModel.consigneeParty?.address}',
-                                    'PH: ${controller.detailsModel.consigneeParty?.phone ?? ''}',
-                                    'Email :${controller.detailsModel.consigneeParty?.email?? ''}',
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('TOTAL ',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.total}/-',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
                                   ],
                                 ),
-                                SizedBox(height: size.height * 0.03),
-                                ProductAndVehicleDetails(
-                                  size: size,
-                                  productDetails: [
-                                    {
-                                      'item':
-                                      '${controller.detailsModel.itemDetails?.item}',
-                                      'size':
-                                      '${controller.detailsModel.itemDetails?.size}',
-                                      'quantity':
-                                      '${controller.detailsModel.itemDetails?.quantity}',
-                                      'freight':
-                                      '${controller.detailsModel.itemDetails?.freight}',
-                                    }
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('GST Amount ',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.gstAmount}/-',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
                                   ],
-                                  vehicleDetails:
-                                  controller.detailsModel.dispatchDetails ?? [],
                                 ),
-                                Divider(height: size.height * 0.04),
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('BILL DISCOUNT ',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.billDiscount}/-',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('NET TOTAL ',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.netTotal}/-',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('BALANCE ',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.netTotal}/-',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
+
+                            SizedBox(height: size.height * 0.012),
+                            CustomButton(
+                                size: size, label: 'POD', onPressed: () {}),
+                            SizedBox(height: size.height * .02),
+
+                            Text('Booking Details :',
+                                style: GLTextStyles.poppins(
+                                    color: ColorTheme.white)),
+                            SizedBox(height: size.height * .02),
+
+                            // Custom Table with Booking Details
+                            CustomTable(
+                              rows: [
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('Booked On ',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.bookedOn}',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('Booked At',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.bookedAt}',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('Payment Mode',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.06,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01,
+                                          right: size.width * 0.06),
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(7),
+                                            color: ColorTheme.lightcolor,
+                                          ),
+                                          child: Center(
+                                              child: Text(
+                                                  '${controller.detailsModel.booking?.paymentMode}',
+                                                  style: GLTextStyles
+                                                      .textformfieldhint(
+                                                          size: 16,
+                                                          weight: FontWeight
+                                                              .bold)))),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('Invoice No',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.invoiceNo}',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('Gst Invoice No',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.gstInvoice}',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: BoxDecoration(
+                                    color: ColorTheme
+                                        .white, // Set background color to white
+                                  ),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text('Booked By',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02,
+                                          top: size.height * 0.01,
+                                          bottom: size.height * 0.01),
+                                      child: Text(
+                                          '${controller.detailsModel.booking?.bookedBy}',
+                                          style: GLTextStyles.textformfieldhint(
+                                              size: 16,
+                                              weight: FontWeight.bold)),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(height: size.height * 0.03),
+
+                            PartyDetailsCard(
+                              size: size,
+                              title: 'Consignor Party',
+                              details: [
+                                '${controller.detailsModel.consignorParty?.partyName}',
+                                'Station:${controller.detailsModel.consignorParty?.station}',
+                                'GST: ${controller.detailsModel.consignorParty?.gst}',
+                                'AADR: ${controller.detailsModel.consignorParty?.address}',
+                                'PH: ${controller.detailsModel.consignorParty?.phone ?? ''}',
+                                'Email :${controller.detailsModel.consignorParty?.email ?? ''}',
+                              ],
+                            ),
+
+                            SizedBox(height: size.height * 0.03),
+
+                            PartyDetailsCard(
+                              size: size,
+                              title: 'Consignee Party',
+                              details: [
+                                '${controller.detailsModel.consigneeParty?.partyName}',
+                                'Station:${controller.detailsModel.consigneeParty?.station}',
+                                'GST: ${controller.detailsModel.consigneeParty?.gst}',
+                                'AADR: ${controller.detailsModel.consigneeParty?.address}',
+                                'PH: ${controller.detailsModel.consigneeParty?.phone ?? ''}',
+                                'Email :${controller.detailsModel.consigneeParty?.email ?? ''}',
+                              ],
+                            ),
+                            SizedBox(height: size.height * 0.03),
+                            ProductAndVehicleDetails(
+                              size: size,
+                              productDetails: [
+                                {
+                                  'item':
+                                      '${controller.detailsModel.itemDetails?.item}',
+                                  'size':
+                                      '${controller.detailsModel.itemDetails?.size}',
+                                  'quantity':
+                                      '${controller.detailsModel.itemDetails?.quantity}',
+                                  'freight':
+                                      '${controller.detailsModel.itemDetails?.freight}',
+                                }
+                              ],
+                              vehicleDetails:
+                                  controller.detailsModel.dispatchDetails ?? [],
+                            ),
+                            Divider(height: size.height * 0.04),
                           ],
                         ),
-                      );
+                      ],
+                    ),
+                  );
                 }
               },
             ),
@@ -670,10 +746,13 @@ class LrSearchScreen extends StatelessWidget {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: ColorTheme.lightcolor,
-          title: Text('Confirm Logout',            style: GLTextStyles.cancel(size: 18),
+          backgroundColor: ColorTheme.white,
+          title: Text(
+            'Confirm Logout',
+            style: GLTextStyles.cancel(size: 18),
           ),
-          content:  Text('Are you sure you want to log out?',style: GLTextStyles.textformfieldhint1(size: 14)),
+          content: Text('Are you sure you want to log out?',
+              style: GLTextStyles.textformfieldhint1(size: 14)),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
@@ -684,7 +763,7 @@ class LrSearchScreen extends StatelessWidget {
                 Navigator.of(context).pop();
                 _logout(context);
               },
-              child: Text('Logout',style: GLTextStyles.cancel(size: 14)),
+              child: Text('Logout', style: GLTextStyles.cancel(size: 14)),
             ),
           ],
         );
@@ -693,7 +772,8 @@ class LrSearchScreen extends StatelessWidget {
   }
 
   Future<void> _logout(BuildContext context) async {
-    final detailsController = Provider.of<DetailsController>(context, listen: false);
+    final detailsController =
+        Provider.of<DetailsController>(context, listen: false);
     detailsController.clearDetails(); // Clear the data before logging out
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.remove(AppConfig.token);
@@ -701,10 +781,11 @@ class LrSearchScreen extends StatelessWidget {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => SelectionScreen()),
-          (route) => false,
+      (route) => false,
     );
   }
 }
+
 class CustomButton extends StatelessWidget {
   const CustomButton({
     Key? key,
@@ -731,7 +812,3 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
-
-
-
-

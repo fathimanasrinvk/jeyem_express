@@ -36,14 +36,18 @@ class SelectionScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: size.height*0.1,),
+            SizedBox(
+              height: size.height * 0.1,
+            ),
             Image.asset(
               'assets/logo/JEYEM LOGO (2).png',
-              height: size.height*0.09,
+              height: size.height * 0.09,
             ),
             Padding(
               padding: EdgeInsets.only(
-                  left: size.width * 0.17, right: size.width * 0.17,top: size.height*0.075),
+                  left: size.width * 0.17,
+                  right: size.width * 0.17,
+                  top: size.height * 0.075),
               child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -65,16 +69,18 @@ class SelectionScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: size.height*.06,),
+            SizedBox(
+              height: size.height * .06,
+            ),
             Padding(
               padding: EdgeInsets.only(
-                // top: size.height * 0.024,
+                  // top: size.height * 0.024,
                   left: size.width * 0.17,
                   right: size.width * 0.17),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => EmpLoginScreen()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => EmpLoginScreen()));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -92,17 +98,19 @@ class SelectionScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: size.height*.06,),
+            SizedBox(
+              height: size.height * .06,
+            ),
 
             Padding(
               padding: EdgeInsets.only(
-                // top: size.height * 0.024,
+                  // top: size.height * 0.024,
                   left: size.width * 0.17,
                   right: size.width * 0.17),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => PartyLoginScreen()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => PartyLoginScreen()));
                 },
                 child: Container(
                   height: size.height * .13,
@@ -114,9 +122,10 @@ class SelectionScreen extends StatelessWidget {
                   // width: double.infinity,
                   // height: size.height * 0.052,
                   child: Center(
-                    child: Text('PARTY LOGIN',
-                        style: GLTextStyles.selectionbuttontext(),
-                  ),
+                    child: Text(
+                      'PARTY LOGIN',
+                      style: GLTextStyles.selectionbuttontext(),
+                    ),
                   ),
                 ),
               ),

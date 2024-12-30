@@ -27,18 +27,17 @@ class _SplashScreenState extends State<SplashScreen> {
         sharedPreferences.getBool(AppConfig.loggedIn) ?? false;
     final bool isPartyLoggedIn =
         sharedPreferences.getBool(AppConfig.ptyloggedIn) ?? false;
-    final String storedDigits = sharedPreferences.getString(AppConfig.partyDigits) ?? '';
-
+    final String storedDigits =
+        sharedPreferences.getString(AppConfig.partyDigits) ?? '';
 
     Timer(Duration(seconds: 3), () {
       if (isLoggedIn) {
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => LrSearchScreen()));
-      } else if  (isPartyLoggedIn){
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => PartyViewScreen(digits:storedDigits)));
-      }
-      else {
+      } else if (isPartyLoggedIn) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => PartyViewScreen(digits: storedDigits)));
+      } else {
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => SelectionScreen()));
       }

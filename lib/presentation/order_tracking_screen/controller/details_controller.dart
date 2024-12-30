@@ -15,7 +15,8 @@ class DetailsController extends ChangeNotifier {
   // Method to fetch the username from SharedPreferences
   Future<void> fetchUsername() async {
     final prefs = await SharedPreferences.getInstance();
-    username = prefs.getString(AppConfig.username) ?? ''; // Retrieve the username
+    username =
+        prefs.getString(AppConfig.username) ?? ''; // Retrieve the username
     notifyListeners();
   }
 
