@@ -13,10 +13,13 @@ void main() {
     ),
     ChangeNotifierProvider(
       create: (context) => PartyLoginController(),
-    ),   ChangeNotifierProvider(
+    ),
+    ChangeNotifierProvider(
       create: (context) => PartyViewController(),
     ),
-    ChangeNotifierProvider(create: (_) => DetailsController()),
+    ChangeNotifierProvider(
+      create: (_) => DetailsController(),
+    ),
   ], child: MyApp()));
 }
 
@@ -27,7 +30,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
     );
