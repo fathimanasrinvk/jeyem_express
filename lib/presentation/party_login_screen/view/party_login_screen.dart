@@ -76,7 +76,7 @@ class PartyLoginScreen extends StatelessWidget {
                             keyboardType: TextInputType.text,
                             style: GLTextStyles.poppins4(size: 13),
                             decoration: InputDecoration(
-                              fillColor: ColorTheme.lightcolor,
+                              fillColor: ColorTheme.white,
                               filled: true,
                               hintText: 'Enter Username',
                               hintStyle: GLTextStyles.textformfieldhint(),
@@ -108,7 +108,7 @@ class PartyLoginScreen extends StatelessWidget {
                                 style: GLTextStyles.poppins4(size: 13),
                                 decoration: InputDecoration(
                                   filled: true,
-                                  fillColor: ColorTheme.lightcolor,
+                                  fillColor: ColorTheme.white,
                                   hintText: 'Password',
                                   hintStyle: GLTextStyles.textformfieldhint(),
                                   contentPadding: EdgeInsets.symmetric(

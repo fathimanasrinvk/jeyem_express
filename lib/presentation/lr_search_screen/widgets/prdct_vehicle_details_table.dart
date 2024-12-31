@@ -24,7 +24,7 @@ class ProductAndVehicleDetails extends StatelessWidget {
         SizedBox(height: size.height * 0.01),
         Text(
             'Product Details:',
-            style: GLTextStyles.poppins(color: ColorTheme.white)        ),
+            style: GLTextStyles.poppins(color: ColorTheme.black)        ),
         SizedBox(height: size.height * 0.021),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -34,7 +34,7 @@ class ProductAndVehicleDetails extends StatelessWidget {
               border: Border.all(color: ColorTheme.maincolor),
             ),
             child: DataTable(
-              decoration: BoxDecoration(border: Border.all(color: ColorTheme.maincolor)),
+              // decoration: BoxDecoration(border: Border.all(color: ColorTheme.lightcolor)),
               columns: [
                 DataColumn(
 
@@ -69,9 +69,9 @@ class ProductAndVehicleDetails extends StatelessWidget {
               border: TableBorder(
 
                 horizontalInside:
-                BorderSide(color: ColorTheme.maincolor, width:  1.5),
+                BorderSide(color: ColorTheme.maincolor, width:  1.0),
                 verticalInside:
-                BorderSide(color: ColorTheme.maincolor, width: 1.5),
+                BorderSide(color: ColorTheme.maincolor, width: 1.0),
                 bottom: BorderSide(color: ColorTheme.maincolor, width: 1.0),
                 top: BorderSide(color: ColorTheme.maincolor, width: 1.0),
                 left: BorderSide(color: ColorTheme.maincolor, width: 1.0),
@@ -83,7 +83,7 @@ class ProductAndVehicleDetails extends StatelessWidget {
         SizedBox(height: size.height * 0.03),
         Text(
             'Vehicle Details:',
-            style: GLTextStyles.poppins(color: ColorTheme.white)
+            style: GLTextStyles.poppins(color: ColorTheme.black)
         ),
         SizedBox(height: size.height * 0.021),
         SingleChildScrollView(

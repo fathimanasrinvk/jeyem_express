@@ -15,8 +15,8 @@ class BookingStatusRow extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            'Booking Status :',
-              style: GLTextStyles.poppins(color: ColorTheme.white)          ),
+            'BOOKING STATUS  :',
+              style: GLTextStyles.poppins(color: ColorTheme.black,size: 16)          ),
         ),
         SizedBox(width: size.width * 0.03),
         Flexible(
@@ -32,7 +32,7 @@ class BookingStatusRow extends StatelessWidget {
                 textAlign: TextAlign.center,
                 status,
                 style:
-GLTextStyles.poppins2(size: 13)                // overflow: TextOverflow.ellipsis,
+GLTextStyles.poppins2(size: 18)                // overflow: TextOverflow.ellipsis,
               ),
             ),
           ),

@@ -68,7 +68,7 @@ class GLTextStyles {
   }
 
   static cancel({double? size, FontWeight? weight, Color? color}) {
-    return GoogleFonts.rakkas(
+    return GoogleFonts.poppins(
       fontSize: size ?? 20,
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.maincolor,
@@ -143,7 +143,7 @@ class GLTextStyles {
     return GoogleFonts.poppins(
       fontSize: size ?? 18,
       fontWeight: weight ?? FontWeight.bold,
-      color: color ?? ColorTheme.maincolor,
+      color: color ?? ColorTheme.white,
     );
   }
 

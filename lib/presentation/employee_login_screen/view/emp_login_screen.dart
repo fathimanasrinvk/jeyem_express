@@ -26,7 +26,7 @@ class EmpLoginScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: ColorTheme.maincolor,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: ColorTheme.lightcolor),
+            icon: Icon(Icons.arrow_back_ios, color: ColorTheme.white),
             onPressed: () => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => SelectionScreen())),
           ),
@@ -76,7 +76,7 @@ class EmpLoginScreen extends StatelessWidget {
                             keyboardType: TextInputType.text,
                             style: GLTextStyles.poppins4(size: 13),
                             decoration: InputDecoration(
-                              fillColor: ColorTheme.lightcolor,
+                              fillColor: ColorTheme.white,
                               filled: true,
                               hintText: 'Enter Username',
                               hintStyle: GLTextStyles.textformfieldhint(),
@@ -108,7 +108,7 @@ class EmpLoginScreen extends StatelessWidget {
                                 style: GLTextStyles.poppins4(size: 13),
                                 decoration: InputDecoration(
                                   filled: true,
-                                  fillColor: ColorTheme.lightcolor,
+                                  fillColor: ColorTheme.white,
                                   hintText: 'Password',
                                   hintStyle: GLTextStyles.textformfieldhint(),
                                   contentPadding: EdgeInsets.symmetric(

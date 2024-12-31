@@ -25,7 +25,7 @@ class PartyViewScreen extends StatelessWidget {
     var size = MediaQuery.sizeOf(context);
 
     return Scaffold(
-      backgroundColor: ColorTheme.maincolor,
+      backgroundColor: ColorTheme.white,
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.white, // Change this to your desired color
@@ -49,14 +49,14 @@ class PartyViewScreen extends StatelessWidget {
         ),
       ),
       endDrawer: Drawer(
-        backgroundColor: ColorTheme.maincolor,
+        backgroundColor: ColorTheme.white,
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              decoration: BoxDecoration(color: ColorTheme.lightcolor),
+              decoration: BoxDecoration(color: ColorTheme.maincolor),
               accountName: Text(
                   Provider.of<PartyViewController>(context).ptyUsername,
-                  style: GLTextStyles.username()),
+                  style: GLTextStyles.username(color: ColorTheme.white)),
               accountEmail: Text(''),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: NetworkImage(
@@ -79,7 +79,9 @@ class PartyViewScreen extends StatelessWidget {
                     Expanded(
                       child: Text(
                         'Logout',
-                        style: GLTextStyles.logout(),
+                        style: GLTextStyles.poppins(
+                            weight: FontWeight.normal,
+                            color: ColorTheme.maincolor),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -142,12 +144,14 @@ class PartyViewScreen extends StatelessWidget {
                           vertical: size.height * 0.01,
                           horizontal: size.width * 0.03),
                       decoration: BoxDecoration(
-                        color: ColorTheme.white,
+                        color: ColorTheme.maincolor,
+                        border: Border.all(color: ColorTheme.maincolor),
+
                         borderRadius: BorderRadius.circular(7),
                       ),
                       child: Center(
                         child: Text('Search',
-                            style: GLTextStyles.search(size: 13)),
+                            style: GLTextStyles.search(size: 13,color: ColorTheme.white)),
                       ),
                     ),
                   ),
@@ -210,7 +214,7 @@ class PartyViewScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'No details available',
-                        style: GLTextStyles.mainColorTitle(),
+                        style: GLTextStyles.mainColorTitle1(),
                       ),
                     ),
                   );
@@ -223,14 +227,14 @@ class PartyViewScreen extends StatelessWidget {
                           controller.selectedStatus == 'delivered'
                               ? 'No delivered items'
                               : 'No non-delivered items',
-                          style: GLTextStyles.mainColorTitle1(size: 20),
+                          style: GLTextStyles.mainColorTitle(size: 20),
                         ),
                       ),
                     );
                   } else {
                     return Flexible(
                       child: Padding(
-                        padding: EdgeInsets.only(top: size.height * 0.03),
+                        padding: EdgeInsets.only(top: size.height * 0.02),
                         child: Container(
                           decoration: BoxDecoration(
                             color: ColorTheme.white,
@@ -325,21 +329,21 @@ class PartyViewScreen extends StatelessWidget {
           backgroundColor: ColorTheme.white,
           title: Text(
             'Confirm Logout',
-            style: GLTextStyles.cancel(size: 18),
+            style: GLTextStyles.cancel(size: 14),
           ),
           content: Text('Are you sure you want to log out?',
               style: GLTextStyles.textformfieldhint1(size: 14)),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('Cancel', style: GLTextStyles.cancel(size: 14)),
+              child: Text('Cancel', style: GLTextStyles.cancel(size: 12)),
             ),
             TextButton(
               onPressed: () async {
                 Navigator.of(context).pop();
                 await storeDigitsAndLogout(context);
               },
-              child: Text('Logout', style: GLTextStyles.cancel(size: 14)),
+              child: Text('Logout', style: GLTextStyles.cancel(size: 12)),
             ),
           ],
         );
@@ -380,9 +384,9 @@ Widget _buildRadioButton({
         value: value,
         groupValue: groupValue,
         onChanged: onChanged,
-        activeColor: ColorTheme.white,
+        activeColor: ColorTheme.maincolor,
       ),
-      Text(label, style: GLTextStyles.poppins2()),
+      Text(label, style: GLTextStyles.poppins()),
     ],
   );
 }

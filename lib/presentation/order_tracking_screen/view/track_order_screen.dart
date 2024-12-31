@@ -36,7 +36,7 @@ class TrackOrderScreen extends StatelessWidget {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: ColorTheme.maincolor,
+        backgroundColor: ColorTheme.white,
         appBar: AppBar(
           scrolledUnderElevation: 0,
           actions: [
@@ -45,7 +45,7 @@ class TrackOrderScreen extends StatelessWidget {
                     height: size.height * 0.07)),
           ],
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: ColorTheme.lightcolor),
+            icon: Icon(Icons.arrow_back_ios, color: ColorTheme.white),
             onPressed: () {
               Provider.of<DetailsController>(context, listen: false)
                   .clearDetails();
@@ -181,19 +181,25 @@ class TrackOrderScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(height: size.height * .03),
-                          RichText(
-                            text: TextSpan(children: [
-                              TextSpan(
-                                text:
-                                    '${controller.detailsModel.booking?.lrNumber}  :   ',
-                                style: GLTextStyles.poppins2(),
-                              ),
-                              TextSpan(
-                                text:
-                                    '${controller.detailsModel.booking?.dsrDelivery} ',
-                                style: GLTextStyles.poppins3(size: 20),
-                              ),
-                            ]),
+                          Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(0),
+                              color: ColorTheme.white,
+                              border: Border.all(color: ColorTheme.maincolor)
+                            ),
+                            child: RichText(
+                              text: TextSpan(children: [
+                                TextSpan(
+                                  text:
+                                      '   ${controller.detailsModel.booking?.lrNumber}  :   ',
+                                  style: GLTextStyles.poppins4(size: 18),
+                                ),
+                                TextSpan(
+                                  text:
+                                      '${controller.detailsModel.booking?.dsrDelivery}   ',
+                                  style: GLTextStyles.poppins3(size: 20),
+                                ),
+                              ]),
+                            ),
                           ),
                           SizedBox(height: size.height * .008),
                           Padding(
@@ -208,7 +214,7 @@ class TrackOrderScreen extends StatelessWidget {
                               width: size.width * 0.86,
                               padding: EdgeInsets.all(size.width * 0.02),
                               decoration: BoxDecoration(
-                                color: ColorTheme.lightcolor,
+                                color: ColorTheme.maincolor,
                                 borderRadius: BorderRadius.circular(8.0),
                                 boxShadow: [
                                   BoxShadow(

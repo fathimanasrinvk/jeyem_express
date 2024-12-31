@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jeyem_express_cargo/core/constants/colors.dart';
 
 import '../../../core/constants/text_styles.dart';
 class PartyDetailsCard extends StatelessWidget {
@@ -13,9 +14,9 @@ class PartyDetailsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ColorTheme.white,
         borderRadius: BorderRadius.circular(7),
-        border: Border.all(color: Colors.grey),
+        border: Border.all(color: ColorTheme.maincolor),
       ),
       width: size.width * 0.9,
       child: Padding(
@@ -32,7 +33,7 @@ class PartyDetailsCard extends StatelessWidget {
                 ),
               ],
             ),
-            Divider(),
+            Divider(color: ColorTheme.maincolor,),
             ...details.map((detail) => Padding(
               padding: EdgeInsets.only(top: size.height * 0.01),
               child: Text(
