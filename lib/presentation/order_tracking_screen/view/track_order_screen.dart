@@ -122,7 +122,7 @@ class TrackOrderScreen extends StatelessWidget {
                       hintText: 'Track Your Order',
                       hintStyle: GLTextStyles.textformfieldhint1(),
                       contentPadding:
-                          EdgeInsets.symmetric(horizontal: size.width * .05),
+                      EdgeInsets.symmetric(horizontal: size.width * .05),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide(
@@ -183,19 +183,19 @@ class TrackOrderScreen extends StatelessWidget {
                           SizedBox(height: size.height * .03),
                           Container(
                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(0),
-                              color: ColorTheme.white,
-                              border: Border.all(color: ColorTheme.maincolor)
+                                color: ColorTheme.white,
+                                border: Border.all(color: ColorTheme.maincolor)
                             ),
                             child: RichText(
                               text: TextSpan(children: [
                                 TextSpan(
                                   text:
-                                      '   ${controller.detailsModel.booking?.lrNumber}  :   ',
+                                  '   ${controller.detailsModel.booking?.lrNumber}  :   ',
                                   style: GLTextStyles.poppins4(size: 18),
                                 ),
                                 TextSpan(
                                   text:
-                                      '${controller.detailsModel.booking?.dsrDelivery}   ',
+                                  '${controller.detailsModel.booking?.dsrDelivery}   ',
                                   style: GLTextStyles.poppins3(size: 20),
                                 ),
                               ]),
@@ -231,51 +231,51 @@ class TrackOrderScreen extends StatelessWidget {
                                     TrackOrderDetailsCard(
                                       label: 'Booking Date'.toUpperCase(),
                                       value:
-                                          "${controller.detailsModel.booking?.bookedOn}",
+                                      "${controller.detailsModel.booking?.bookedOn}",
                                     ),
                                     if (controller
-                                            .detailsModel.booking?.dsrDelivery
-                                            ?.toLowerCase() ==
+                                        .detailsModel.booking?.dsrDelivery
+                                        ?.toLowerCase() ==
                                         'delivered')
                                       TrackOrderDetailsCard(
                                         label: 'Delivery Date'.toUpperCase(),
                                         value:
-                                            "${controller.detailsModel.booking?.deliveryDate}",
+                                        "${controller.detailsModel.booking?.deliveryDate}",
                                       ),
                                     TrackOrderDetailsCard(
                                       label: 'LR No'.toUpperCase(),
                                       value:
-                                          "${controller.detailsModel.booking?.lrNumber}",
+                                      "${controller.detailsModel.booking?.lrNumber}",
                                     ),
                                     TrackOrderDetailsCard(
                                       label: 'Invoice No'.toUpperCase(),
                                       value:
-                                          "${controller.detailsModel.booking?.invoiceNo}",
+                                      "${controller.detailsModel.booking?.invoiceNo}",
                                     ),
                                     TrackOrderDetailsCard(
                                       label: 'Consignor'.toUpperCase(),
                                       value:
-                                          "${controller.detailsModel.consignorParty?.partyName}",
+                                      "${controller.detailsModel.consignorParty?.partyName}",
                                     ),
                                     TrackOrderDetailsCard(
                                       label: 'Consignee'.toUpperCase(),
                                       value:
-                                          "${controller.detailsModel.consigneeParty?.partyName}",
+                                      "${controller.detailsModel.consigneeParty?.partyName}",
                                     ),
                                     TrackOrderDetailsCard(
                                       label: 'From'.toUpperCase(),
                                       value:
-                                          "${controller.detailsModel.consignorParty?.station}",
+                                      "${controller.detailsModel.consignorParty?.station}",
                                     ),
                                     TrackOrderDetailsCard(
                                       label: 'Destination'.toUpperCase(),
                                       value:
-                                          "${controller.detailsModel.consigneeParty?.station}",
+                                      "${controller.detailsModel.consigneeParty?.station}",
                                     ),
                                     TrackOrderDetailsCard(
                                       label: 'No of items'.toUpperCase(),
                                       value:
-                                          "${controller.detailsModel.itemDetails?.quantity}",
+                                      "${controller.detailsModel.itemDetails?.quantity}",
                                     ),
                                   ],
                                 ),
