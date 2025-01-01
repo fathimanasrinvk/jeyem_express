@@ -685,11 +685,11 @@ class LrSearchScreen extends StatelessWidget {
                               title: 'Consignor Party',
                               details: [
                                 '${controller.detailsModel.consignorParty?.partyName}',
-                                'Station:${controller.detailsModel.consignorParty?.station}',
+                                'STATION:${controller.detailsModel.consignorParty?.station}',
                                 'GST: ${controller.detailsModel.consignorParty?.gst}',
                                 'AADR: ${controller.detailsModel.consignorParty?.address}',
                                 'PH: ${controller.detailsModel.consignorParty?.phone ?? ''}',
-                                'Email :${controller.detailsModel.consignorParty?.email ?? ''}',
+                                'EMAIL :${controller.detailsModel.consignorParty?.email ?? ''}',
                               ],
                             ),
 
@@ -700,11 +700,11 @@ class LrSearchScreen extends StatelessWidget {
                               title: 'Consignee Party',
                               details: [
                                 '${controller.detailsModel.consigneeParty?.partyName}',
-                                'Station:${controller.detailsModel.consigneeParty?.station}',
+                                'STATION:${controller.detailsModel.consigneeParty?.station}',
                                 'GST: ${controller.detailsModel.consigneeParty?.gst}',
                                 'AADR: ${controller.detailsModel.consigneeParty?.address}',
                                 'PH: ${controller.detailsModel.consigneeParty?.phone ?? ''}',
-                                'Email :${controller.detailsModel.consigneeParty?.email ?? ''}',
+                                'EMAIL :${controller.detailsModel.consigneeParty?.email ?? ''}',
                               ],
                             ),
                             SizedBox(height: size.height * 0.03),
