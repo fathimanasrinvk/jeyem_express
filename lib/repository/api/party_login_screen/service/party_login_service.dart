@@ -1,5 +1,5 @@
 import 'dart:developer';
-import '../../helper/api_helper.dart';
+import '../../../helper/api_helper.dart';
 
 class PartyLoginService {
   static Future<dynamic> postLoginData(email, password) async {

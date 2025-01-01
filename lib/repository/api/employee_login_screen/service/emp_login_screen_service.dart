@@ -10,6 +10,7 @@ class LoginService {
       return decodedData;
     } catch (e) {
       log("$e");
+
     }
   }
 }

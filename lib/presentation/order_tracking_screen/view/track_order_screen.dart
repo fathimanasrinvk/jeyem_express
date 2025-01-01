@@ -1,46 +1,31 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:jeyem_express_cargo/presentation/selection_screen/view/selection_screen.dart';
 import 'package:provider/provider.dart';
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/text_styles.dart';
+import '../../../core/utils/app_utils.dart';
 import '../controller/details_controller.dart';
 import '../widget/track_order_details_card.dart';
 
-class TrackOrderScreen extends StatefulWidget {
+class TrackOrderScreen extends StatelessWidget {
   final trackNumber;
 
   const TrackOrderScreen({super.key, this.trackNumber});
 
-  @override
-  State<TrackOrderScreen> createState() => _TrackOrderScreenState();
-}
-
-class _TrackOrderScreenState extends State<TrackOrderScreen> {
-  final TextEditingController trackNumberController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    if (widget.trackNumber != null) {
-      trackNumberController.text = widget.trackNumber.toString();
-      fetchData();
-    }
-  }
-
-  @override
-  void dispose() {
-    trackNumberController.dispose();
-    Provider.of<DetailsController>(context, listen: false).clearDetails();
-    super.dispose();
-  }
-
-  Future<void> fetchData() async {
+  Future<void> fetchData(BuildContext context, String trackNumber) async {
     await Provider.of<DetailsController>(context, listen: false)
-        .fetchDetailData(trackNumberController.text, context);
+        .fetchDetailData(trackNumber, context);
   }
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController trackNumberController = TextEditingController();
+    if (trackNumber != null) {
+      trackNumberController.text = trackNumber.toString();
+      fetchData(context, trackNumberController.text);
+    }
+
     var size = MediaQuery.sizeOf(context);
     return WillPopScope(
       onWillPop: () async {
@@ -50,21 +35,25 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
         return false;
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: ColorTheme.white,
         appBar: AppBar(
-          // title: Image.asset('assets/logo/JEYEM LOGO (2).png',height: size.height*0.05,),
+          scrolledUnderElevation: 0,
           actions: [
-            Flexible(child: Image.asset('assets/logo/JEYEM LOGO (2).png',height: size.height*0.07,)),
+            Flexible(
+                child: Image.asset('assets/logo/JEYEM LOGO (2).png',
+                    height: size.height * 0.07)),
           ],
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: ColorTheme.lightcolor),
+            icon: Icon(Icons.arrow_back_ios, color: ColorTheme.white),
             onPressed: () {
-              Provider.of<DetailsController>(context, listen: false).clearDetails();
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>SelectionScreen()));
+              Provider.of<DetailsController>(context, listen: false)
+                  .clearDetails();
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => SelectionScreen()));
             },
           ),
           backgroundColor: ColorTheme.maincolor,
-
           centerTitle: true,
         ),
         body: Column(
@@ -76,71 +65,92 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                 left: size.width * .06,
                 right: size.width * .06,
               ),
-              child: Container(
-                height: size.height*0.25,
-                decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/images/gradient.jpg'),fit: BoxFit.fill),
-                    borderRadius: BorderRadius.circular(15)),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding:EdgeInsets.only(top: size.height*0.05,left: size.width*0.04,right: size.width*0.04),
-                        child: Text('TRACK YOUR ORDER',style: GLTextStyles.mainColorTitle(),)
-                          // style: TextStyle(color: ColorTheme.red,fontSize: 28,fontWeight: FontWeight.bold),),
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: size.height * 0.02,
+                    left: size.width * 0.04,
+                    right: size.width * 0.04,
+                  ),
+                  child: TextFormField(
+                    style: GLTextStyles.textformfieldhint1(),
+                    controller: trackNumberController,
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      fillColor: ColorTheme.white,
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.search),
+                        color: ColorTheme.maincolor,
+                        onPressed: () {
+                          final trackNumber = trackNumberController.text;
+                          FocusScope.of(context)
+                              .unfocus(); // Hides the keyboard
+
+                          if (trackNumber.isEmpty) {
+                            AppUtils.showFlushbar(
+                                context: context,
+                                message: "Track Number Is Required",
+                                messageColor: ColorTheme.red,
+                                backgroundColor: ColorTheme.lightcolor,
+                                icon: Icons.error,
+                                borderRadius: BorderRadius.circular(7),
+                                widthFactor: 0.52);
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //   SnackBar(
+                            //     content: Text("Tracking number is required"),
+                            //     backgroundColor: Colors.red,
+                            //   ),
+                            // );
+                          } else {
+                            fetchData(context, trackNumber);
+                          }
+                        },
                       ),
-                    ),
-                    Padding(
-                      padding:EdgeInsets.only(
-                          top: size.height*0.02,left: size.width*0.04,right: size.width*0.04,bottom: size.height*0.06),
-                      child: TextFormField(
-                        controller: trackNumberController,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          fillColor: ColorTheme.white,
-                          suffixIcon: IconButton(
-                            icon: Icon(Icons.search),
-                            color: ColorTheme.maincolor,
-                            onPressed:() {
-                              final trackNumber = trackNumberController.text;
-                              if (trackNumber.isNotEmpty){
-                                fetchData();
-                              }
-                            },
-                          ),
-                          filled: true,
-                          hintText: 'Track Your Order',
-                          hintStyle: TextStyle(
-                            color: ColorTheme.maincolor,
-                          ),
-                          contentPadding:
-                              EdgeInsets.symmetric(horizontal: size.width * .05),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            borderSide: BorderSide(
-                              width: size.width * .02,
-                              color: ColorTheme.maincolor,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            borderSide: BorderSide(
-                              color: ColorTheme.white,
-                              width: size.width * .004,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            borderSide: BorderSide(
-                              color: ColorTheme.maincolor,
-                              width: 2,
-                            ),
-                          ),
+
+                      // suffixIcon: IconButton(
+                      //   icon: Icon(Icons.search),
+                      //   color: ColorTheme.maincolor,
+                      //   onPressed: () {
+                      //     final trackNumber = trackNumberController.text;
+                      //     if (trackNumber.isNotEmpty) {
+                      //       fetchData(context, trackNumber);
+                      //     }
+                      //   },
+                      // ),
+                      filled: true,
+                      hintText: 'Track Your Order',
+                      hintStyle: GLTextStyles.textformfieldhint1(),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: size.width * .05),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          width: size.width * .02,
+                          color: ColorTheme.maincolor,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: ColorTheme.maincolor,
+                          width: size.width * .004,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: ColorTheme.maincolor,
+                          width: 2,
                         ),
                       ),
                     ),
-                  ],
+                    onFieldSubmitted: (String value) {
+                      if (value.isNotEmpty) {
+                        fetchData(context, value);
+                      }
+                    },
+                  ),
                 ),
               ),
             ),
@@ -170,25 +180,38 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SizedBox(height: size.height * .035),
-                          RichText(
-                            text: TextSpan(children: [
-                              TextSpan(
-                                text:
-                                    '${controller.detailsModel.booking?.lrNumber}  :   ',
-                                style: GLTextStyles.poppins1(),
-                              ),
-                              TextSpan(
-                                text:
-                                    '${controller.detailsModel.booking?.dsrDelivery} ',
-                                style: GLTextStyles.poppins3(),
-                              ),
-                            ]),
+                          SizedBox(height: size.height * .03),
+                          Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(0),
+                              color: ColorTheme.white,
+                              border: Border.all(color: ColorTheme.maincolor)
+                            ),
+                            child: RichText(
+                              text: TextSpan(children: [
+                                TextSpan(
+                                  text:
+                                      '   ${controller.detailsModel.booking?.lrNumber}  :   ',
+                                  style: GLTextStyles.poppins4(size: 18),
+                                ),
+                                TextSpan(
+                                  text:
+                                      '${controller.detailsModel.booking?.dsrDelivery}   ',
+                                  style: GLTextStyles.poppins3(size: 20),
+                                ),
+                              ]),
+                            ),
                           ),
-                          SizedBox(height: size.height * .01),
+                          SizedBox(height: size.height * .008),
                           Padding(
-                            padding: EdgeInsets.all(size.width * .05),
+                            padding: EdgeInsets.only(
+                              left: size.width * .02,
+                              right: size.width * .02,
+                              top: size.height * .02,
+                              bottom: size.height * .02,
+                            ),
                             child: Container(
+                              height: size.height * 0.66,
+                              width: size.width * 0.86,
                               padding: EdgeInsets.all(size.width * 0.02),
                               decoration: BoxDecoration(
                                 color: ColorTheme.maincolor,
@@ -202,63 +225,60 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                                   ),
                                 ],
                               ),
-                              child: Column(
-                                children: [
-                                  TrackOrderDetailsCard(
-                                    label: 'Booking Date',
-                                    value:
-                                        "${controller.detailsModel.booking?.bookedOn}",
-                                  ),
-                                  if (controller
-                                          .detailsModel.booking?.dsrDelivery
-                                          ?.toLowerCase() ==
-                                      'delivered')
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
                                     TrackOrderDetailsCard(
-                                      label: 'Delivery Date',
+                                      label: 'Booking Date'.toUpperCase(),
                                       value:
-                                          "${controller.detailsModel.booking?.deliveryDate}", // Ensure the delivery date is available in your model
+                                          "${controller.detailsModel.booking?.bookedOn}",
                                     ),
-        
-                                  TrackOrderDetailsCard(
-                                    label: 'LR No',
-                                    value:
-                                        "${controller.detailsModel.booking?.lrNumber}",
-                                  ),
-                                  TrackOrderDetailsCard(
-                                    label: 'Invoice No',
-                                    value:
-                                        "${controller.detailsModel.booking?.invoiceNo}",
-                                  ),
-                                  TrackOrderDetailsCard(
-                                    label: 'Consignor',
-                                    value:
-                                        "${controller.detailsModel.consignorParty?.partyName}",
-                                  ),
-                                  TrackOrderDetailsCard(
-                                    label: 'Consignee',
-                                    value:
-                                        "${controller.detailsModel.consigneeParty?.partyName}",
-                                  ),
-                                  TrackOrderDetailsCard(
-                                    label: 'From',
-                                    value:
-                                        "${controller.detailsModel.consignorParty?.station}",
-                                  ),
-                                  TrackOrderDetailsCard(
-                                    label: 'Destination',
-                                    value:
-                                        "${controller.detailsModel.consigneeParty?.station}",
-                                  ),
-                                  TrackOrderDetailsCard(
-                                    label: 'No of items',
-                                    value:
-                                        "${controller.detailsModel.itemDetails?.quantity}",
-                                  ),
-                                  // TrackOrderDetailsCard(
-                                  //   label: 'Acknowledgement',
-                                  //   value: '',
-                                  // ),
-                                ],
+                                    if (controller
+                                            .detailsModel.booking?.dsrDelivery
+                                            ?.toLowerCase() ==
+                                        'delivered')
+                                      TrackOrderDetailsCard(
+                                        label: 'Delivery Date'.toUpperCase(),
+                                        value:
+                                            "${controller.detailsModel.booking?.deliveryDate}",
+                                      ),
+                                    TrackOrderDetailsCard(
+                                      label: 'LR No'.toUpperCase(),
+                                      value:
+                                          "${controller.detailsModel.booking?.lrNumber}",
+                                    ),
+                                    TrackOrderDetailsCard(
+                                      label: 'Invoice No'.toUpperCase(),
+                                      value:
+                                          "${controller.detailsModel.booking?.invoiceNo}",
+                                    ),
+                                    TrackOrderDetailsCard(
+                                      label: 'Consignor'.toUpperCase(),
+                                      value:
+                                          "${controller.detailsModel.consignorParty?.partyName}",
+                                    ),
+                                    TrackOrderDetailsCard(
+                                      label: 'Consignee'.toUpperCase(),
+                                      value:
+                                          "${controller.detailsModel.consigneeParty?.partyName}",
+                                    ),
+                                    TrackOrderDetailsCard(
+                                      label: 'From'.toUpperCase(),
+                                      value:
+                                          "${controller.detailsModel.consignorParty?.station}",
+                                    ),
+                                    TrackOrderDetailsCard(
+                                      label: 'Destination'.toUpperCase(),
+                                      value:
+                                          "${controller.detailsModel.consigneeParty?.station}",
+                                    ),
+                                    TrackOrderDetailsCard(
+                                      label: 'No of items'.toUpperCase(),
+                                      value:
+                                          "${controller.detailsModel.itemDetails?.quantity}",
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

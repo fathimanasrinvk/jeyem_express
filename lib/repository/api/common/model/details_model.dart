@@ -62,12 +62,12 @@ class Booking {
   String? lrNumber;
   String? dsrDelivery;
   int? lrCharge;
-  int? freight;
+  double? freight;
   int? extraCharge;
-  int? total;
-  int? gstAmount;
+  double? total;
+  double? gstAmount;
   int? billDiscount;
-  int? netTotal;
+  double? netTotal;
   dynamic deliveryRemarks;
   String? bookedOn;
   String? bookedAt;
@@ -103,12 +103,12 @@ class Booking {
         lrNumber: json["lr_number"],
         dsrDelivery: json["dsr_delivery"],
         lrCharge: json["lr_charge"],
-        freight: json["freight"],
+        freight: json["freight"]?.toDouble(),
         extraCharge: json["extra_charge"],
-        total: json["total"],
-        gstAmount: json["gst_amount"],
+        total: json["total"]?.toDouble(),
+        gstAmount: json["gst_amount"]?.toDouble(),
         billDiscount: json["bill_discount"],
-        netTotal: json["net_total"],
+        netTotal: json["net_total"]?.toDouble(),
         deliveryRemarks: json["delivery_remarks"],
         bookedOn: json["booked_on"],
         bookedAt: json["booked_at"],
@@ -213,7 +213,7 @@ class ItemDetails {
   String? item;
   String? size;
   int? quantity;
-  int? freight;
+  double? freight;
 
   ItemDetails({
     this.item,
@@ -226,7 +226,7 @@ class ItemDetails {
         item: json["item"],
         size: json["size"],
         quantity: json["quantity"],
-        freight: json["freight"],
+        freight: json["freight"]?.toDouble(),
       );
 
   Map<String, dynamic> toJson() => {
