@@ -224,7 +224,7 @@ class LrSearchScreen extends StatelessWidget {
                                   TextSpan(
                                       text: 'LR NUMBER  :   ',
                                       style: GLTextStyles.poppins(
-                                          size: 16, color: ColorTheme. black)),
+                                          size: 14, color: ColorTheme. black)),
                                   TextSpan(
                                       text: controller
                                               .detailsModel.booking?.lrNumber ??

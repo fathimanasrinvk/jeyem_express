@@ -12,11 +12,12 @@ class BookingStatusRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Expanded(
+        Flexible(
           child: Text(
-            'BOOKING STATUS  :',
-              style: GLTextStyles.poppins(color: ColorTheme.black,size: 16)          ),
+            'BOOKING STATUS:',
+              style: GLTextStyles.poppins(color: ColorTheme.black,size: 14)          ),
         ),
         SizedBox(width: size.width * 0.03),
         Flexible(

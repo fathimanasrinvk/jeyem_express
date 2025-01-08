@@ -29,7 +29,7 @@ class PartyDetailsCard extends StatelessWidget {
                 Icon(Icons.location_on_outlined, size: size.height * 0.025),
                 SizedBox(width: size.width * 0.05),
                 Expanded(
-                  child: Text(title, overflow: TextOverflow.ellipsis,  style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
+                  child: Text(title,   style:GLTextStyles.textformfieldhint(size: 16,weight: FontWeight.bold)),
                 ),
               ],
             ),
