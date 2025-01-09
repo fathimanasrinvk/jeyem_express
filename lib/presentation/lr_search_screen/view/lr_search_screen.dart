@@ -87,7 +87,7 @@ class LrSearchScreen extends StatelessWidget {
                           child: Text(
                             'Logout',
                             style: GLTextStyles.poppins(
-                                weight: FontWeight.normal,
+                              weight: FontWeight.normal,
                                 color: ColorTheme.maincolor),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -147,7 +147,7 @@ class LrSearchScreen extends StatelessWidget {
                         } else {
                           Provider.of<DetailsController>(context, listen: false)
                               .fetchDetailData(
-                              trackNumberController.text, context);
+                                  trackNumberController.text, context);
                         }
                       },
                       icon: Icon(
@@ -160,7 +160,7 @@ class LrSearchScreen extends StatelessWidget {
                     hintText: 'LR Search',
                     hintStyle: GLTextStyles.textformfieldhint1(),
                     contentPadding:
-                    EdgeInsets.symmetric(horizontal: size.width * .05),
+                        EdgeInsets.symmetric(horizontal: size.width * .05),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(7),
                       borderSide: BorderSide(
@@ -219,26 +219,26 @@ class LrSearchScreen extends StatelessWidget {
 
                             Center(
                                 child: RichText(
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                          text: 'LR NUMBER  :   ',
-                                          style: GLTextStyles.poppins(
-                                              size: 16, color: ColorTheme. black)),
-                                      TextSpan(
-                                          text: controller
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                      text: 'LR NUMBER  :   ',
+                                      style: GLTextStyles.poppins(
+                                          size: 16, color: ColorTheme. black)),
+                                  TextSpan(
+                                      text: controller
                                               .detailsModel.booking?.lrNumber ??
-                                              'N/A',
-                                          style: GLTextStyles.poppins2(
-                                              size: 18, color: ColorTheme.red)),
-                                    ],
-                                  ),
-                                )),
+                                          'N/A',
+                                      style: GLTextStyles.poppins2(
+                                          size: 18, color: ColorTheme.red)),
+                                ],
+                              ),
+                            )),
                             SizedBox(height: size.height * .02),
                             BookingStatusRow(
                                 size: size,
                                 status:
-                                "${controller.detailsModel.booking?.dsrDelivery}"),
+                                    "${controller.detailsModel.booking?.dsrDelivery}"),
                             SizedBox(height: size.height * .03),
 
                             // Custom Table with LR Details
@@ -257,8 +257,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('LR CHARGE ',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                              )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -268,8 +268,8 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Text(
                                           '${controller.detailsModel.booking?.lrCharge}/-',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                              )),
                                     ),
                                   ],
                                 ),
@@ -286,8 +286,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('FREIGHT ',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                             )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -297,8 +297,8 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Text(
                                           '${controller.detailsModel.booking?.freight}/-',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                              )),
                                     ),
                                   ],
                                 ),
@@ -315,8 +315,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('EXTRA FREIGHT ',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                             )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -326,8 +326,8 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Text(
                                           '${controller.detailsModel.booking?.extraCharge}/-',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                              )),
                                     ),
                                   ],
                                 ),
@@ -344,8 +344,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('TOTAL ',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                            )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -355,8 +355,8 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Text(
                                           '${controller.detailsModel.booking?.total}/-',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                             )),
                                     ),
                                   ],
                                 ),
@@ -373,8 +373,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('GST Amount ',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                             )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -384,8 +384,8 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Text(
                                           '${controller.detailsModel.booking?.gstAmount}/-',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                            )),
                                     ),
                                   ],
                                 ),
@@ -402,8 +402,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('BILL DISCOUNT ',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                             )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -413,8 +413,8 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Text(
                                           '${controller.detailsModel.booking?.billDiscount}/-',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                              )),
                                     ),
                                   ],
                                 ),
@@ -431,8 +431,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('NET TOTAL ',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                             )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -442,8 +442,8 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Text(
                                           '${controller.detailsModel.booking?.netTotal}/-',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                           )),
                                     ),
                                   ],
                                 ),
@@ -460,8 +460,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('BALANCE ',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                           )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -471,8 +471,8 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Text(
                                           '${controller.detailsModel.booking?.netTotal}/-',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                            )),
                                     ),
                                   ],
                                 ),
@@ -506,8 +506,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('Booked On ',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                             )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -517,7 +517,7 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Text(
                                           '${controller.detailsModel.booking?.bookedOn}',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
+                                              size: 16,
                                           )),
                                     ),
                                   ],
@@ -535,8 +535,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('Booked At',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                           )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -546,8 +546,8 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Text(
                                           '${controller.detailsModel.booking?.bookedAt}',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                             )),
                                     ),
                                   ],
                                 ),
@@ -564,8 +564,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('Payment Mode',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                             )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -576,7 +576,7 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Container(
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(7),
+                                                BorderRadius.circular(7),
                                             color: ColorTheme.lightcolor,
                                           ),
                                           child: Center(
@@ -584,8 +584,8 @@ class LrSearchScreen extends StatelessWidget {
                                                   '${controller.detailsModel.booking?.paymentMode}',
                                                   style: GLTextStyles
                                                       .textformfieldhint(
-                                                    size: 16,
-                                                  )))),
+                                                          size: 16,
+                                                          )))),
                                     ),
                                   ],
                                 ),
@@ -602,8 +602,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('Invoice No',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                           )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -613,8 +613,8 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Text(
                                           '${controller.detailsModel.booking?.invoiceNo}',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                             )),
                                     ),
                                   ],
                                 ),
@@ -631,8 +631,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('Gst Invoice No',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                            )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -642,8 +642,8 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Text(
                                           '${controller.detailsModel.booking?.gstInvoice}',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                             )),
                                     ),
                                   ],
                                 ),
@@ -660,8 +660,8 @@ class LrSearchScreen extends StatelessWidget {
                                           bottom: size.height * 0.01),
                                       child: Text('Booked By',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                             )),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -671,8 +671,8 @@ class LrSearchScreen extends StatelessWidget {
                                       child: Text(
                                           '${controller.detailsModel.booking?.bookedBy}',
                                           style: GLTextStyles.textformfieldhint(
-                                            size: 16,
-                                          )),
+                                              size: 16,
+                                         )),
                                     ),
                                   ],
                                 ),
@@ -685,11 +685,11 @@ class LrSearchScreen extends StatelessWidget {
                               title: 'Consignor Party',
                               details: [
                                 '${controller.detailsModel.consignorParty?.partyName}',
-                                'STATION:${controller.detailsModel.consignorParty?.station}',
+                                'Station:${controller.detailsModel.consignorParty?.station}',
                                 'GST: ${controller.detailsModel.consignorParty?.gst}',
                                 'AADR: ${controller.detailsModel.consignorParty?.address}',
                                 'PH: ${controller.detailsModel.consignorParty?.phone ?? ''}',
-                                'EMAIL :${controller.detailsModel.consignorParty?.email ?? ''}',
+                                'Email :${controller.detailsModel.consignorParty?.email ?? ''}',
                               ],
                             ),
 
@@ -700,11 +700,11 @@ class LrSearchScreen extends StatelessWidget {
                               title: 'Consignee Party',
                               details: [
                                 '${controller.detailsModel.consigneeParty?.partyName}',
-                                'STATION:${controller.detailsModel.consigneeParty?.station}',
+                                'Station:${controller.detailsModel.consigneeParty?.station}',
                                 'GST: ${controller.detailsModel.consigneeParty?.gst}',
                                 'AADR: ${controller.detailsModel.consigneeParty?.address}',
                                 'PH: ${controller.detailsModel.consigneeParty?.phone ?? ''}',
-                                'EMAIL :${controller.detailsModel.consigneeParty?.email ?? ''}',
+                                'Email :${controller.detailsModel.consigneeParty?.email ?? ''}',
                               ],
                             ),
                             SizedBox(height: size.height * 0.03),
@@ -713,17 +713,17 @@ class LrSearchScreen extends StatelessWidget {
                               productDetails: [
                                 {
                                   'item':
-                                  '${controller.detailsModel.itemDetails?.item}',
+                                      '${controller.detailsModel.itemDetails?.item}',
                                   'size':
-                                  '${controller.detailsModel.itemDetails?.size}',
+                                      '${controller.detailsModel.itemDetails?.size}',
                                   'quantity':
-                                  '${controller.detailsModel.itemDetails?.quantity}',
+                                      '${controller.detailsModel.itemDetails?.quantity}',
                                   'freight':
-                                  '${controller.detailsModel.itemDetails?.freight}',
+                                      '${controller.detailsModel.itemDetails?.freight}',
                                 }
                               ],
                               vehicleDetails:
-                              controller.detailsModel.dispatchDetails ?? [],
+                                  controller.detailsModel.dispatchDetails ?? [],
                             ),
                             Divider(height: size.height * 0.04),
                           ],
@@ -773,7 +773,7 @@ class LrSearchScreen extends StatelessWidget {
 
   Future<void> _logout(BuildContext context) async {
     final detailsController =
-    Provider.of<DetailsController>(context, listen: false);
+        Provider.of<DetailsController>(context, listen: false);
     detailsController.clearDetails(); // Clear the data before logging out
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.remove(AppConfig.token);
@@ -781,7 +781,7 @@ class LrSearchScreen extends StatelessWidget {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => SelectionScreen()),
-          (route) => false,
+      (route) => false,
     );
   }
 }

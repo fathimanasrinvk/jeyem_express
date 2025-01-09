@@ -60,7 +60,7 @@ class GLTextStyles {
   }
 
   static snackbartxt({double? size, FontWeight? weight, Color? color}) {
-    return GoogleFonts.rakkas(
+    return GoogleFonts.poppins(
       fontSize: size ?? 16,
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.black,
