@@ -133,7 +133,7 @@ class LrSearchScreen extends StatelessWidget {
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
                       onPressed: () {
-                        FocusScope.of(context).unfocus(); // Hides the keyboard
+                        FocusScope.of(context).unfocus(); //  to hide the keyboard
 
                         if (trackNumberController.text.isEmpty) {
                           AppUtils.showFlushbar(
