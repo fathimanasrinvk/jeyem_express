@@ -96,12 +96,7 @@ class TrackOrderScreen extends StatelessWidget {
                                 icon: Icons.error,
                                 borderRadius: BorderRadius.circular(7),
                                 widthFactor: 0.52);
-                            // ScaffoldMessenger.of(context).showSnackBar(
-                            //   SnackBar(
-                            //     content: Text("Tracking number is required"),
-                            //     backgroundColor: Colors.red,
-                            //   ),
-                            // );
+
                           } else {
                             fetchData(context, trackNumber);
                           }
