@@ -8,6 +8,10 @@ import '../../../core/constants/text_styles.dart';
 import '../../../core/utils/app_utils.dart';
 import '../../../app_config/app_config.dart';
 import '../../../repository/api/party_view_sceen/model/party_view_model.dart';
+import '../../booking_count_screen/controller/booking_count_screen_controller.dart';
+import '../../booking_count_screen/view/booking_count_screen.dart';
+import '../../booking_count_view/controller/view_count_screen_controller.dart';
+import '../../booking_count_view/view/booking_count_view.dart';
 import '../controller/party-view_controller.dart';
 import '../widget/party_view_card.dart';
 import '../../../presentation/selection_screen/view/selection_screen.dart';
@@ -97,6 +101,93 @@ class PartyViewScreen extends StatelessWidget {
                 ),
               ),
             ),
+            // Add this to your drawer's Column children
+            Padding(
+              padding: EdgeInsets.only(
+                  left: size.width * 0.03,
+                  right: size.width * 0.03,
+                  top: size.height * 0.02),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: ColorTheme.lightcolor,
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(width: size.width * 0.05),
+                    Expanded(
+                      child: Text(
+                        'Submit Counts',
+                        style: GLTextStyles.poppins(
+                            weight: FontWeight.normal,
+                            color: ColorTheme.maincolor),
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.add_chart,
+                          size: size.height * 0.03,
+                          color: ColorTheme.maincolor),
+                      onPressed: () {
+                        Navigator.pop(context); // Close drawer
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChangeNotifierProvider(
+                              create: (_) => BookingCountProvider(),
+                              child: BookingCountScreen(digits: digits),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                  left: size.width * 0.03,
+                  right: size.width * 0.03,
+                  top: size.height * 0.02),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: ColorTheme.lightcolor,
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(width: size.width * 0.05),
+                    Expanded(
+                      child: Text(
+                        'View Counts',
+                        style: GLTextStyles.poppins(
+                            weight: FontWeight.normal,
+                            color: ColorTheme.maincolor),
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.list_alt,
+                          size: size.height * 0.03,
+                          color: ColorTheme.maincolor),
+                      onPressed: () {
+                        Navigator.pop(context); // Close drawer
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChangeNotifierProvider(
+                              create: (_) => ViewCountsController(),
+                              child:  ViewCountsScreen(digits: digits),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+
           ],
         ),
       ),
