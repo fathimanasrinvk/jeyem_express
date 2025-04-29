@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jeyem_express_cargo/presentation/add_booking_count_screen/controller/add_booking_count_screen_controller.dart';
+import 'package:jeyem_express_cargo/presentation/added_count_view_screen/controller/added_count_view_screen_controller.dart';
 import 'package:jeyem_express_cargo/presentation/employee_login_screen/controller/emplogincontroller.dart';
 import 'package:jeyem_express_cargo/presentation/order_tracking_screen/controller/details_controller.dart';
 import 'package:jeyem_express_cargo/presentation/party_login_screen/controller/party_login_controller.dart';
@@ -20,6 +22,10 @@ void main() {
     ),
     ChangeNotifierProvider(
       create: (_) => DetailsController(),
+    ),ChangeNotifierProvider(
+      create: (_) => ViewCountsController(),
+    ),ChangeNotifierProvider(
+      create: (_) => BookingCountProvider(),
     ),
 
   ], child: MyApp()));

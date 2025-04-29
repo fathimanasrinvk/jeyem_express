@@ -108,6 +108,7 @@ class BookingCountScreen extends StatelessWidget {
                 ),
                 SizedBox(height: size.height * 0.01),
                 TextField(
+                  textInputAction: TextInputAction.next,
                   controller: controller.bookingCountController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
