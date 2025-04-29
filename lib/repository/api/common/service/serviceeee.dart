@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import '../../../../core/utils/app_utils.dart';
 import '../../../helper/api_helper.dart';
 
 class TrackDetailsService {

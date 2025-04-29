@@ -1,4 +1,3 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:jeyem_express_cargo/presentation/selection_screen/view/selection_screen.dart';
 import 'package:provider/provider.dart';

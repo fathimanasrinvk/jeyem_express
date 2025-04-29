@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jeyem_express_cargo/core/constants/text_styles.dart';
 import 'package:jeyem_express_cargo/presentation/party_login_screen/view/party_login_screen.dart';
-import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import '../../../core/constants/colors.dart';
 import '../../employee_login_screen/view/emp_login_screen.dart';
 import '../../order_tracking_screen/view/track_order_screen.dart';
