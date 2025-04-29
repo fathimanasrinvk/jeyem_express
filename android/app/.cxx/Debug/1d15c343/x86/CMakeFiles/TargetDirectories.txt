@@ -1,0 +1,2 @@
+C:/Users/user/StudioProjects/jeyem_express_cargo/android/app/.cxx/Debug/1d15c343/x86/CMakeFiles/edit_cache.dir
+C:/Users/user/StudioProjects/jeyem_express_cargo/android/app/.cxx/Debug/1d15c343/x86/CMakeFiles/rebuild_cache.dir

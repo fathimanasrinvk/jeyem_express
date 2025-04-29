@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jeyem_express_cargo/presentation/booking_count_screen/controller/booking_count_screen_controller.dart';
 import 'package:jeyem_express_cargo/presentation/employee_login_screen/controller/emplogincontroller.dart';
 import 'package:jeyem_express_cargo/presentation/order_tracking_screen/controller/details_controller.dart';
 import 'package:jeyem_express_cargo/presentation/party_login_screen/controller/party_login_controller.dart';
@@ -8,6 +7,7 @@ import 'package:jeyem_express_cargo/presentation/splash_screen/splash_screen.dar
 import 'package:provider/provider.dart';
 
 void main() {
+
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (context) => LoginController(),
@@ -21,7 +21,6 @@ void main() {
     ChangeNotifierProvider(
       create: (_) => DetailsController(),
     ),
-    ChangeNotifierProvider(create: (_) => BookingCountProvider()),
 
   ], child: MyApp()));
 }

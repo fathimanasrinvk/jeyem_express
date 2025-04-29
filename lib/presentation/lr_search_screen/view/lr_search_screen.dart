@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../app_config/app_config.dart';
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/text_styles.dart';
@@ -25,7 +24,7 @@ class LrSearchScreen extends StatelessWidget {
     var size = MediaQuery.sizeOf(context);
     final trackNumberController = TextEditingController(text: trackNumber);
 
-    // Fetch the username when the screen is loaded
+    // To Fetch the username when the screen is loaded
     Future.delayed(Duration.zero, () async {
       await Provider.of<DetailsController>(context, listen: false)
           .fetchUsername();
@@ -133,7 +132,7 @@ class LrSearchScreen extends StatelessWidget {
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
                       onPressed: () {
-                        FocusScope.of(context).unfocus(); // Hides the keyboard
+                        FocusScope.of(context).unfocus(); //  to hide the keyboard
 
                         if (trackNumberController.text.isEmpty) {
                           AppUtils.showFlushbar(

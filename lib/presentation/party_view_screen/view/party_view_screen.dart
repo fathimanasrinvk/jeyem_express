@@ -8,10 +8,10 @@ import '../../../core/constants/text_styles.dart';
 import '../../../core/utils/app_utils.dart';
 import '../../../app_config/app_config.dart';
 import '../../../repository/api/party_view_sceen/model/party_view_model.dart';
-import '../../booking_count_screen/controller/booking_count_screen_controller.dart';
-import '../../booking_count_screen/view/booking_count_screen.dart';
-import '../../booking_count_view/controller/view_count_screen_controller.dart';
-import '../../booking_count_view/view/booking_count_view.dart';
+import '../../add_booking_count_screen/controller/add_booking_count_screen_controller.dart';
+import '../../add_booking_count_screen/view/add_booking_count_screen.dart';
+import '../../added_count_view_screen/controller/added_count_view_screen_controller.dart';
+import '../../added_count_view_screen/view/added_count_view_screen.dart';
 import '../controller/party-view_controller.dart';
 import '../widget/party_view_card.dart';
 import '../../../presentation/selection_screen/view/selection_screen.dart';
@@ -24,7 +24,7 @@ class PartyViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final partyViewController =
-        Provider.of<PartyViewController>(context, listen: false);
+    Provider.of<PartyViewController>(context, listen: false);
     partyViewController.fetchPartyUsername();
     var size = MediaQuery.sizeOf(context);
 
@@ -54,141 +54,144 @@ class PartyViewScreen extends StatelessWidget {
       ),
       endDrawer: Drawer(
         backgroundColor: ColorTheme.white,
-        child: Column(
-          children: [
-            UserAccountsDrawerHeader(
-              decoration: BoxDecoration(color: ColorTheme.maincolor),
-              accountName: Text(
-                  Provider.of<PartyViewController>(context).ptyUsername,
-                  style: GLTextStyles.username(color: ColorTheme.white)),
-              accountEmail: Text(''),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcdsC6_g4tHOfg6UsEMCzvW4cqwK6nXUCljg&s'),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  left: size.width * 0.03,
-                  right: size.width * 0.03,
-                  top: size.height * 0.02),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: ColorTheme.lightcolor,
-                  borderRadius: BorderRadius.circular(7),
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(width: size.width * 0.05),
-                    Expanded(
-                      child: Text(
-                        'Logout',
-                        style: GLTextStyles.poppins(
-                            weight: FontWeight.normal,
-                            color: ColorTheme.maincolor),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.logout_outlined,
-                        size: size.height * 0.03,
-                        color: ColorTheme.maincolor,
-                      ),
-                      onPressed: () => showLogoutConfirmation(context),
-                    ),
-                  ],
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              UserAccountsDrawerHeader(
+                decoration: BoxDecoration(color: ColorTheme.maincolor),
+                accountName: Text(
+                    Provider.of<PartyViewController>(context).ptyUsername,
+                    style: GLTextStyles.username(color: ColorTheme.white)),
+                accountEmail: Text(''),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcdsC6_g4tHOfg6UsEMCzvW4cqwK6nXUCljg&s'),
                 ),
               ),
-            ),
-            // Add this to your drawer's Column children
-            Padding(
-              padding: EdgeInsets.only(
-                  left: size.width * 0.03,
-                  right: size.width * 0.03,
-                  top: size.height * 0.02),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: ColorTheme.lightcolor,
-                  borderRadius: BorderRadius.circular(7),
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(width: size.width * 0.05),
-                    Expanded(
-                      child: Text(
-                        'Submit Counts',
-                        style: GLTextStyles.poppins(
-                            weight: FontWeight.normal,
-                            color: ColorTheme.maincolor),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: size.width * 0.03,
+                    right: size.width * 0.03,
+                    top: size.height * 0.02),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: ColorTheme.lightcolor,
+                    borderRadius: BorderRadius.circular(7),
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(width: size.width * 0.05),
+                      Expanded(
+                        child: Text(
+                          'Logout',
+                          style: GLTextStyles.poppins(
+                              weight: FontWeight.normal,
+                              color: ColorTheme.maincolor),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.add_chart,
+                      IconButton(
+                        icon: Icon(
+                          Icons.logout_outlined,
                           size: size.height * 0.03,
-                          color: ColorTheme.maincolor),
-                      onPressed: () {
-                        Navigator.pop(context); // Close drawer
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChangeNotifierProvider(
-                              create: (_) => BookingCountProvider(),
-                              child: BookingCountScreen(digits: digits),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  left: size.width * 0.03,
-                  right: size.width * 0.03,
-                  top: size.height * 0.02),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: ColorTheme.lightcolor,
-                  borderRadius: BorderRadius.circular(7),
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(width: size.width * 0.05),
-                    Expanded(
-                      child: Text(
-                        'View Counts',
-                        style: GLTextStyles.poppins(
-                            weight: FontWeight.normal,
-                            color: ColorTheme.maincolor),
+                          color: ColorTheme.maincolor,
+                        ),
+                        onPressed: () => showLogoutConfirmation(context),
                       ),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.list_alt,
-                          size: size.height * 0.03,
-                          color: ColorTheme.maincolor),
-                      onPressed: () {
-                        Navigator.pop(context); // Close drawer
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChangeNotifierProvider(
-                              create: (_) => ViewCountsController(),
-                              child:  ViewCountsScreen(digits: digits),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
+              // Add this to your drawer's Column children
+              Padding(
+                padding: EdgeInsets.only(
+                    left: size.width * 0.03,
+                    right: size.width * 0.03,
+                    top: size.height * 0.02),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: ColorTheme.lightcolor,
+                    borderRadius: BorderRadius.circular(7),
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(width: size.width * 0.05),
+                      Expanded(
+                        child: Text(
+                          'Submit Counts',
+                          style: GLTextStyles.poppins(
+                              weight: FontWeight.normal,
+                              color: ColorTheme.maincolor),
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.add_chart,
+                            size: size.height * 0.03,
+                            color: ColorTheme.maincolor),
+                        onPressed: () {
+                          Navigator.pop(context); // Close drawer
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChangeNotifierProvider(
+                                create: (_) => BookingCountProvider(),
+                                child: BookingCountScreen(digits: digits),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: size.width * 0.03,
+                    right: size.width * 0.03,
+                    top: size.height * 0.02),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: ColorTheme.lightcolor,
+                    borderRadius: BorderRadius.circular(7),
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(width: size.width * 0.05),
+                      Expanded(
+                        child: Text(
+                          'View Counts',
+                          style: GLTextStyles.poppins(
+                              weight: FontWeight.normal,
+                              color: ColorTheme.maincolor),
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.list_alt,
+                            size: size.height * 0.03,
+                            color: ColorTheme.maincolor),
+                        onPressed: () {
+                          Navigator.pop(context); // Close drawer
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChangeNotifierProvider(
+                                create: (_) => ViewCountsController(),
+                                child:  ViewCountsScreen(digits: digits),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
 
 
-          ],
+            ],
+          ),
         ),
       ),
       body: Padding(
@@ -215,10 +218,10 @@ class PartyViewScreen extends StatelessWidget {
                       child: Center(
                         child: Text(
                           Provider.of<PartyViewController>(context).fromDate !=
-                                  null
+                              null
                               ? DateFormat.yMMMMd().format(
-                                  Provider.of<PartyViewController>(context)
-                                      .fromDate!)
+                              Provider.of<PartyViewController>(context)
+                                  .fromDate!)
                               : 'Select Date',
                           style: GLTextStyles.date(size: 12),
                         ),
@@ -251,7 +254,7 @@ class PartyViewScreen extends StatelessWidget {
             ),
             // Show radio buttons only if there are bookings
             if (Provider.of<PartyViewController>(context).partyViewModel.data !=
-                    null &&
+                null &&
                 Provider.of<PartyViewController>(context)
                     .partyViewModel
                     .data!
@@ -354,8 +357,8 @@ class PartyViewScreen extends StatelessWidget {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate:
-          Provider.of<PartyViewController>(context, listen: false).fromDate ??
-              DateTime.now(),
+      Provider.of<PartyViewController>(context, listen: false).fromDate ??
+          DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime(2101),
       builder: (BuildContext context, Widget? child) {
@@ -379,7 +382,7 @@ class PartyViewScreen extends StatelessWidget {
                       .lightcolor, // Background color of the date picker
                 ),
                 child:
-                    child!, // Return the original child wrapped inside the constraints
+                child!, // Return the original child wrapped inside the constraints
               ),
             );
           },
@@ -401,10 +404,10 @@ class PartyViewScreen extends StatelessWidget {
         null) {
       await Provider.of<PartyViewController>(context, listen: false)
           .fetchDetailData(
-              digits,
-              Provider.of<PartyViewController>(context, listen: false)
-                  .fromDate!,
-              context);
+          digits,
+          Provider.of<PartyViewController>(context, listen: false)
+              .fromDate!,
+          context);
     } else {
       AppUtils.oneTimeSnackBar("Please select the date",
           showOnTop: false, context: context, bgColor: ColorTheme.black);
@@ -450,7 +453,7 @@ class PartyViewScreen extends StatelessWidget {
 
   Future<void> logout(BuildContext context) async {
     final partyviewController =
-        Provider.of<PartyViewController>(context, listen: false);
+    Provider.of<PartyViewController>(context, listen: false);
     partyviewController.clearDetails(); // Clear the data before logging out
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.remove(AppConfig.token);
@@ -458,7 +461,7 @@ class PartyViewScreen extends StatelessWidget {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => SelectionScreen()),
-      (route) => false,
+          (route) => false,
     );
   }
 }
