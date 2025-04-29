@@ -45,7 +45,7 @@ class GLTextStyles {
 
   static mainColorTitle1({double? size, FontWeight? weight, Color? color}) {
     return GoogleFonts.poppins(
-      fontSize: size ?? 24,
+      fontSize: size ?? 22,
       fontWeight: weight ?? FontWeight.bold,
       color: color ?? ColorTheme.white,
     );
